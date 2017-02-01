@@ -1,0 +1,621 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+/* Reset Styles */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+
+/*base styles*/
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size: 0.9em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+    font-size: 1.7em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+    font-weight:bolder;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.accordion h4.panel-title {
+    cursor: pointer;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 40px;
+  position: relative;
+  opacity: .95;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+.card-center-text {
+    text-align: center;
+}
+
+.branding {
+  float: left;
+  margin: 0;
+}
+
+.branding a {
+  width: 80%;
+  font-size: 1.6em;
+  text-align: left;
+  color: #1B7998;
+  text-decoration: none;
+  text-align: left;
+}
+
+.branding a:hover {
+  color: none;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.error {
+  color: red;
+  padding-bottom: 10px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #DA3637;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid #509D12;
+}
+
+input {
+  width: 100%;
+  display: inline-block;
+  font-weight: 100;
+  padding: 15px;
+  margin: 5px 0;
+  font-size: 1rem;
+  font-weight: 100;
+  color: #475B62;
+  border: 1px solid #C5C5C5;
+  border-radius: 4px;
+  outline: 0;
+}
+
+input[type=radio] {
+  width: auto;
+}
+
+.ng-invalid .btn {
+  background: gray;
+}
+
+.ng-enter.ng-enter-active,
+.ng-leave {
+  opacity: 1;
+  height: 80px;
+  overflow: hidden;
+}
+
+.ng-leave.ng-leave-active,
+.ng-enter {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-size: 400;
+    line-height: 140%;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: #C61C6F;
+    color: white;
+    background-color: #2D8BCF;
+    background-size: 18px 18px;
+    min-width: 28px;
+    min-height: 28px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+         -o-user-select: none;
+            user-select: none;
+}
+
+
+.btn .btn-left { float: left; }
+.btn .btn-right { float: right; }
+.btn:focus, .btn:hover {
+  background-color: #DC322F;
+  outline: none;
+}
+
+
+.textintro h1 {
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.userinfo {
+  text-align: center;
+/*  font-family: Lato, 'Helvetica Nueue', Helvetica, Arial, sans-serif;*/
+  padding-bottom: 5px;
+}
+
+.userinfo a {
+  color: #2D8BCF;
+}
+
+.userinfo input {
+    width: auto;
+}
+
+nav {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+
+nav ul {
+  width: 60%;
+  float: right;
+}
+
+nav ul li {
+  float: right;
+  color: #145266;
+  font-family: Lato, 'Helvetica Nueue', Helvetica, Arial, sans-serif;
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+nav ul li.user {
+  background-color: #D24244;
+  color: #EFC94C;
+  font-family: Lato, 'Helvetica Nueue', Helvetica, Arial, sans-serif;
+}
+
+nav ul li.user.hello {
+  margin-left: 60px;
+  padding: 10px 15px;
+}
+
+nav ul li a {
+  float: left;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+nav li a:hover {
+  color: #E76C5A;
+}
+#carousel-main {
+    margin: 7px auto 0;
+    max-height: 400px;
+/*    max-width: 1024px;*/
+    overflow: hidden;    
+}
+
+#carousel-main img {
+    height: inherit;
+/*    min-height: 400px;*/
+    width: 100%;     
+}
+
+
+#home_img {
+    height: 103px;
+}
+
+#home-content-bottom {
+    margin-top: -30px;
+}
+
+.header-carousel {
+
+    background: #222222;
+    margin: 50px auto 0;
+    height: 300px;
+}
+.topimage {
+    margin-top: 50px;
+}
+
+
+section .ng-scope {
+    
+}
+
+.header-lower-rail {
+    width: 100%;
+    height: 30px;
+    background: #222;
+}
+
+
+/*Bootstrap class alterations*/
+.btn {
+    background: #05597B;
+    padding: 3px 8px;
+    margin-top: 10px;
+}
+footer .btn {
+    margin-left: 5px;
+}
+
+.well {
+    background: white;
+    opacity: 97;
+}
+
+
+}
+
+/*End Bootstrap class alterations*/
+
+.branding {
+  /*styles for logo*/
+  float: left;
+/*  margin: 20px;*/
+}
+
+.branding a {
+  width: 100%;
+  font-size: 1.6em;
+  text-align: left;
+  color: #1B7998;
+  text-decoration: none;
+  text-align: left;
+}
+
+.featureImg {
+    width:100%;
+    margin-bottom: 15px;
+}
+
+.contact-image {
+    width: 250px;
+}
+
+#contact-submit {
+    width: 250px;
+}
+
+#contact-alternative {
+    margin: 40px auto;
+}
+
+
+.carousel-slide {
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    width: inherit;
+    max-width: 750px;
+}
+
+.slider {
+    border: 10px solid black;
+    border-radius: 5px;
+    height: 500px;
+    max-width: 620px;
+    margin: 15px auto;
+    position: relative;
+    width: 100%;
+    background: black;
+    text-align: center;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -ms-perspective: 1000px;
+    -o-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.slider p {
+    width: 100%;
+}
+
+.slide img {
+    position: absolute;
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: inherit;*/
+    display: block;
+    margin: auto;
+    max-width: 95%;
+    max-height: 82%;
+    left: 0;
+    right: 0;
+}
+.slide.ng-hide-add {
+    opacity:1;
+    display: block!important;
+
+}
+.slide.ng-hide-add.ng-hide-add-active {
+opacity:0;
+    -webkit-transition:1s linear all;
+    -moz-transition:1s linear all;
+    -o-transition:1s linear all;
+    transition:1s linear all;
+    -webkit-transform: rotateX(50deg) rotateY(30deg);
+    -moz-transform: rotateX(50deg) rotateY(30deg);
+    -ms-transform: rotateX(50deg) rotateY(30deg);
+    -o-transform: rotateX(50deg) rotateY(30deg);
+    transform: rotateX(50deg) rotateY(30deg);
+    -webkit-transform-origin: right top 0;
+    -moz-transform-origin: right top 0;
+    -ms-transform-origin: right top 0;
+    -o-transform-origin: right top 0;
+    transform-origin: right top 0;
+}
+.slide.ng-hide-remove {
+-webkit-transition:1s linear all;
+-moz-transition:1s linear all;
+-o-transition:1s linear all;
+transition:1s linear all;
+display:block!important;
+opacity:0;
+}
+.slide, .slide.ng-hide-remove.ng-hide-remove-active {
+opacity:1;
+}
+
+
+main {
+    margin: 25px auto 65px auto;
+    padding: 5px 10px;
+    line-height: 1.5;
+    border-radius: 4px;
+
+    background-image: url(../images/Melonseed_At_rest_subdud.jpg);
+    background-size: cover;
+
+}
+
+section.images {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+aside {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    margin-top: 0;
+    background: white;
+    opacity: .97;
+}
+
+footer .navbar {
+    background-color: #A9AAAC;
+}
+
+footer .navbar .navbar-text {
+    color: black;
+}
+
+@media (min-width: 992px) {
+    .navbar-nav li {
+        float: right;
+
+    }
+    .navbar-collapse {
+/*        float: right;*/
+/*        width: 95%; */
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        width: 60%;
+        float:right;
+        
+    }
+    .navbar-nav {
+        width: 100%;
+    }
+    .images.slider {
+        margin: 0;
+        border-width: 10px;
+        height: 370px;  
+    }
+    .images.slider p {
+        top: 325px;
+    }
+    .images aside {
+        height: 368px;
+    }
+    #image-thumbs {
+        height: 180px;
+    }
+ 
+}
+
+@media (max-width: 950px) {
+    .header-lower-rail {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        width: 100%;
+    }
+    .navbar-nav {
+        width: 100%;
+        clear: both;
+        
+    }
+    .section-header-text {
+        text-align: left;
+    }
+    .header-carousel {
+        height: 250px;
+    }
+    .header-lower-rail {
+        display: block;
+    }
+    .navbar-nav>li {
+        float: left;
+        font-size: .9em;
+    }
+    .navbar-nav>li>a {
+        padding: 2.5px 10px;
+        line-height: 15px
+    }
+}
+
+@media (max-width: 680px) {
+    .header-carousel {
+        height: 225px;
+    }
+    .images.slider p {
+        top: 300px;
+    }
+    .boat .boat-intro {
+        width: 95%;
+        display: block;
+    }
+}
+@media (max-width: 575px) {
+    .social-buttons {
+        display: none;
+    }
+    .header-carousel {
+        height: 175px;
+    }
+}
+
+@media (max-width: 490px) {
+    .boat h3,
+    .boat p {
+        display: none;
+    }
+    div.boat {
+        margin: 10px auto;
+    }
+    .navbar-nav>li {
+        width: 100%;
+        padding: none;
+    }
+
+}
+
+@media (max-width: 450px) {
+    
+}

@@ -1,0 +1,28 @@
+<section class="aside">
+    <div class="list-group">
+        <div class="userinfo list-group-item" ng-hide="currentUser">
+            <p><a ng-href="#/login">Login</a> Or <a href="#/register">Register</a></p>
+        </div>
+        <div class="userinfo list-group-item" ng-show="currentUser" ng-controller="RegistrationController">
+            <h4><span class="userinfo">Hi {{currentUser.firstname}} {{currentUser.lastname}}</span></h4>
+            <a ng-href="#/login" ng-click="logout()">Logout</a>
+        </div>
+        <a ng-href="#/gallery" class="list-group-item">
+            <h4 class="list-group-item-heading">Photos Galore!</h4>
+            <p class="list-group-item-text">Check out our photo gallery and sort through various models...<em>Visit our Gallery</em></p>
+        </a>
+        <a ng-href="#/services" class="list-group-item">
+            <h4 class="list-group-item-heading">Fix Your Old Boat</h4>
+            <p class="list-group-item-text">From the simplest cosmetic makeovers to the most elaborate structural overhaul, we can turn back the clock for your yacht...<em>Check out our Service Offerings</em></p>
+        </a>
+        <a ng-href="#/contact" class="list-group-item">
+            <h4 class="list-group-item-heading">Not sure what you want?</h4>
+            <p class="list-group-item-text">Send us a note with your ideas, we probably have the perfect boat for you...<em>Contact Us</em></p>
+        </a>
+        <a ng-href="#/services" class="list-group-item">
+            <h4 class="list-group-item-heading">Need Parts?</h4>
+            <p class="list-group-item-text">We can replicate all sorts of replacement parts...<em>Check out our Service Offerings</em></p>
+        </a>
+        <br>
+        </div>
+</section>
