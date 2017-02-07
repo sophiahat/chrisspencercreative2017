@@ -156,6 +156,23 @@ strong {
   padding-bottom: 10px;
 }
 
+.news img {
+    float: left;
+    margin: 5px 15px 0 0;
+}
+.news p {
+    padding: 3px 0 10px 0;
+    
+}
+.news-item {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.news-item:hover {
+    background: rgba(120, 120, 120, 0.3);
+}
+
 .video-example {
     height: 220px;
 }
