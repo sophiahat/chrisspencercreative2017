@@ -68,6 +68,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     font-size: 0.9em;
+    background: #2B3034;
 }
 
 h1,
@@ -153,6 +154,20 @@ strong {
 .error {
   color: red;
   padding-bottom: 10px;
+}
+
+.video-example {
+    height: 220px;
+}
+
+.video-example:hover {
+    background: rgba(120, 120, 120, 0.3);
+}
+
+.video-example h5 {
+    height: 45px;
+    padding: 2px 5px 0 5px;
+    text-align: center;
 }
 
 input.ng-invalid.ng-touched {
@@ -300,8 +315,8 @@ nav li a:hover {
 }
 #carousel-main {
     margin: 7px auto 0;
-    max-height: 400px;
-/*    max-width: 1024px;*/
+    max-height: 180px;
+    max-width: 100%;
     overflow: hidden;    
 }
 
@@ -323,8 +338,8 @@ nav li a:hover {
 .header-carousel {
 
     background: #222222;
-    margin: 50px auto 0;
-    height: 300px;
+    margin: 52px auto 0;
+/*    height: 180px;*/
 }
 .topimage {
     margin-top: 50px;
@@ -375,6 +390,7 @@ footer .btn {
   color: #1B7998;
   text-decoration: none;
   text-align: left;
+  padding: 5px 0 25px 0;
 }
 
 .featureImg {
@@ -481,10 +497,6 @@ main {
     padding: 5px 10px;
     line-height: 1.5;
     border-radius: 4px;
-
-    background-image: url(../images/Melonseed_At_rest_subdud.jpg);
-    background-size: cover;
-
 }
 
 section.images {
@@ -564,8 +576,10 @@ footer .navbar .navbar-text {
     .section-header-text {
         text-align: left;
     }
+/*
     .header-carousel {
         height: 250px;
+*/
     }
     .header-lower-rail {
         display: block;
@@ -582,7 +596,7 @@ footer .navbar .navbar-text {
 
 @media (max-width: 680px) {
     .header-carousel {
-        height: 225px;
+        height: initial;
     }
     .images.slider p {
         top: 300px;
@@ -596,9 +610,11 @@ footer .navbar .navbar-text {
     .social-buttons {
         display: none;
     }
+/*
     .header-carousel {
         height: 175px;
     }
+*/
 }
 
 @media (max-width: 490px) {

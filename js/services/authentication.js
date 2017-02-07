@@ -19,7 +19,7 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseObject', '$firebaseAuth
             $rootScope.authObj.$signInWithEmailAndPassword(user.email, user.password)
             .then(function(regUser) {
                 console.log("Signed in as: " + regUser.uid);
-                $location.path('/boats');
+                $location.path('/home');
             }).catch(function(error){
                 $rootScope.message = "Error: " + error.message;
             });
