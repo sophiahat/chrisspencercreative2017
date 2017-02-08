@@ -40,10 +40,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'views/portfolio.html',
             controller: 'PortfolioController'
         }).
-        when('/boats/:bId', {
-            templateUrl: 'views/boat-details.html',
-            controller: 'BoatDetailsController'
-        }).
         when('/services', {
             templateUrl: 'views/services.html',
             controller: 'ServicesController'

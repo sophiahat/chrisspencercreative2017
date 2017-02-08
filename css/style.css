@@ -170,15 +170,17 @@ strong {
 }
 
 .news-item:hover {
-    background: rgba(120, 120, 120, 0.3);
+    background: rgba(120, 120, 120, 0.1);
 }
 
 .video-example {
     height: 220px;
+    padding: 5px;
 }
 
 .video-example:hover {
-    background: rgba(120, 120, 120, 0.3);
+    background: rgba(120, 120, 120, 0.1);
+    border-radius: 5px;
 }
 
 .video-example h5 {
