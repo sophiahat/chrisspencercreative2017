@@ -27,7 +27,7 @@ myApp.run(['$rootScope', '$location', function($rootScope, $location) {
 
 
 
-myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+myApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/home', {
             templateUrl: 'views/home.html'
@@ -70,10 +70,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
             }//resolve
         }).
         otherwise({
-            redirectTo: '/home'});
-    $locationProvider.html5Mode(true);
-    //$locationProvider.hashPrefix('!');
-    
+            redirectTo: '/home'});  
 }]);
 
 myApp.filter("trustUrl", ['$sce', function ($sce) {
