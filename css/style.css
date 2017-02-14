@@ -592,6 +592,11 @@ footer .navbar .navbar-text {
         clear: both;
         
     }
+    
+    .news img {
+        width: 50%;
+    }
+    
     .section-header-text {
         text-align: left;
     }
@@ -628,6 +633,10 @@ footer .navbar .navbar-text {
 @media (max-width: 575px) {
     .social-buttons {
         display: none;
+    }
+    .news img {
+        float: none;
+        width: 100%;
     }
 /*
     .header-carousel {
