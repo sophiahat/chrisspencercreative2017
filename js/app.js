@@ -23,7 +23,11 @@ myApp.run(['$rootScope', '$location', function($rootScope, $location) {
     });// event info
 }]);//run
 
-myApp.config(['$routeProvider', function($routeProvider) {
+
+
+
+
+myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
         when('/home', {
             templateUrl: 'views/home.html'
@@ -66,7 +70,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
             }//resolve
         }).
         otherwise({
-            redirectTo: '/home'})
+            redirectTo: '/home'});
+    $locationProvider.html5Mode(true);
+    //$locationProvider.hashPrefix('!');
+    
 }]);
 
 myApp.filter("trustUrl", ['$sce', function ($sce) {
