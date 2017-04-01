@@ -173,22 +173,6 @@ strong {
     background: rgba(120, 120, 120, 0.1);
 }
 
-.video-example {
-    height: 220px;
-    padding: 5px;
-}
-
-.video-example:hover {
-    background: rgba(120, 120, 120, 0.1);
-    border-radius: 5px;
-}
-
-.video-example h5 {
-    height: 45px;
-    padding: 2px 5px 0 5px;
-    text-align: center;
-}
-
 input.ng-invalid.ng-touched {
   border: 1px solid #DA3637;
 }
@@ -358,7 +342,7 @@ nav li a:hover {
 
     background: #222222;
     margin: 52px auto 0;
-/*    height: 180px;*/
+
 }
 .topimage {
     margin-top: 50px;
@@ -369,11 +353,103 @@ section .ng-scope {
     
 }
 
+.admin .videolist li {
+    text-align: center;
+    width: 23%;
+    float: left;
+    height: 220px;
+    padding: 5px;
+    margin-left: 1.5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.admin .videolist li:hover {
+    background: rgba(120, 120, 120, 0.1);
+    border-radius: 5px; 
+}
+.portfolio img {
+    width: 70%;
+}
+.admin .videolist img {
+    width: 90%;
+    text-align: center;
+}
+.admin li,
+.portfolio li {
+    list-style: none;
+}
+
+.portfolio iframe {
+    width: 100%;
+    height: auto;
+/*    float: left;*/
+}
+
+.portfolio .bp-media-settings-show-speed {
+    z-index: 2;
+}
+.portfolio .preview-header-wrapper {
+    z-index: 1;
+}
+.preview-header-wrapper {
+    display: none;
+}
+
+.bp-media-controls-wrapper {
+    bottom: -20px!important;
+}
+
+.portfolio .video {
+    text-align: center;
+    width: 48%;
+    float: left;
+    height: 220px;
+    padding: 5px;
+    margin-left: 1.5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.portfolio .video a {
+    text-decoration: none;
+}
+
+.portfolio .video:hover {
+    background: rgba(120, 120, 120, 0.1);
+    border-radius: 5px;
+}
+.admin .videolist h5,
+.portfolio .video h5 {
+    height: 45px;
+    padding: 2px 5px 0 5px;
+    text-align: center;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
 .header-lower-rail {
     width: 100%;
     height: 30px;
     background: #222;
 }
+
+#music-comp-player {
+ width: 100%;
+}
+
 
 
 /*Bootstrap class alterations*/

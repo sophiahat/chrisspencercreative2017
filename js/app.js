@@ -5,11 +5,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'ngSanitize']);
 myApp.config(function() {
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCpRQHpnwJDrxqBMzXQuzucHkrgqMS-D3E",
-    authDomain: "brushcreekyachts16.firebaseapp.com",
-    databaseURL: "https://brushcreekyachts16.firebaseio.com",
-    storageBucket: "brushcreekyachts16.appspot.com",
-    messagingSenderId: "218101125716"
+    apiKey: "AIzaSyCHnf3VEl_k_kpgi0T5A_b3EvyuT9Hysl4",
+    authDomain: "chrisspencercreative17.firebaseapp.com",
+    databaseURL: "https://chrisspencercreative17.firebaseio.com",
+    storageBucket: "chrisspencercreative17.appspot.com",
+    messagingSenderId: "271302276044"
   };
   firebase.initializeApp(config);
 });
@@ -72,6 +72,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
         otherwise({
             redirectTo: '/home'});  
 }]);
+
+myApp.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        'self',
+        'https://app.box.com/**'
+    ]);
+});
 
 myApp.filter("trustUrl", ['$sce', function ($sce) {
     return function (recordingUrl) {

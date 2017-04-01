@@ -1,4 +1,5 @@
-<section class="card portfolio">
+
+   <section class="card portfolio">
     
     <div class="row">
         <div class="col-md-9">
@@ -8,6 +9,7 @@
                 </div>
             </header>
            <div class="panel-group accordion" id="accordion">
+<!--
                <div class="panel panel-default">
                    <div class="panel-heading">
                        <h4 class="panel-title" data-toggle="collapse" data-target="#voice-over-adr" data-parent="#accordion" >Voice Over / ADR</h4>
@@ -47,14 +49,38 @@
                        </div>
                    </div>
                </div>
+-->
                <div class="panel panel-default">
                    <div class="panel-heading">
                        <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#composition"  >Music Composition</h4>
                    </div>
-                   <div id="composition" class="panel-collapse collapse">
-                       <div class="panel-body">
+                   <div id="composition" class="panel-collapse in collapse">
+                       <div class="panel-body" ng-model="audio">
+<!--
                            <h3>The Lair of Galendron</h3>
                             <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/239930742&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;visual=false"></iframe>
+                            
+                        
+-->
+                      
+                           <div class="audioplayer">
+<!--                               audio player-->
+                
+<!--
+                                 <div ng-init="getIframeAudioSource({{initAudio}});">
+                                </div>
+-->
+                                     <iframe id="comp-audio-player" view_file_only="yes" src=" https://app.box.com/embed/s/rgh3iqx43nff5aok6fvbn4f6zgrgxki5" width="100%" height="200" frameborder="0"></iframe> 
+                                       
+                                 
+                               <h1>{{audio[0].link}}</h1>
+                               <div class="audio" ng-repeat="track in audio">
+                                   <a ng-click="getIframeAudioSource(track)" href="">
+                                       <h5>{{track.title}} - {{track.description}}</h5>
+                                   </a>
+                               </div>
+                               
+                           </div>
                        </div>
                    </div>
                </div>
@@ -62,70 +88,18 @@
                    <div class="panel-heading">
                        <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#video"  >Video</h4>
                    </div>
-                   <div id="video" class="panel-collapse in collapse">
+                   <div id="video" class="panel-collapse in collapse" ng-model="videos">
                        <div class="panel-body">
+<div class="videoWrapper">
+    <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/J_WQmwYVyIw?showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div>
                           <div class="row">
-                              <div class="col-md-6">
-                                  <div class="video-example">
-                                      <h5>Sound Design / Music Composition Demo 1</h5>
-
-                                       <iframe src="https://player.vimeo.com/video/79375429" width="98%" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-                                  </div>
-                                  <div class="video-example">
-
-                                      <h5>Video Game Trailer - redesign</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/paW4Yu-mG8s" frameborder="0" allowfullscreen></iframe>
-                                  </div>
-                                  <div class="video-example">
-                                      <h5>Sound Design Audio Implementation Demo - Angry Bots Unity</h5>
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/4LRxKDmTKFc" frameborder="0" allowfullscreen></iframe>
-
-                                  </div>
-                                  <div class="video-example">
-                                      <h5>Sound Design Demo 1</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/RZkgKY8wJtA" frameborder="0" allowfullscreen></iframe>
-
-                                  </div>
-                                   <div class="video-example">
-                                       <h5>Sound Design / Music Composition Demo 2</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/5lgSqgIzfyM" frameborder="0" allowfullscreen></iframe>
-                                   </div>
-                              </div>
-                              <div class="col-md-6">
-
-                                  <div class="video-example">
-                                      <h5>Sound Design Audio Implementation Demo - Unreal Editor</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/mlacNkCDVX0" frameborder="0" allowfullscreen></iframe>
-
-                                  </div>
-                                  <div class="video-example">
-                                      <h5>Epsilon 3 Soundtrack - Music Composition Demo</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/N0Dga-3HQjA" frameborder="0" allowfullscreen></iframe>
-
-                                  </div>
-                                  <div class="video-example">
-                                      <h5>Sound Design / Music Composition Demo 4</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/XBsWgTF37Vg" frameborder="0" allowfullscreen></iframe>
-
-                                  </div>
-                                  <div class="video-example">
-                                      <h5>Sound Design / Music Composition Demo 5</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/s_g6d2FcSMQ" frameborder="0" allowfullscreen></iframe>
-
-                                  </div>
-                                  <div class="video-example">
-                                      <h5>Sound Design / Music Composition Demo 6</h5>
-
-                                       <iframe width="98%" height="auto" src="https://www.youtube.com/embed/ZTofY9FKuvk" frameborder="0" allowfullscreen></iframe>
-
+                              <div class="videos">
+                                  <div class="video" ng-repeat="video in videos" ng-show="video.active">
+                                      <a href="" ng-click="getIframeSource(video)">
+                                          <h5>{{video.title}}</h5>
+                                          <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
+                                      </a>
                                   </div>
                               </div>
                           </div>

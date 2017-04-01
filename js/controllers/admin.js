@@ -12,60 +12,38 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             console.log(userObj.$value);
             //console.log(userObj.firstname);
             
-            var boatsRef = firebase.database().ref('/boats');
-            var boatsInfo = $firebaseArray(boatsRef);
-            $scope.boats = boatsInfo;
+            var videoRef = firebase.database().ref('/video');
+            var videosInfo = $firebaseArray(videoRef);
+            $scope.videos = videosInfo;
             
-            var colorsRef = firebase.database().ref('/colors');
-            var colorsInfo = $firebaseArray(colorsRef);
-            //console.log(colorsInfo);
-            $scope.colors = colorsInfo;
-            $scope.colorselect = {}; //$scope.colors[0];
+//            var colorsRef = firebase.database().ref('/colors');
+//            var colorsInfo = $firebaseArray(colorsRef);
+//            //console.log(colorsInfo);
+//            $scope.colors = colorsInfo;
+//            $scope.colorselect = {}; //$scope.colors[0];
             
             var imagesRef = firebase.database().ref('/images');
             var imagesInfo = $firebaseArray(imagesRef);
-            //console.log(imagesInfo);
-            
-            $scope.addBoat = function() {
-                $scope.boatActive = false;
-//                console.log("Here's" + JSON.stringify($scope.colorselect));
-                boatsInfo.$add({
-                    model: $scope.model,
+            $scope.videoActive = false;
+            $scope.addVideo = function() {
+                
+                videosInfo.$add({
+                    title: $scope.title,
                     dateCreated: firebase.database.ServerValue.TIMESTAMP,   
-                    modelId: $scope.modelId,
-//                   colors: $scope.colors,
-//                    colors: $scope.colorselect.$value,
+                    videoId: $scope.videoId,
+                    workPerformed: $scope.workPerformed,
+                    metatags: $scope.metatags,
                     description: $scope.description,
-                    weight: $scope.weight,
-                    length: $scope.length,
-                    beam: $scope.beam,
-                    draft: $scope.draft,
-                    rig: $scope.rig,
-                    sailarea: $scope.sailarea,
-                    price:$scope.price,
-                    trailer:$scope.trailer,
-                    construction: $scope.construction,
-                    thumbimg: $scope.thumbimg,
-                    active: $scope.boatActive
+                    active: $scope.videoActive
                 }).then(function() {
-                    $scope.model =
-                    $scope.modelId =
-//                    $scope.colors =
-//                    $scope.colorselect =
-                    $scope.length =
-                    $scope.rig =
-                    $scope.sailarea =
-                    $scope.price =
-                    $scope.beam =
-                    $scope.draft =
-                    $scope.weight = 
+                    $scope.title =
                     $scope.description =
-                    $scope.construction =
-                    $scope.thumbimg =
-                    $scope.boatActive =
-                    $scope.trailer = '';
-                });//boatsInfo.$add
-            };//addBoat
+                    $scope.workPerformed =
+                    $scope.metatags =
+                    $scope.videoId = '';
+                    $scope.videoActive = false;
+                });//videosInfo.$add
+            };//addvideo
             $scope.addImage = function() {
                 imagesInfo.$add({
                     dateCreated: firebase.database.ServerValue.TIMESTAMP,
@@ -82,6 +60,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     $scope.hullId =
                     $scope.image_description =
                     $scope.boat_model = '';
+                    
                 });//imagesInfo.$add
             }//addImage
         }// if user authenticated

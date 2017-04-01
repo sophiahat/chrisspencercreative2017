@@ -1,67 +1,59 @@
 <section class="admin card cf">
    <h1>Website Administration</h1>
     <div class="accordion" id="accordion">
-        <h3 data-toggle="collapse" data-target="#current-boats" data-parent="#accordion">Current Boats</h3>
-        <div id="current-boats" class="boat-inventory collapse">
-           <ul class="boatlist">
-               <li class="boats" ng-repeat="(key , boat) in boats">
-        <!--
-                   <span>{{key}}</span>
-                   <span>{{boat.$id}}</span>
-        -->
-                   <a href="#/boats/{{boat.$id}}" class="btn btn-success">{{boat.model}}</a>
+       
+       <div class="cf">
+           <h3 data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Current Videos</h3>
+            <div id="current-videos" class="video-inventory collapse">
+               <ul class="videolist">
+                   <li class="video-data" ng-repeat="(key , video) in videos">
 
-               </li>
-           </ul>
-        </div>
+                       <a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
+                       <h5>{{video.title}}</h5> 
+                       <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
+                       </a>
 
-        <h3 data-toggle="collapse" data-target="#add-boat" data-parent="#accordion">Add a Boat</h3>
-        <div id="add-boat" class="collapse add-boat">
-            <form class="cf formgroup addboat" name="addboat" ng-submit="addBoat()" novalidate>
-                <div class="inputwrapper">
-                    <input type="text" name="model" ng-model="model" ng-required="true" placeholder="Boat Model">
-                    <input type="text" name="description" ng-model="description" ng-required="true" placeholder="Description">
-                    <input type="text" name="modelId" ng-model="modelId" ng-required="true" placeholder="Model ID">
-        <!--            <input type="text" name="colors" ng-model="colors" ng-required="true" placeholder="Hull color">-->
-<!--
-                    <span>Available Boat Colors: </span>
-                    <select class="form-control" name="colorselect" id="colorselect" ng-model="colorselect"  ng-options="color as color.$id for color in colors track by color.$value">
+                   </li>
+               </ul>
+            </div>
+       </div>
+       
+        <div class="cf">
+            <h3 data-toggle="collapse" data-target="#add-video" data-parent="#accordion">Add a Video</h3>
+            <div id="add-video" class="collapse add-video">
+                <form class="cf formgroup addvideo" name="addvideo" ng-submit="addVideo()" novalidate>
+                    <div class="inputwrapper">
+                        <input type="text" name="title" ng-model="title" ng-required="true" placeholder="Video Title">
+                        <input type="text" name="description" ng-model="description" ng-required="false" placeholder="Description">
+                        <input type="text" name="videoId" ng-model="videoId" ng-required="true" placeholder="Video ID">
+                        <input type="text" name="workPerformed" ng-model="workPerformed" ng-required="false" placeholder="Work Performed">
+                        <input type="text" name="metatags" ng-model="metatags" ng-required="false" placeholder="Metatags">
+                        <div ng-required="false" class="checkbox">
+                            <input ng-true-value="true" ng-false-value="false" ng-model="videoActive" id="videoActive" type="checkbox"><label for="videoActive">Video is Active</label>
+                        </div>
 
-                    </select>
--->
-                    <input type="text" name="length" ng-model="length" ng-required="true" placeholder="Boat Length">
-                    <input type="text" name="beam" ng-model="beam" ng-required="true" placeholder="Boat Beam">
-                    <input type="text" name="weight" ng-model="weight" placeholder="Boat Weight">
-                    <input type="text" name="draft" ng-model="draft" placeholder="Boat Draft Centerboard Up and Down">
-                    <input type="text" name="rig" ng-model="rig" placeholder="Rig Type">
-                    <input type="text" name="sailarea" ng-model="sailarea" placeholder="Sail Area">
-                    <input type="text" name="construction" ng-model="construction" placeholder="Boat Construction">
-                    <input type="text" name="price" ng-model="price" ng-required="true" placeholder="Price">
-                    <input type="text" name="trailer" ng-model="trailer" placeholder="Trailer">
-                    <input type="text" name="thumbimg" ng-model="thumbimg" placeholder="Image filename">
-                    <div required="false" class="checkbox">
-                        <input ng-true-value="true" ng-false-value="false" ng-model="boatActive" id="boatActive" type="checkbox"><label for="boatActive">Boat is Active</label>
                     </div>
-
-                </div>
-                <button type="submit" class="btn" ng-disabled="addboat.$invalid">Add Boat</button>
-            </form>
+                    <button type="submit" class="btn" ng-disabled="addVideo.$invalid">Add Video</button>
+                </form>
+            </div>
         </div>
+        <div class="cf">
+            <h3 data-toggle="collapse" data-target="#add-image" data-parent="#accordion">Add an Image</h3>
+            <div id="add-image" class="collapse add-image">
+                <form novalidate name="addimage" ng-submit="addImage()" class="cf formgroup addimage">
+                   <input type="text" placeholder="Filename" ng-model="filename" required="true">
+                   <input type="text" placeholder="Stage of Completion in %" ng-model="stage" required="true">
+                   <input type="text" placeholder="Image Creation Date" ng-model="imagedate">
+                   <span>Boat Model</span>
+                   <select name="boatselect" id="boatselect"  ng-model="boat_model" required="true" ng-options="boat as boat.model for boat in boats track by boat.model"></select>
+                   <input type="text" placeholder="hullId" ng-model="hullId" required="true">
+                   <input type="text" placeholder="Description" ng-model="image_description">
+                   <button type="submit" class="btn" ng-disabled="addimage.$invalid">Add Image</button>
 
-        <h3 data-toggle="collapse" data-target="#add-image" data-parent="#accordion">Add an Image</h3>
-        <div id="add-image" class="collapse add-image">
-            <form novalidate name="addimage" ng-submit="addImage()" class="cf formgroup addimage">
-               <input type="text" placeholder="Filename" ng-model="filename" required="true">
-               <input type="text" placeholder="Stage of Completion in %" ng-model="stage" required="true">
-               <input type="text" placeholder="Image Creation Date" ng-model="imagedate">
-               <span>Boat Model</span>
-               <select name="boatselect" id="boatselect"  ng-model="boat_model" required="true" ng-options="boat as boat.model for boat in boats track by boat.model"></select>
-               <input type="text" placeholder="hullId" ng-model="hullId" required="true">
-               <input type="text" placeholder="Description" ng-model="image_description">
-               <button type="submit" class="btn" ng-disabled="addimage.$invalid">Add Image</button>
-
-            </form>
+                </form>
+            </div>
         </div>
+            
     </div>    
 
 </section>

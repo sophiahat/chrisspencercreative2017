@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Users/billevans/Documents/webDevelopment/chrisSpencerCreative2017/js/services/authentication.js",
+        "/Users/billevans/Documents/webDevelopment/Hosts/chrisSpencerCreative2017/js/services/authentication.js",
+        "/Users/billevans/Documents/webDevelopment/Hosts/chrisSpencerCreative2017/js/lib/google/autotrack.js",
+        "/Users/billevans/Documents/webDevelopment/Hosts/chrisSpencerCreative2017/js/lib/firebase/firebase.js"
+    ]
+}
