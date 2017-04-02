@@ -3,29 +3,28 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var videosInfo = $firebaseArray(videosRef);
     $scope.videos = videosInfo;
     
-    var audioRef = firebase.database().ref('/audio');
+    var audioRef = firebase.database().ref('/audioLoc');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
     console.log("Audio Object from database: "); 
     console.log($scope.audio);
+    var audioplayer = $('#audio-player');
+    
+    function setAutoplayAudio() {
+        audioplayer.attr('autoplay', 'autoplay');
+    }
+    function changeDisplayAudio(audio) {
+        setDisplayAudio(audio);
+        setAutoplayAudio();
+    }
     
     function setDisplayAudio(audio) {
-        setTimeout(function(){
-            console.log('pressing play');
-            var player = $('#comp-audio-player').contents().find('audio');
-            console.log(player);
-            player.play();
-        }, 5000);
+        $scope.displayAudio = audio;
         console.log('In audio stuff');
-        console.log(audio.audioId);
-        var link = "https://app.box.com/s/" + audio.audioId + "?autoplay=1";
-        var srcLink = $sce.trustAsResourceUrl(link);
         
+        var link = "/audio/" + audio.src;
         
-        console.log(srcLink);
-        var audioplayer = $('#comp-audio-player');
-        audioplayer.attr('src', $sce.trustAsResourceUrl(link));
-        
+        audioplayer.attr('src', link);
         
     }
     
@@ -36,20 +35,22 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         var trackNumber = Math.floor(Math.random() * (audioArrayLength));
         console.log("Random choice is: " + trackNumber);
         
-        var rec = audioInfo.$getRecord('audiotest1');
+        var rec = audioInfo.$getRecord('audio1');
+        console.log('record 1 is:');
         console.log(rec);
         rec = audioInfo[trackNumber];
+        console.log('random pick is:');
         console.log(rec);
         
         //$scope.displayAudioSrc = srcLink;
         $scope.displayAudio = $scope.audio[trackNumber];
-        console.log("Current Audio is: " + $scope.displayAudio.audioId);
-        //setDisplayAudio(rec);
+        console.log("Current Audio is: " + $scope.displayAudio.title);
+        setDisplayAudio(rec);
     });
     
     
     
-    $scope.getIframeAudioSource = setDisplayAudio;
+    $scope.getAudioSource = changeDisplayAudio;
                     
     
     $scope.getIframeSource = function(video) {

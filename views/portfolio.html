@@ -56,29 +56,58 @@
                    </div>
                    <div id="composition" class="panel-collapse in collapse">
                        <div class="panel-body" ng-model="audio">
-<!--
-                           <h3>The Lair of Galendron</h3>
-                            <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/239930742&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;visual=false"></iframe>
-                            
-                        
--->
+
                       
-                           <div class="audioplayer">
-<!--                               audio player-->
-                
+
 <!--
-                                 <div ng-init="getIframeAudioSource({{initAudio}});">
-                                </div>
--->
+                           <div class="audioplayer">
+
                                      <iframe id="comp-audio-player" view_file_only="yes" src=" https://app.box.com/embed/s/rgh3iqx43nff5aok6fvbn4f6zgrgxki5" width="100%" height="200" frameborder="0"></iframe> 
                                        
                                  
                                <h1>{{audio[0].link}}</h1>
                                <div class="audio" ng-repeat="track in audio">
-                                   <a ng-click="getIframeAudioSource(track)" href="">
+                                   <a ng-click="getAudioSource(track)" href="">
                                        <h5>{{track.title}} - {{track.description}}</h5>
                                    </a>
                                </div>
+                               
+                           </div>
+-->
+                           
+
+                      
+                           <div class="audioplayer">
+                             
+                               <div class="displayAudio">
+                                   <div class="audioImg"><img ng-src="/images/thumbs/{{displayAudio.img}}" alt=""></div>
+                                   <div class="audioTitle"><span>{{displayAudio.title}}</span></div>
+                                   
+                                   <div class="audioDesc">{{displayAudio.desc}}</div>
+                                   
+                                   <audio id="audio-player" controls>
+                                   
+                                   <source src="" type="audio/mp3">
+                               </audio>
+                               </div>
+                               
+                               <div class="audio-list">
+                                    <div class="audio" ng-repeat="track in audio">
+                                  
+                                  
+                                       <a ng-click="getAudioSource(track)" href="">
+                                         <div class="audio-item">
+                                             <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
+                                            <div class="audioTitle"><span>{{track.title}}</span></div> 
+                                         </div>                                        
+                                       </a>
+                                   
+                                
+                               </div>
+                                   
+                               </div>
+
+                               
                                
                            </div>
                        </div>
@@ -86,7 +115,7 @@
                </div>
                <div class="panel panel-default">
                    <div class="panel-heading">
-                       <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#video"  >Video</h4>
+                       <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#video"  >Audio for Video</h4>
                    </div>
                    <div id="video" class="panel-collapse in collapse" ng-model="videos">
                        <div class="panel-body">
