@@ -16,14 +16,10 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             var videosInfo = $firebaseArray(videoRef);
             $scope.videos = videosInfo;
             
-//            var colorsRef = firebase.database().ref('/colors');
-//            var colorsInfo = $firebaseArray(colorsRef);
-//            //console.log(colorsInfo);
-//            $scope.colors = colorsInfo;
-//            $scope.colorselect = {}; //$scope.colors[0];
+
             
-            var imagesRef = firebase.database().ref('/images');
-            var imagesInfo = $firebaseArray(imagesRef);
+            var audioRef = firebase.database().ref('/audio');
+            var audioInfo = $firebaseArray(audioRef);
             $scope.videoActive = false;
             $scope.addVideo = function() {
                 
@@ -44,25 +40,24 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     $scope.videoActive = false;
                 });//videosInfo.$add
             };//addvideo
-            $scope.addImage = function() {
-                imagesInfo.$add({
+            $scope.addAudio = function() {
+                audioInfo.$add({
                     dateCreated: firebase.database.ServerValue.TIMESTAMP,
-                    file: $scope.filename,
-                    model: $scope.boat_model.model,
-                    stage: $scope.stage,
-                    imageDate: $scope.imagedate,
-                    hullId: $scope.hullId,
-                    description: $scope.image_description
+                    src: $scope.src,
+//                    model: $scope.boat_model.model,
+                    description: $scope.audio_description,
+                    img: $scope.img,
+                    title: $scope.title,
+                    meta: $scope.audio_meta
                 }).then(function() {
-                    $scope.filename =
-                    $scope.stage =
-                    $scope.imagedate =
-                    $scope.hullId =
-                    $scope.image_description =
-                    $scope.boat_model = '';
+                    $scope.src =
+                    $scope.audio_description =
+                    $scope.img=
+                    $scope.title =
+                    $scope.audio_meta ='';
                     
                 });//imagesInfo.$add
-            }//addImage
+            }//addAudio
         }// if user authenticated
     });// on Auth state changed
 }]);//controller

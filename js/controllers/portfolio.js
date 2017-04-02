@@ -3,7 +3,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var videosInfo = $firebaseArray(videosRef);
     $scope.videos = videosInfo;
     
-    var audioRef = firebase.database().ref('/audioLoc');
+    var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
     console.log("Audio Object from database: "); 
