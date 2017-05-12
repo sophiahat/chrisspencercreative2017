@@ -44,10 +44,10 @@
                    <input type="text" placeholder="Source File" ng-model="src" required="true">
                    <input type="text" placeholder="Description" ng-model="audio_description" required="true">
                    <input type="text" placeholder="Image src" ng-model="img">
-                   <span>Boat Model</span>
-<!--                   <select name="boatselect" id="boatselect"  ng-model="boat_model" required="true" ng-options="boat as boat.model for boat in boats track by boat.model"></select>-->
+                  
                    <input type="text" placeholder="Title" ng-model="title" required="true">
                    <input type="text" placeholder="Meta" ng-model="audio_meta">
+                   <input type="text" placeholder="Audio Type"ng-model="audio_type">
                    <button type="submit" class="btn" ng-disabled="addAudio.$invalid">Add Audio</button>
 
                 </form>

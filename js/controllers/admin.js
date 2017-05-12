@@ -48,12 +48,14 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     description: $scope.audio_description,
                     img: $scope.img,
                     title: $scope.title,
+                    type: $scope.audio_type,
                     meta: $scope.audio_meta
                 }).then(function() {
                     $scope.src =
                     $scope.audio_description =
-                    $scope.img=
+                    $scope.img =
                     $scope.title =
+                    $scope.audio_type =    
                     $scope.audio_meta ='';
                     
                 });//imagesInfo.$add
