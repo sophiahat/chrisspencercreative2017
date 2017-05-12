@@ -419,6 +419,7 @@ section .ng-scope {
     height: 220px;
     padding: 5px;
     margin-left: 1.5%;
+    margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
