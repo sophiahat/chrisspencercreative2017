@@ -103,7 +103,7 @@
 </div>
                           <div class="row">
                               <div class="videos">
-                                  <div class="video" ng-repeat="video in videos" ng-show="video.active">
+                                  <div class="video" ng-repeat="video in videos | orderBy: '-dateCreated'" ng-show="video.active">
                                       <a href="" ng-click="getIframeSource(video)">
                                           <h5>{{video.title}}</h5>
                                           <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
