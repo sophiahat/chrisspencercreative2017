@@ -1,4 +1,14 @@
 myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$sce', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $sce) {
+    
+    //update google analytics
+    var url = window.location.href;
+    gtag('config', 'UA-20609405-2', {
+        'page_path' : '/#/portfolio',
+        'page_location' : url,
+        'page_title' : 'Portfolio'
+    
+    });
+    
     var videosRef = firebase.database().ref('/video');
     var videosInfo = $firebaseArray(videosRef);
     $scope.videos = videosInfo;
