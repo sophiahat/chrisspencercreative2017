@@ -18,17 +18,23 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             var userRef = firebase.database().ref('/users/' + authUser.uid + '/role');
             //console.log(userRef);
             var userObj = $firebaseObject(userRef);
-            console.log(userObj.$value);
+            //console.log(userObj.$value);
             //console.log(userObj.firstname);
             
             var videoRef = firebase.database().ref('/video');
             var videosInfo = $firebaseArray(videoRef);
+//            videosInfo.$loaded().then(function(videosInfo) {
+//                for (var item in videosInfo) {
+//                    console.log(item + " : " + videosInfo[item]);
+//                }                      
+//                                      });
             $scope.videos = videosInfo;
             
 
             
             var audioRef = firebase.database().ref('/audio');
             var audioInfo = $firebaseArray(audioRef);
+            $scope.videoEditForm = false;
             $scope.videoActive = false;
             $scope.addVideo = function() {
                 
@@ -49,6 +55,47 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     $scope.videoActive = false;
                 });//videosInfo.$add
             };//addvideo
+            $scope.editVideo = function(video) {
+                $scope.video = video;
+//                
+                for (var item in video) {
+                
+//                console.log(item + " : " + video[item]);
+                }
+                $scope.videoEditForm = true;
+                $scope.videotitle = video.title;
+                $scope.videoactive = video.active;
+                
+                $scope.videodescription = video.description;
+                $scope.videometatags = video.metatags;
+                $scope.videorating = video.rating;
+                $scope.videoid = video.videoId;
+                $scope.videoworkperformed = video.workPerformed;
+            };
+            $scope.updateVideo = function() {                   
+                var videoEdit = $scope.video;
+                var id = videoEdit.$id;
+                console.log('Current video ID: ' + id);
+                event.preventDefault();
+//                for (var item in videosInfo) {
+//                    console.log(item + " : " + videosInfo[item].$id);              
+//                }
+                console.log("title: " + $scope.videotitle);
+                var postdata = {
+                    title : $scope.videotitle,
+                    active : $scope.videoactive,
+                    description : $scope.videodescription,
+                    metatags : $scope.videometatags,
+                    rating : $scope.videorating,
+                    videoId : $scope.videoid,
+                    workPerformed : $scope.videoworkperformed,
+                    dateModified : firebase.database.ServerValue.TIMESTAMP
+                };
+                firebase.database().ref('/video/' + id).update(postdata);
+                $scope.videoEditForm = false;
+                
+            
+            };
             $scope.addAudio = function() {
                 audioInfo.$add({
                     dateCreated: firebase.database.ServerValue.TIMESTAMP,

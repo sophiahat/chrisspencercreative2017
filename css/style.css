@@ -364,12 +364,15 @@ nav li a:hover {
 section .ng-scope {
     
 }
+.admin .data-edit-form {
+
+}
 
 .admin .videolist li {
-    text-align: center;
-    width: 23%;
+/*    text-align: center;*/
+    width: 100%;
     float: left;
-    height: 220px;
+    height: auto;
     padding: 5px;
     margin-left: 1.5%;
     border: 1px solid #ddd;
@@ -378,14 +381,15 @@ section .ng-scope {
 
 .admin .videolist li:hover {
     background: rgba(120, 120, 120, 0.1);
-    border-radius: 5px; 
+/*    border-radius: 5px; */
 }
 .portfolio img {
     width: 70%;
 }
 .admin .videolist img {
     width: 90%;
-    text-align: center;
+/*    float: left;*/
+
 }
 .admin li,
 .portfolio li {

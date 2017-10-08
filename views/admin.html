@@ -5,13 +5,75 @@
        <div class="cf">
            <h3 data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Current Videos</h3>
             <div id="current-videos" class="video-inventory collapse">
-               <ul class="videolist">
+                <div ng-show="videoEditForm" class="data-edit-form" id="video-detail-edit">
+                    <form  action="" name="video-detail-edit-form">
+                       <ul>
+                           <li>
+                               <label for="title">Title:</label>
+                               <input type="text" name="title"  ng-model="videotitle">
+                           </li>
+                           <li>
+                               <label for="active">Active:</label>
+                               <input type="text" name="active"  ng-model="videoactive">
+                           </li>
+                           <li>
+                               <label for="description">Description:</label>
+                               <input type="text" name="description"  ng-model="videodescription">
+                           </li>
+                           <li>
+                               <label for="metatags">Metatags:</label>
+                               <input type="text" name="metatags"  ng-model="videometatags">
+                           </li>
+                           <li>
+                               <label for="rating">Rating:</label>
+                               <input type="text" name="rating"  ng-model="videorating">
+                           </li><li>
+                               <label for="videoid">VideoID:</label>
+                               <input type="text" name="videoid"  ng-model="videoid">
+                           </li>
+                           <li>
+                               <label for="workperformed">Work Performed:</label>
+                               <input type="text" name="workperformed"  ng-model="videoworkperformed">
+                           </li>
+                       </ul>
+                       <button type="submit" class="btn btn-default" ng-click="updateVideo()">Save Updated Data</button>
+<!--                           <a href="#/admin" class="btn btn-danger">Cancel</a>-->
+<!--                           <h1 ng-if="successMessage == 0">Data is Updated!</h1>-->
+                   </form>
+                </div>
+               <ul ng-show="!videoEditForm" class="videolist">
                    <li class="video-data" ng-repeat="(key , video) in videos">
-
-                       <a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
-                       <h5>{{video.title}}</h5> 
-                       <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
-                       </a>
+                       
+                       <table class="table table-responsive table-bordered table-striped">
+                          <tr>
+                              <td>Title:{{video.title}}</td>
+                              <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
+                       
+                       <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
+                       </a></td>
+                          </tr>
+                           <tr>
+                               <td>Active: {{video.active}}</td>
+                               <td>Rating: {{video.rating}}</td>
+                           </tr>
+                           <tr>
+                                <td>Date Created: {{video.dateCreated}}</td> 
+                                <td>
+                                    Date Modified: {{video.dateModified}}
+                                </td>
+                           </tr>
+                           <tr>
+                                <td>Video ID: {{video.videoId}}</td>   
+                                <td>Metatags: {{video.metatags}}</td>
+                           </tr>
+                           <tr>
+                               <td>Description: {{video.description}}</td> 
+                               <td>WorkPerformed: {{video.workPerformed}}</td>   
+                           </tr>
+                        
+                       </table>
+                       <button class="btn btn-default" ng-click="editVideo(video)">Edit</button>
+                       
 
                    </li>
                </ul>

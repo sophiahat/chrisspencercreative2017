@@ -1,0 +1,183 @@
+{
+  "-KeU3YoS1-819UcORtnZ" : {
+    "active" : true,
+    "dateCreated" : 1488727457243,
+    "description" : "This project was completed in ProTools exclusively. It's from a short movie about a young girl who is trying to find her pet dragon that was kidnapped. This scene features a a snow battle with some hand to hand combat. Although we weren't able to get close to some real snow, I found some great substitutes including cornstarch and potato flour.",
+    "metadata" : "Orchestral, Battle, Independent Movie",
+    "rating" : 7,
+    "title" : "Winter Fight",
+    "videoId" : "J_WQmwYVyIw",
+    "workPerformed" : "All sound design and music composition"
+  },
+  "-KeU3n_HtosWMl8XYBd3" : {
+    "active" : true,
+    "dateCreated" : 1488727521811,
+    "description" : "Here is an example of a current game trailer. The mood is rather dark as it opens as a dream sequence. There is a large amount of sci-fi and spacey effects in the intro, followed by an operating room environment and finally a few zombie types. I used water droplets for a lot of the small object chatter that occurs before the rock tune and near the end of the sequence. Also of note, I use velcro to create the trail of cracking that connects the zombies. Most of the music was done in Logic, and the effects and mix were done in Pro Tools.",
+    "metadata" : "Game Trailer, Science Fiction, Thriller",
+    "rating" : 7,
+    "title" : "Dead Space",
+    "videoId" : "paW4Yu-mG8s",
+    "workPerformed" : "Score and Sound Design"
+  },
+  "-KeU40SP8kym0ONVq9uM" : {
+    "active" : true,
+    "dateCreated" : 1488727578643,
+    "description" : "This project was a complete reconstruction of audio for a level of Angry Bots.  It demonstrates an understanding of implementing audio with scripting in Unity",
+    "metadata" : "Game Audio, Audio Implementation, Gun EFX, Action, Unity",
+    "rating" : 6,
+    "title" : "Angry Bots - Unity",
+    "videoId" : "4LRxKDmTKFc",
+    "workPerformed" : "All sound design, audio implementation"
+  },
+  "-KeU48B-zcjnca66JtLO" : {
+    "active" : true,
+    "dateCreated" : 1488727610300,
+    "description" : "This was a funny commercial about a man and his best friend who happened to be a cardboard representation of his local car dealer. I chose a comical swing tune from a library to be soundtrack, replaced all the dialog and added all the ambience and effects.",
+    "metadata" : "Humor, Commercial, Automotive",
+    "rating" : 4,
+    "title" : "Stevinson Lexus",
+    "videoId" : "RZkgKY8wJtA",
+    "workPerformed" : "All sound design and dialog, music editing"
+  },
+  "-KeU4KCjtIYidQaf7Pcs" : {
+    "active" : true,
+    "dateCreated" : 1488727659560,
+    "description" : "Here's another project that was partially done in Logic (soundtrack) and in Pro tools (sound design and final mix). I wanted to recreate a slapstick type audioscape that emphasized a fairly large portion of the movement in this piece. So, there is a lot of synchronization between the action, score and sound effects. I used an acoustic guitar as well as virtual guitar samples combined to create the main instrument for the score.",
+    "metadata" : "Animation, Humor, Cartoon Music",
+    "rating" : 4,
+    "title" : "Painting Day",
+    "videoId" : "5lgSqgIzfyM",
+    "workPerformed" : "All sound design elements and music composition"
+  },
+  "-KeU4SQI5t8vBvFwdpu4" : {
+    "active" : true,
+    "dateCreated" : 1488727693206,
+    "description" : "This piece illustrates my ability to integrate sound design using the Unreal Editor. I took an existing level and replaced the static sounds as well as recreated weapons pickups and discharges. I added more ambient and static sounds that were previously there, such as the serpent sounds made from stretching rubber, handling a gel pack and krinkling bubble wrap. The weapons pickups and discharges were mostly composites using real weapons fire with other unrelated sounds",
+    "metadata" : "Game Audio, Audio Implementation, Unreal Editor, Gun EFX ",
+    "rating" : 5,
+    "title" : "Facing Worlds - Unreal Editor",
+    "videoId" : "mlacNkCDVX0",
+    "workPerformed" : "Replacement of all ambiences, weapon pickups and discharges"
+  },
+  "-KeU4_fO8q6qucN0QM16" : {
+    "active" : true,
+    "dateCreated" : 1488727726997,
+    "description" : "On this project I contributed an original score to go along with a full length film created by filmmaker Steve Rudolf. Using a trio of guitar, bass and drums, all with lots of effects, we tracked most of this live, playing along with the edited film. The scenes that we contributed to were mostly open ended exploration type sequences, so it freed us up quite a bit. All work was performed in Pro tools on this one.",
+    "metadata" : "Film Score, Humor, Independent Movie",
+    "rating" : 4,
+    "title" : "Epsilon 3 Soundtrack - Music Composition Demo",
+    "videoId" : "N0Dga-3HQjA",
+    "workPerformed" : "Collaborative Composition, Score Mix"
+  },
+  "-KeU4gvDFVoq8-M9ZVw5" : {
+    "active" : true,
+    "dateCreated" : 1488727756677,
+    "description" : "This is a funny little commercial about a man, his tax return and a mailbox. I exaggerated the interaction between the man and the mailbox with the impact sounds to add to the humor. This project was done exclusively in Pro Tools.",
+    "metadata" : "Humor, Commercial",
+    "rating" : 3,
+    "title" : "eFile",
+    "videoId" : "XBsWgTF37Vg",
+    "workPerformed" : "All sound elements including narration and incidental VO"
+  },
+  "-KeU4sFnlA51uUroHz_s" : {
+    "active" : true,
+    "dateCreated" : 1488727803115,
+    "description" : "This piece illustrates a specific genre in sound design and scoring that I love and wanted to explore. I tried to pay homage to the original scoring philosophy on those old Warner Brothers cartoons. I used traditional orchestral sounds from Logic 8 throughout (except for the electric guitar at the very end) with the harmonic and rhythmic motion exaggerating the hit points. The sounds that I chose for impacts were also in remembrance of those funny over-the-top sonic nuggets found in those cartoons, as they were often the punchline for the joke. I ended up pitching up most of the voice over to give it that \"cartoony\" flavor; we had a lot of fun trying to conjure up a performance from the actors.",
+    "metatags" : "Animation, Commercial, Humor",
+    "rating" : 6,
+    "title" : "Aflac",
+    "videoId" : "s_g6d2FcSMQ",
+    "workPerformed" : "Score, Sound Design and Voice Over"
+  },
+  "-KeU53nghovCcYklvQsO" : {
+    "active" : true,
+    "dateCreated" : 1488727854496,
+    "description" : "This project featured one of my daughters in her voice over debut. It is an audio form of a children's book with lots of sound design elements and a subtle soundtrack.",
+    "metatags" : "Audiobook, Children's Media",
+    "ranking" : 4,
+    "rating" : 4,
+    "title" : "Bonjour Butterfly",
+    "videoId" : "ZTofY9FKuvk",
+    "workPerformed" : "All sound design, music and voice over"
+  },
+  "-KeUC4IX4vjap_fJzwOM" : {
+    "active" : true,
+    "dateCreated" : 1488729691565,
+    "description" : "This piece showcases both my sound design skills and music editing chops. I did all the sound design in this project and used an existing score from a famous composer to illustrate my abilities of making existing music fit the film. The soundtrack gives the flick a dark tone, which I think compliments the story nicely. I did all the work in protools except for the score edit which was done in Audition.",
+    "metatags" : "sound EFX, Science Fiction, Animation, Music Editing",
+    "rating" : 4,
+    "title" : "Sam",
+    "videoId" : "peUiSmTPSuA",
+    "workPerformed" : "Sound Design, Music Editing"
+  },
+  "-KeUQ6rlRMbXMRIe75ud" : {
+    "active" : true,
+    "dateCreated" : 1488733371977,
+    "description" : "A movie trailer redesign with original score, dialog replacement and minimal sound design.  The focus of this project was on composing music that would fill the void and not require heavy sound design.  All the music was put together in Logic Pro X and the dialog was in Pro Tools 10",
+    "metatags" : "Action, Science Fiction, Movie Trailer",
+    "rating" : 8,
+    "title" : "Independence Day - Resurgence",
+    "videoId" : "vR7nMu-ZudA",
+    "workPerformed" : "Score, ADR, Mixing,  Mastering"
+  },
+  "-KeUU1xqQ6gmopj3hP_X" : {
+    "active" : true,
+    "dateCreated" : 1488734400720,
+    "description" : "This is a promotional video for a boat that is in a charter fleet.  It is designed to demonstrate the features and layout of the boat for potential charter customers.  I created an upbeat soundtrack to inspire the prospect of  adventures, while also instilling the sense of comfort and safety found aboard the vessel.  The movie was created from still images in Final Cut  and the music was done in ProTools 10",
+    "metatags" : "Product Branding, Product Soundtrack, Corporate Video",
+    "rating" : 7,
+    "title" : "Nordic 42 - Sin Limites",
+    "videoId" : "JQexai9_7Yo",
+    "workPerformed" : "Video Editing, Soundtrack"
+  },
+  "-Kjv1pmwyZrybcwu_ddR" : {
+    "active" : true,
+    "dateCreated" : 1494565477651,
+    "description" : "Final Battle Scene - Score",
+    "metatags" : "Film Score",
+    "rating" : 8,
+    "title" : "Tarzan - Action Scene",
+    "videoId" : "xO1KxYGSm8M",
+    "workPerformed" : "Composition, Orchestration MockUp"
+  },
+  "-Kjv28zYsXbpi2be-Ice" : {
+    "active" : true,
+    "dateCreated" : 1494565560373,
+    "description" : "Hospital Scene - Score",
+    "metatags" : "Film Score",
+    "rating" : 8,
+    "title" : "If I Stay",
+    "videoId" : "LupTgTuPwDM",
+    "workPerformed" : "Music Composition"
+  },
+  "-Kjv2o6uGjy50nq50hAr" : {
+    "active" : true,
+    "dateCreated" : 1494565732937,
+    "description" : "Game Trailer Demo",
+    "metatags" : "Game Trailer Music",
+    "rating" : 7,
+    "title" : "Battlefield Trailer Demo",
+    "videoId" : "UHrUGky6pao",
+    "workPerformed" : "Music Score"
+  },
+  "-KuwQ8HvAVSR6cqUEJ1g" : {
+    "active" : true,
+    "dateCreated" : 1506399786239,
+    "description" : "Final Project for Berklee Online's Film Scoring 101 course",
+    "metatags" : "Music Composition",
+    "rating" : 8,
+    "title" : "Blue City",
+    "videoId" : "ookEepjVUj4",
+    "workPerformed" : "All cues except for source cue on car radio."
+  },
+  "-Kv-4ZWMxMaccDCY0Q9M" : {
+    "active" : true,
+    "dateCreated" : 1506461239471,
+    "description" : "a comical clip example",
+    "metatags" : "comedy",
+    "rating" : 6,
+    "title" : "RepoMen Excerpt",
+    "videoId" : "7JNg1cpfONw",
+    "workPerformed" : "Music Score"
+  }
+}
