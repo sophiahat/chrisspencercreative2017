@@ -82,7 +82,10 @@ myApp.config(function($sceDelegateProvider) {
 
 myApp.filter("trustUrl", ['$sce', function ($sce) {
     return function (recordingUrl) {
+        console.log('engaging trust URL');
         return $sce.trustAsResourceUrl(recordingUrl);
     };
 }]);
+
+
 

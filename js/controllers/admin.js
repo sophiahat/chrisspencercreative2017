@@ -1,4 +1,5 @@
 myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$firebaseAuth', '$firebaseArray', '$firebaseObject', function($scope, $rootScope, $routeParams, $firebaseAuth,  $firebaseArray, $firebaseObject) {
+    var audioplayer = $('#audio-player');
     //update google analytics
     var url = window.location.href;
     gtag('config', 'UA-20609405-2', {
@@ -29,13 +30,94 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 //                }                      
 //                                      });
             $scope.videos = videosInfo;
-            
+            ///Functions duplicated from Portfolio.js - to refactor into service???
+                function setAutoplayAudio() {
+                    console.log('setting autoplay audio');
+                    audioplayer.attr('autoplay', 'autoplay');
+                }
+                function changeDisplayAudio(audio) {
+                    console.log('change display audio');
+                    
+                    setDisplayAudio(audio);
+                    
+                }
+
+                function setDisplayAudio(audio) {
+                    
+                    $scope.displayAudio = audio;
+                    console.log('In audio stuff');
+
+                    var link = "/audio/" + audio.src;
+
+                    audioplayer.attr('src', link);
+                    setAutoplayAudio();
+
+                }
+            $scope.getAudioSource = setDisplayAudio;
 
             
             var audioRef = firebase.database().ref('/audio');
             var audioInfo = $firebaseArray(audioRef);
+            
+            audioInfo.$loaded().then(function(audioInfo) {
+                for (var item in audioInfo) {
+                    console.log(item + " : " + audioInfo[item].title);
+                }
+                //console.log(audioInfo);
+                $scope.audios = audioInfo;
+            });
+            $scope.toggleAudioEditForm = function() {
+                console.log('toggling audio edit form');
+                if ($scope.audioEditForm) {
+                    $scope.audioEditForm = false;
+                } else {
+                    $scope.audioEditForm = true;
+                }
+            }
+            //$scope.audios = audioInfo;
             $scope.videoEditForm = false;
+            $scope.toggleVideoEditForm = function() {
+                console.log('toggling video edit form');
+                if ($scope.videoEditForm) {
+                    $scope.videoEditForm = false;
+                } else {
+                    $scope.videoEditForm = true;
+                }
+            }
             $scope.videoActive = false;
+            $scope.audioEditForm = false;
+            $scope.editAudio = function(track) {
+                $scope.track = track;
+                $scope.audioEditForm = true;
+                $scope.audiotitle = track.title;
+                $scope.audioactive = track.active;
+                $scope.audiodescription = track.description;
+                $scope.audiometatags = track.meta;
+                $scope.audiorating = track.rating;
+                $scope.audioprojectfile = track.projectfile;
+                $scope.audioimage = track.img;
+                $scope.audiosource = track.src;
+                $scope.audiotype = track.type;
+            };
+            $scope.updateAudio = function() {
+                var audioedit = $scope.track;
+                var id = audioedit.$id;
+                console.log("Current Audio Track edit ID: " + id);
+                event.preventDefault();
+                var postdata = {
+                    title : $scope.audiotitle,
+                    active : $scope.audioactive,
+                    description : $scope.audiodescription,
+                    dateModified : firebase.database.ServerValue.TIMESTAMP,
+                    meta : $scope.audiometatags, 
+                    rating : $scope.audiorating,
+                    projectfile : $scope.audioprojectfile, 
+                    img : $scope.audioimage,
+                    type : $scope.audiotype,
+                    src : $scope.audiosource
+                };
+                firebase.database().ref('/audio/' + id).update(postdata);
+            };
             $scope.addVideo = function() {
                 
                 videosInfo.$add({
@@ -116,6 +198,12 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     
                 });//imagesInfo.$add
             }//addAudio
+            
+            // projects
+            $scope.projectEditForm = false;
+            var projectRef = firebase.database().ref('/projects');
+            var projectsInfo = $firebaseArray(projectRef);
+            $scope.projects = projectsInfo;
         }// if user authenticated
     });// on Auth state changed
 }]);//controller

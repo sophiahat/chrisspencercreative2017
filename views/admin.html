@@ -1,7 +1,7 @@
 <section class="admin card cf">
    <h1>Website Administration</h1>
     <div class="accordion" id="accordion">
-       
+<!--       Current Videos-->
        <div class="cf">
            <h3 data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Current Videos</h3>
             <div id="current-videos" class="video-inventory collapse">
@@ -37,49 +37,53 @@
                            </li>
                        </ul>
                        <button type="submit" class="btn btn-default" ng-click="updateVideo()">Save Updated Data</button>
+                       <button type="button" class="btn btn-default" ng-click="toggleVideoEditForm()">Cancel</button>
 <!--                           <a href="#/admin" class="btn btn-danger">Cancel</a>-->
 <!--                           <h1 ng-if="successMessage == 0">Data is Updated!</h1>-->
                    </form>
                 </div>
-               <ul ng-show="!videoEditForm" class="videolist">
-                   <li class="video-data" ng-repeat="(key , video) in videos">
-                       
-                       <table class="table table-responsive table-bordered table-striped">
-                          <tr>
-                              <td>Title:{{video.title}}</td>
-                              <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
-                       
-                       <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
-                       </a></td>
-                          </tr>
-                           <tr>
-                               <td>Active: {{video.active}}</td>
-                               <td>Rating: {{video.rating}}</td>
-                           </tr>
-                           <tr>
-                                <td>Date Created: {{video.dateCreated}}</td> 
-                                <td>
-                                    Date Modified: {{video.dateModified}}
-                                </td>
-                           </tr>
-                           <tr>
-                                <td>Video ID: {{video.videoId}}</td>   
-                                <td>Metatags: {{video.metatags}}</td>
-                           </tr>
-                           <tr>
-                               <td>Description: {{video.description}}</td> 
-                               <td>WorkPerformed: {{video.workPerformed}}</td>   
-                           </tr>
-                        
-                       </table>
-                       <button class="btn btn-default" ng-click="editVideo(video)">Edit</button>
-                       
+               <div class="admin-scrolling-list">
+                   <ul ng-show="!videoEditForm" class="videolist">
+                       <li class="video-data" ng-repeat="(key , video) in videos">
 
-                   </li>
-               </ul>
+                           <table class="table table-responsive table-bordered table-striped">
+                              <tr>
+                                  <td>Title: {{video.title}}</td>
+                                  <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
+
+                           <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
+                           </a></td>
+                              </tr>
+                               <tr>
+                                   <td>Active: {{video.active}}</td>
+                                   <td>Rating: {{video.rating}}</td>
+                               </tr>
+                               <tr>
+                                    <td>Date Created: {{video.dateCreated}}</td> 
+                                    <td>
+                                        Date Modified: {{video.dateModified}}
+                                    </td>
+                               </tr>
+                               <tr>
+                                    <td>Video ID: {{video.videoId}}</td>   
+                                    <td>Metatags: {{video.metatags}}</td>
+                               </tr>
+                               <tr>
+                                   <td>Description: {{video.description}}</td> 
+                                   <td>WorkPerformed: {{video.workPerformed}}</td>   
+                               </tr>
+
+                           </table>
+                           <button class="btn btn-default" ng-click="editVideo(video)">Edit</button>
+
+
+
+                       </li>
+                   </ul>
+               </div>
             </div>
        </div>
-       
+<!--       Add Videos-->
         <div class="cf">
             <h3 data-toggle="collapse" data-target="#add-video" data-parent="#accordion">Add a Video</h3>
             <div id="add-video" class="collapse add-video">
@@ -99,6 +103,96 @@
                 </form>
             </div>
         </div>
+<!--        Current Audio Files-->
+        <div class="cf">
+           <h3 data-toggle="collapse" data-target="#current-audio" data-parent="#accordion">Current Audio</h3>
+            <div id="current-audio" class="audio-inventory collapse">
+               <audio id="audio-player" src="" controls></audio>
+                <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
+                    <form  action="" name="audio-detail-edit-form">
+                       <ul>
+                           <li>
+                               <label for="title">Title:</label>
+                               <input type="text" name="title"  ng-model="audiotitle">
+                           </li>
+                           <li>
+                               <label for="active">Active:</label>
+                               <input type="text" name="active"  ng-model="audioactive">
+                           </li>
+                           <li>
+                               <label for="description">Description:</label>
+                               <input type="text" name="description"  ng-model="audiodescription">
+                           </li>
+                           <li>
+                               <label for="metatags">Metatags:</label>
+                               <input type="text" name="metatags"  ng-model="audiometatags">
+                           </li>
+                           <li>
+                               <label for="rating">Rating:</label>
+                               <input type="text" name="rating"  ng-model="audiorating">
+                           </li><li>
+                               <label for="audiosource">Source:</label>
+                               <input type="text" name="audiosource"  ng-model="audiosource">
+                           </li>
+                           <li>
+                               <label for="audioimg">Image File:</label>
+                               <input type="text" name="audioimg" ng-model="audioimage">
+                           </li>
+                           <li>
+                               <label for="audiotype">Type:</label>
+                               <input type="text" name="audiotype" ng-model="audiotype">
+                           </li>
+                           <li>
+                               <label for="audioprojectfile">Project File: </label>
+                               <input type="text" name="audioprojectfile" ng-model="audioprojectfile">
+                           </li>
+                       </ul>
+                       <button type="submit" class="btn btn-default" ng-click="updateAudio()">Save Updated Audio </button>
+                       <button type="button" class="btn btn-default" ng-click="toggleAudioEditForm()">Cancel</button>
+<!--                           <a href="#/admin" class="btn btn-danger">Cancel</a>-->
+<!--                           <h1 ng-if="successMessage == 0">Data is Updated!</h1>-->
+                   </form>
+                </div>
+                
+               <div class="admin-scrolling-list">
+                   <ul ng-show="!audioEditForm" class="audiolist">
+                  
+                   <li class="audio-data" ng-repeat="track in audios">
+                       
+                       <table class="table table-responsive table-bordered table-striped">
+                          <tr>
+                              <td>Title: {{track.title}}</td>
+                              <td><button class="btn btn-default" ng-click="getAudioSource(track)"><span class="glyphicon glyphicon-play"></span> Play Track</button></td>
+
+                          </tr>
+                           <tr>
+                               <td>Active: {{track.active}}</td>
+                               <td>Rating: {{track.rating}}</td>
+                           </tr>
+                           <tr>
+                                <td>Date Created: {{track.dateCreated | date}}</td> 
+                                <td>
+                                    Date Modified: {{track.dateModified | date}}
+                                </td>
+                           </tr>
+                           <tr>
+                                <td>Source File: {{track.src}}</td>   
+                                <td>Metatags: {{track.meta}}</td>
+                           </tr>
+                           <tr>
+                               <td>Description: {{track.description}}</td> 
+                               <td><button class="btn btn-default" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>   
+                           </tr>
+                        
+                       </table>
+                       
+                   </li>
+               </ul>
+               </div>
+            </div>
+            
+        </div>
+<!--        Add Audio-->
         <div class="cf">
             <h3 data-toggle="collapse" data-target="#add-audio" data-parent="#accordion">Add an Audio File</h3>
             <div id="add-audio" class="collapse add-audio">
@@ -115,6 +209,39 @@
                 </form>
             </div>
         </div>
+           <div class="cf">
+               <h3 data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>
+               <div class="data-edit-form" id="project-detail-edit"></div>
+               <div id="projects" class="collapse project-list admin-scrolling-list">
+                   <ul ng-show="!projectEditForm" class="projectlist">
+                      <li class="project-data" ng-repeat="project in projects">
+                          <table class="table table-responsive table-bordered table-striped">
+                              <tr>
+                                  <td>Disc ID: {{project.DiscID}}</td>
+                                  <td>Project ID: {{project.ProjectID}}</td>
+                                  <td>Disc Type: {{project.Disc_Type}}</td>
+                                  <td>Software: {{project.Encoding_Software}}</td>
+                              </tr>
+                              <tr>
+                                  <td>Project Name:  {{project.ProjectName}}</td>
+                                  <td>Project Beginning: {{project.ProjectBeginDate}}</td>
+                                  <td>Project End: {{project.ProjectEndDate}}</td>
+                              </tr>
+                              <tr>
+                                  <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
+                              </tr>
+                              <tr>
+                                  <td>Description: {{project.ProjectDescription}}</td>
+                              </tr>
+                          </table>
+                      </li>
+                       
+                   </ul>
+               </div>
+           </div>
+           <div class="cf">
+               <h3 data-toggle="collapse" data-target="#add-project" data-parent="#accordion">Add Project</h3>
+           </div>
             
     </div>    
 

@@ -378,7 +378,11 @@ section .ng-scope {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-
+.admin-scrolling-list {
+    margin-top: 15px;
+    overflow: scroll;
+    height: 300px;
+}
 .admin .videolist li:hover {
     background: rgba(120, 120, 120, 0.1);
 /*    border-radius: 5px; */
