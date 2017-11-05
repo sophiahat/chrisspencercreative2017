@@ -93,49 +93,57 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audioactive = track.active;
                 $scope.audiodescription = track.description;
                 $scope.audiometatags = track.meta;
-                $scope.audiorating = track.rating;
-                $scope.audioprojectfile = track.projectfile;
+                track.rating ? $scope.audiorating = track.rating : $scope.audiorating = 0;
+//                $scope.audiorating = track.rating;
+                track.projectID ? $scope.audioprojectID = track.projectID : $scope.audioprojectID = '';
                 $scope.audioimage = track.img;
                 $scope.audiosource = track.src;
-                $scope.audiotype = track.type;
+                track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
             };
             $scope.updateAudio = function() {
-                var audioedit = $scope.track;
-                var id = audioedit.$id;
-                console.log("Current Audio Track edit ID: " + id);
                 event.preventDefault();
                 var postdata = {
                     title : $scope.audiotitle,
                     active : $scope.audioactive,
                     description : $scope.audiodescription,
-                    dateModified : firebase.database.ServerValue.TIMESTAMP,
                     meta : $scope.audiometatags, 
                     rating : $scope.audiorating,
-                    projectfile : $scope.audioprojectfile, 
+                    projectID : $scope.audioprojectID, 
                     img : $scope.audioimage,
                     type : $scope.audiotype,
                     src : $scope.audiosource
                 };
-                firebase.database().ref('/audio/' + id).update(postdata);
-            };
+                if ($scope.track) {
+                    var audioedit = $scope.track;
+                    var id = audioedit.$id;
+                    console.log("Current Audio Track edit ID: " + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    firebase.database().ref('/audio/' + id).update(postdata);
+                } else {
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    audioInfo.$add(postdata);
+                }
+                $scope.audioEditForm = false;
+                    
+            };//updated Audio
             $scope.addVideo = function() {
-                
-                videosInfo.$add({
-                    title: $scope.title,
-                    dateCreated: firebase.database.ServerValue.TIMESTAMP,   
-                    videoId: $scope.videoId,
-                    workPerformed: $scope.workPerformed,
-                    metatags: $scope.metatags,
-                    description: $scope.description,
-                    active: $scope.videoActive
-                }).then(function() {
-                    $scope.title =
-                    $scope.description =
-                    $scope.workPerformed =
-                    $scope.metatags =
-                    $scope.videoId = '';
-                    $scope.videoActive = false;
-                });//videosInfo.$add
+                $scope.videoEditForm = true;
+//                videosInfo.$add({
+//                    title: $scope.title,
+//                    dateCreated: firebase.database.ServerValue.TIMESTAMP,   
+//                    videoId: $scope.videoId,
+//                    workPerformed: $scope.workPerformed,
+//                    metatags: $scope.metatags,
+//                    description: $scope.description,
+//                    active: $scope.videoActive
+//                }).then(function() {
+//                    $scope.title =
+//                    $scope.description =
+//                    $scope.workPerformed =
+//                    $scope.metatags =
+//                    $scope.videoId = '';
+//                    $scope.videoActive = false;
+//                });//videosInfo.$add
             };//addvideo
             $scope.editVideo = function(video) {
                 $scope.video = video;
@@ -154,15 +162,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videoid = video.videoId;
                 $scope.videoworkperformed = video.workPerformed;
             };
-            $scope.updateVideo = function() {                   
-                var videoEdit = $scope.video;
-                var id = videoEdit.$id;
-                console.log('Current video ID: ' + id);
+            $scope.updateVideo = function() { 
                 event.preventDefault();
-//                for (var item in videosInfo) {
-//                    console.log(item + " : " + videosInfo[item].$id);              
-//                }
-                console.log("title: " + $scope.videotitle);
                 var postdata = {
                     title : $scope.videotitle,
                     active : $scope.videoactive,
@@ -171,39 +172,100 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     rating : $scope.videorating,
                     videoId : $scope.videoid,
                     workPerformed : $scope.videoworkperformed,
-                    dateModified : firebase.database.ServerValue.TIMESTAMP
+                    
                 };
-                firebase.database().ref('/video/' + id).update(postdata);
+                
+                if($scope.video) {
+                    var videoEdit = $scope.video;
+                    var id = videoEdit.$id;
+                    console.log('Current video ID: ' + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    console.log("title: " + $scope.videotitle);  
+                    firebase.database().ref('/video/' + id).update(postdata);
+                } else {
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    videosInfo.$add(postdata);
+                }
                 $scope.videoEditForm = false;
                 
-            
-            };
+            };//update Video
             $scope.addAudio = function() {
-                audioInfo.$add({
-                    dateCreated: firebase.database.ServerValue.TIMESTAMP,
-                    src: $scope.src,
-//                    model: $scope.boat_model.model,
-                    description: $scope.audio_description,
-                    img: $scope.img,
-                    title: $scope.title,
-                    type: $scope.audio_type,
-                    meta: $scope.audio_meta
-                }).then(function() {
-                    $scope.src =
-                    $scope.audio_description =
-                    $scope.img =
-                    $scope.title =
-                    $scope.audio_type =    
-                    $scope.audio_meta ='';
+                $scope.audioEditForm = true;
+//                audioInfo.$add({
+//                    dateCreated: firebase.database.ServerValue.TIMESTAMP,
+//                    src: $scope.src,
+////                    model: $scope.boat_model.model,
+//                    description: $scope.audio_description,
+//                    img: $scope.img,
+//                    title: $scope.title,
+//                    type: $scope.audio_type,
+//                    meta: $scope.audio_meta
+//                }).then(function() {
+//                    $scope.src =
+//                    $scope.audio_description =
+//                    $scope.img =
+//                    $scope.title =
+//                    $scope.audio_type =    
+//                    $scope.audio_meta ='';
                     
-                });//imagesInfo.$add
+ //               });//imagesInfo.$add
             }//addAudio
+            
             
             // projects
             $scope.projectEditForm = false;
+            $scope.toggleProjectForm = function() {
+                if ($scope.projectEditForm) {
+                    $scope.projectEditForm = false;
+                } else {
+                    $scope.projectEditForm = true;
+                }
+            };
             var projectRef = firebase.database().ref('/projects');
             var projectsInfo = $firebaseArray(projectRef);
             $scope.projects = projectsInfo;
+            $scope.editProject = function(project) {
+                $scope.projectEditForm = true;
+                $scope.project = project;
+                $scope.discid = project.DiscID;
+                $scope.disctype = project.Disc_Type;
+                $scope.encodingsoftware = project.Encoding_Software;
+                $scope.linkToCloudBackup = project.Link_to_Cloud_Backup;
+                $scope.projectBeginDate = project.ProjectBeginDate;
+                $scope.projectDescription = project.ProjectDescription;
+                $scope.projectEndDate = project.ProjectEndDate;
+                $scope.projectID = project.ProjectID;
+                $scope.projectName = project.ProjectName;
+            };
+            $scope.updateProject = function() {
+                event.preventDefault();
+                var postdata = {
+                    DiscID : $scope.discid,
+                    Disc_Type : $scope.disctype,
+                    Encoding_Software : $scope.encodingsoftware,
+                    Link_to_Cloud_Backup : $scope.linkToCloudBackup,
+                    ProjectBeginDate : $scope.projectBeginDate,
+                    ProjectDescription : $scope.projectDescription,
+                    ProjectEndDate : $scope.projectEndDate,
+                    ProjectID : $scope.projectID,
+                    ProjectName : $scope.projectName
+                };
+                if ($scope.project) {
+                    var projectEdit = $scope.project;
+                    var id = projectEdit.$id;
+                    console.log("Current Project ID: " + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    firebase.database().ref('/projects/' + id).update(postdata);
+                } else {
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    projectsInfo.$add(postdata);
+                }
+                    
+                $scope.projectEditForm = false;
+            };
+            $scope.addProject = function() {
+                $scope.projectEditForm = true;
+            }
         }// if user authenticated
     });// on Auth state changed
 }]);//controller

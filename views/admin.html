@@ -42,6 +42,7 @@
 <!--                           <h1 ng-if="successMessage == 0">Data is Updated!</h1>-->
                    </form>
                 </div>
+                <button class="btn btn-default" ng-show="!videoEditForm" ng-click="addVideo()">Add Video</button>
                <div class="admin-scrolling-list">
                    <ul ng-show="!videoEditForm" class="videolist">
                        <li class="video-data" ng-repeat="(key , video) in videos">
@@ -117,7 +118,7 @@
                            </li>
                            <li>
                                <label for="active">Active:</label>
-                               <input type="text" name="active"  ng-model="audioactive">
+                               <input ng-true-value="true" ng-false-value="false" type="checkbox" name="active"  ng-model="audioactive">
                            </li>
                            <li>
                                <label for="description">Description:</label>
@@ -143,17 +144,16 @@
                                <input type="text" name="audiotype" ng-model="audiotype">
                            </li>
                            <li>
-                               <label for="audioprojectfile">Project File: </label>
-                               <input type="text" name="audioprojectfile" ng-model="audioprojectfile">
+                               <label for="audioprojectID">Project ID: </label>
+                               <input type="text" name="audioprojectID" ng-model="audioprojectID">
                            </li>
                        </ul>
                        <button type="submit" class="btn btn-default" ng-click="updateAudio()">Save Updated Audio </button>
                        <button type="button" class="btn btn-default" ng-click="toggleAudioEditForm()">Cancel</button>
-<!--                           <a href="#/admin" class="btn btn-danger">Cancel</a>-->
-<!--                           <h1 ng-if="successMessage == 0">Data is Updated!</h1>-->
+
                    </form>
                 </div>
-                
+                <button class="btn btn-default" ng-show="!audioEditForm" ng-click="addAudio()">Add Audio</button>
                <div class="admin-scrolling-list">
                    <ul ng-show="!audioEditForm" class="audiolist">
                   
@@ -209,39 +209,106 @@
                 </form>
             </div>
         </div>
-           <div class="cf">
-               <h3 data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>
-               <div class="data-edit-form" id="project-detail-edit"></div>
-               <div id="projects" class="collapse project-list admin-scrolling-list">
+<!--        Projects-->
+        <div class="cf">
+           <h3 data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>
+           <div ng-show="projectEditForm" class="data-edit-form" id="project-detail-edit">
+               <form action="" name="project-detail-edit-form">
+                   <ul>
+                       <li>
+                       <label for="discID">Disc ID: </label>
+                       <input name="discID" type="text" ng-model="discid">
+                       </li>
+
+                       <li>
+                       <label for="projectID">Project ID:</label>
+                       <input name="projectID" ng-model="projectID" type="text">
+                       </li>
+
+                       <li>
+                       <label for="disctype">Disc Type:</label>
+                       <input name="disctype" ng-model="disctype" type="text">
+
+                       </li>
+
+                       <li>
+                       <label for="software">Encoding Software:</label>
+                       <input name="software" ng-model="encodingsoftware" type="text">
+                       </li>                           
+                       <li>
+                       <label for="projectname">Project Name:</label>
+                       <input name="projectname" ng-model="projectName" type="text">
+                       </li>
+                       <li>
+                       <label for="projectbegin">Project Begin Date: </label>
+                       <input name="projectbegin" ng-model="projectBeginDate" type="text">
+                       </li>
+                       <li>
+                       <label for="projectend">Project End Date: </label>
+                       <input name="projectend" ng-model="projectEndDate" type="text">
+                       </li>
+                       <li>
+                       <label for="projectlink">Link to Cloud Backup: </label>
+                       <input name="projectlink" ng-model="linkToCloudBackup" type="text">
+                       </li>
+                       <li>
+                       <label for="projectdescription">Description: </label>
+                       <input name="projectdescription" ng-model="projectDescription" type="text">
+                       </li>
+
+                   </ul>
+                   <button type="submit" class="btn btn-default" ng-click="updateProject()">Submit</button>
+                   <button type="button" ng-click="toggleProjectForm()" class="btn btn-default">Cancel</button>
+               </form>
+           </div>
+           <div id="projects" class="collapse project-list">
+               <button class="btn btn-default" ng-show="!projectEditForm" ng-click="addProject()">Add Project</button>
+                <div class="admin-scrolling-list">
+
                    <ul ng-show="!projectEditForm" class="projectlist">
                       <li class="project-data" ng-repeat="project in projects">
                           <table class="table table-responsive table-bordered table-striped">
-                              <tr>
-                                  <td>Disc ID: {{project.DiscID}}</td>
-                                  <td>Project ID: {{project.ProjectID}}</td>
-                                  <td>Disc Type: {{project.Disc_Type}}</td>
-                                  <td>Software: {{project.Encoding_Software}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Project Name:  {{project.ProjectName}}</td>
-                                  <td>Project Beginning: {{project.ProjectBeginDate}}</td>
-                                  <td>Project End: {{project.ProjectEndDate}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Description: {{project.ProjectDescription}}</td>
-                              </tr>
+                             <thead>
+                                 <tr>
+                                     <th class="col-xs-2"></th>
+                                     <th class="col-xs-2"></th>
+                                     <th class="col-xs-8"></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                      <td>Disc ID: {{project.DiscID}}</td>
+                                      <td>Project ID: {{project.ProjectID}}</td>
+                                      <td>Disc Type: {{project.Disc_Type}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Project Beginning: {{project.ProjectBeginDate}}</td>
+                                      <td>Project End: {{project.ProjectEndDate}}</td>
+                                      <td>Project Name:  {{project.ProjectName}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Date Created: {{project.dateCreated | date}}</td>
+                                      <td>Date Modified: {{project.dateModified | date}}</td>
+                                      <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+                                      <td>Software: {{project.Encoding_Software}}</td>
+                                      <td>Description: {{project.ProjectDescription}}</td>
+                                  </tr>
+                             </tbody>
                           </table>
                       </li>
-                       
+
                    </ul>
-               </div>
+                </div>
            </div>
+       </div>
+<!--
            <div class="cf">
                <h3 data-toggle="collapse" data-target="#add-project" data-parent="#accordion">Add Project</h3>
            </div>
+-->
             
     </div>    
 
