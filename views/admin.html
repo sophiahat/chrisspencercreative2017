@@ -3,7 +3,7 @@
     <div class="accordion" id="accordion">
 <!--       Current Videos-->
        <div class="cf">
-           <h3 data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Current Videos</h3>
+           <h3 class="panel-title" data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Current Videos</h3>
             <div id="current-videos" class="video-inventory collapse">
                 <div ng-show="videoEditForm" class="data-edit-form" id="video-detail-edit">
                     <form  action="" name="video-detail-edit-form">
@@ -86,7 +86,7 @@
        </div>
 <!--       Add Videos-->
         <div class="cf">
-            <h3 data-toggle="collapse" data-target="#add-video" data-parent="#accordion">Add a Video</h3>
+            <h3 class="panel-title" data-toggle="collapse" data-target="#add-video" data-parent="#accordion">Add a Video</h3>
             <div id="add-video" class="collapse add-video">
                 <form class="cf formgroup addvideo" name="addvideo" ng-submit="addVideo()" novalidate>
                     <div class="inputwrapper">
@@ -106,7 +106,7 @@
         </div>
 <!--        Current Audio Files-->
         <div class="cf">
-           <h3 data-toggle="collapse" data-target="#current-audio" data-parent="#accordion">Current Audio</h3>
+           <h3 class="panel-title" data-toggle="collapse" data-target="#current-audio" data-parent="#accordion">Current Audio</h3>
             <div id="current-audio" class="audio-inventory collapse">
                <audio id="audio-player" src="" controls></audio>
                 <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
@@ -194,7 +194,7 @@
         </div>
 <!--        Add Audio-->
         <div class="cf">
-            <h3 data-toggle="collapse" data-target="#add-audio" data-parent="#accordion">Add an Audio File</h3>
+            <h3 class="panel-title" data-toggle="collapse" data-target="#add-audio" data-parent="#accordion">Add an Audio File</h3>
             <div id="add-audio" class="collapse add-audio">
                 <form novalidate name="addAudio" ng-submit="addAudio()" class="cf formgroup addAudio">
                    <input type="text" placeholder="Source File" ng-model="src" required="true">
@@ -211,7 +211,7 @@
         </div>
 <!--        Projects-->
         <div class="cf">
-           <h3 data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>
+           <h3 class="panel-title" data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>
            <div ng-show="projectEditForm" class="data-edit-form" id="project-detail-edit">
                <form action="" name="project-detail-edit-form">
                    <ul>

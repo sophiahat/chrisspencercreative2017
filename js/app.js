@@ -69,6 +69,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 
             }//resolve
         }).
+        when('/thanks', {
+            templateUrl: 'views/thanks.html'
+        }).
+        when('/error', {
+            templateUrl: 'views/error.html'     
+        }).
         otherwise({
             redirectTo: '/home'});  
 }]);
