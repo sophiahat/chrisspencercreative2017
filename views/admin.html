@@ -76,6 +76,8 @@
 
                            </table>
                            <button class="btn btn-default" ng-click="editVideo(video)">Edit</button>
+                           
+                           <button class="btn btn-default" ng-click="deleteVideo(video)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
 
 
 
@@ -298,7 +300,9 @@
                                       <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
                                   </tr>
                                   <tr>
-                                      <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+                                      <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+                                      <button class="btn btn-default" ng-click="deleteProject(project)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                      </td>
                                       <td>Software: {{project.Encoding_Software}}</td>
                                       <td>Description: {{project.ProjectDescription}}</td>
                                   </tr>
