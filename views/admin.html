@@ -3,7 +3,7 @@
     <div class="accordion" id="accordion">
 <!--       Current Videos-->
        <div class="cf">
-           <h3 class="panel-title" data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Current Videos</h3>
+           <h3 class="panel-title" data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Video</h3>
             <div id="current-videos" class="video-inventory collapse">
                 <div ng-show="videoEditForm" class="data-edit-form" id="video-detail-edit">
                     <form  action="" name="video-detail-edit-form">
@@ -85,6 +85,7 @@
             </div>
        </div>
 <!--       Add Videos-->
+<!--
         <div class="cf">
             <h3 class="panel-title" data-toggle="collapse" data-target="#add-video" data-parent="#accordion">Add a Video</h3>
             <div id="add-video" class="collapse add-video">
@@ -104,9 +105,10 @@
                 </form>
             </div>
         </div>
+-->
 <!--        Current Audio Files-->
         <div class="cf">
-           <h3 class="panel-title" data-toggle="collapse" data-target="#current-audio" data-parent="#accordion">Current Audio</h3>
+           <h3 class="panel-title" data-toggle="collapse" data-target="#current-audio" data-parent="#accordion">Audio</h3>
             <div id="current-audio" class="audio-inventory collapse">
                <audio id="audio-player" src="" controls></audio>
                 <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
@@ -181,7 +183,9 @@
                            </tr>
                            <tr>
                                <td>Description: {{track.description}}</td> 
-                               <td><button class="btn btn-default" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>   
+                               <td><button class="btn btn-default" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                               <button class="btn btn-default" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                               </td>   
                            </tr>
                         
                        </table>
@@ -193,6 +197,7 @@
             
         </div>
 <!--        Add Audio-->
+<!--
         <div class="cf">
             <h3 class="panel-title" data-toggle="collapse" data-target="#add-audio" data-parent="#accordion">Add an Audio File</h3>
             <div id="add-audio" class="collapse add-audio">
@@ -209,6 +214,7 @@
                 </form>
             </div>
         </div>
+-->
 <!--        Projects-->
         <div class="cf">
            <h3 class="panel-title" data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>

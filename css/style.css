@@ -364,6 +364,12 @@ nav li a:hover {
 section .ng-scope {
     
 }
+.accordion {
+    -webkit-overflow-scrolling: touch;
+}
+.accordion h3.panel-title {
+    cursor: pointer;
+}
 .admin .data-edit-form {
 
 }

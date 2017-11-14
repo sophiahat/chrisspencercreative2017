@@ -99,7 +99,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audioimage = track.img;
                 $scope.audiosource = track.src;
                 track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
-            };
+            };//edit Audio
             $scope.updateAudio = function() {
                 event.preventDefault();
                 var postdata = {
@@ -120,12 +120,39 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/audio/' + id).update(postdata);
                 } else {
+                    console.log('creating a new track record');
+                    console.log(postdata);
                     postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
                     audioInfo.$add(postdata);
                 }
+                clearAudioForm();
                 $scope.audioEditForm = false;
                     
             };//updated Audio
+            function clearAudioForm() {
+                $scope.audiotitle = 
+                $scope.audioactive =
+                $scope.audiodescription =
+                $scope.audiometatags =
+                $scope.audiorating = 
+                $scope.audioprojectID =
+                $scope.audioimage =
+                $scope.audiotype =
+                $scope.audiosource = '';
+            }
+            $scope.deleteAudio = function(track) {
+                if (confirm("Delete this track: " + track.title)) {
+                    var targetAudioRef = firebase.database().ref('/audio/' + track.$id);
+                    targetAudioRef.remove()
+                    .then(function() {
+                        alert('audio reference removed');
+                    })
+                    .catch(function(error) {
+                        alert('problem removing audio ' + error.message);
+                    });
+                } else {return}
+                    
+            };//delete Audio
             $scope.addVideo = function() {
                 $scope.videoEditForm = true;
 //                videosInfo.$add({
@@ -191,6 +218,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             };//update Video
             $scope.addAudio = function() {
                 $scope.audioEditForm = true;
+                $scope.track = false;
 //                audioInfo.$add({
 //                    dateCreated: firebase.database.ServerValue.TIMESTAMP,
 //                    src: $scope.src,
