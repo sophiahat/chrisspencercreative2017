@@ -1,12 +1,9 @@
-<section class="admin card cf">
-   <h1>Website Administration</h1>
-   <audio ng-show="audioplayer" id="audio-player" src="" controls></audio> 
-   <uib-tabset active="active">
-    <uib-tab index="0" heading="Video">
-<!--        Current Videos-->
-        <div class="cf">
-           <h3>Video</h3>
-            <div id="current-videos" class="video-inventory">
+    //Admin.html old representation
+    <div class="accordion" id="accordion">
+<!--       Current Videos-->
+       <div class="cf">
+           <h3 class="panel-title" data-toggle="collapse" data-target="#current-videos" data-parent="#accordion">Video</h3>
+            <div id="current-videos" class="video-inventory collapse">
                 <div ng-show="videoEditForm" class="data-edit-form" id="video-detail-edit">
                     <form  action="" name="video-detail-edit-form">
                        <ul>
@@ -47,8 +44,7 @@
                 <button class="btn btn-default" ng-show="!videoEditForm" ng-click="addVideo()">Add Video</button>
                <div class="admin-scrolling-list">
                    <ul ng-show="!videoEditForm" class="videolist">
-                      <input class="form-control" type="text" placeholder="keywordsearch" ng-model="videoSearchKeyword">
-                       <li class="video-data" ng-repeat="(key , video) in videos | filter : videoSearchKeyword">
+                       <li class="video-data" ng-repeat="(key , video) in videos">
 
                            <table class="table table-responsive table-bordered table-striped">
                               <tr>
@@ -89,14 +85,12 @@
                </div>
             </div>
        </div>
-        
-    </uib-tab>
-    <uib-tab index="1" heading="Audio">
-    <!--        Current Audio Files-->
+
+<!--        Current Audio Files-->
         <div class="cf">
-           <h3>Audio</h3>
-            <div id="current-audio" class="audio-inventory">
-               
+           <h3 class="panel-title" data-toggle="collapse" data-target="#current-audio" data-parent="#accordion">Audio</h3>
+            <div id="current-audio" class="audio-inventory collapse">
+               <audio id="audio-player" src="" controls></audio>
                 <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
                     <form  action="" name="audio-detail-edit-form">
                        <ul>
@@ -144,8 +138,8 @@
                 <button class="btn btn-default" ng-show="!audioEditForm" ng-click="addAudio()">Add Audio</button>
                <div class="admin-scrolling-list">
                    <ul ng-show="!audioEditForm" class="audiolist">
-                   <input class="form-control" type="text" placeholder="keywordsearch" ng-model="audioSearchKeyword">
-                   <li class="audio-data" ng-repeat="track in audios | filter : audioSearchKeyword">
+                  
+                   <li class="audio-data" ng-repeat="track in audios">
                        
                        <table class="table table-responsive table-bordered table-striped">
                           <tr>
@@ -182,12 +176,11 @@
             </div>
             
         </div>
-    
-    </uib-tab>
-    <uib-tab index="2" heading="Projects">
+        
+        
 <!--        Projects-->
         <div class="cf">
-           <h3>Projects</h3>
+           <h3 class="panel-title" data-toggle="collapse" data-target="#projects" data-parent="#accordion">Projects</h3>
            <div ng-show="projectEditForm" class="data-edit-form" id="project-detail-edit">
                <form action="" name="project-detail-edit-form">
                    <ul>
@@ -237,13 +230,12 @@
                    <button type="button" ng-click="toggleProjectForm()" class="btn btn-default">Cancel</button>
                </form>
            </div>
-           <div id="projects" class="project-list">
+           <div id="projects" class="collapse project-list">
                <button class="btn btn-default" ng-show="!projectEditForm" ng-click="addProject()">Add Project</button>
                 <div class="admin-scrolling-list">
 
                    <ul ng-show="!projectEditForm" class="projectlist">
-                     <input class="form-control" type="text" placeholder="keywordsearch" ng-model="projectSearchKeyword">
-                      <li class="project-data" ng-repeat="project in projects | filter : projectSearchKeyword">
+                      <li class="project-data" ng-repeat="project in projects">
                           <table class="table table-responsive table-bordered table-striped">
                              <thead>
                                  <tr>
@@ -282,12 +274,7 @@
                    </ul>
                 </div>
            </div>
-       </div>   
-       
-    </uib-tab>
-  </uib-tabset>
-    
-    
-   
+       </div>
 
-</section>
+            
+    </div> 

@@ -113,6 +113,10 @@ strong {
     font-weight: 700;
 }
 
+.nav, .pagination, .carousel, .panel-title a { 
+    cursor: pointer; 
+}
+
 .accordion h4.panel-title {
     cursor: pointer;
 }
@@ -120,7 +124,7 @@ strong {
 .card {
   background: white;
   width: 100%;
-  max-width: 850px;
+  max-width: 950px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 40px;

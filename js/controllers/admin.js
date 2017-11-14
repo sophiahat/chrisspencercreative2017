@@ -1,5 +1,6 @@
 myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$firebaseAuth', '$firebaseArray', '$firebaseObject', function($scope, $rootScope, $routeParams, $firebaseAuth,  $firebaseArray, $firebaseObject) {
     var audioplayer = $('#audio-player');
+    $scope.audioplayer = false;
     //update google analytics
     var url = window.location.href;
     gtag('config', 'UA-20609405-2', {
@@ -128,7 +129,6 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             }
             function changeDisplayAudio(audio) {
                 console.log('change display audio');
-
                 setDisplayAudio(audio);
 
             }
@@ -136,6 +136,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 
                 $scope.displayAudio = audio;
                 console.log('In audio stuff');
+                console.log(audio.src);
+                $scope.audioplayer = true;
 
                 var link = "/audio/" + audio.src;
 
