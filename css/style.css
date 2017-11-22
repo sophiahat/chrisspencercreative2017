@@ -699,12 +699,11 @@ aside {
     opacity: .97;
 }
 
-footer .navbar {
-    background-color: #A9AAAC;
-}
 
-footer .navbar .navbar-text {
-    color: black;
+
+footer  {
+    background-color: #222222;
+    color: #9d9d9d;
 }
 
 @media (min-width: 992px) {
