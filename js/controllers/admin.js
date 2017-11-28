@@ -269,7 +269,10 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             
             
             // projects
+            $scope.newProject = false;
             function clearProjectForm() {
+                console.log('Project Description before: ' + $scope.projectDescription);
+                console.log('clearing project form');
                 $scope.projectName = 
                 $scope.discid =
                 $scope.projectDescription =
@@ -279,6 +282,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.projectBeginDate =
                 $scope.projectEndDate = 
                 $scope.projectID = '';
+                console.log('Project Description after: ' + $scope.projectDescription);
             }
             $scope.projectEditForm = false;
             $scope.toggleProjectForm = function() {
@@ -317,22 +321,26 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     ProjectID : $scope.projectID,
                     ProjectName : $scope.projectName
                 };
-                if ($scope.project) {
+                if (!$scope.newProject) {
                     var projectEdit = $scope.project;
                     var id = projectEdit.$id;
                     console.log("Current Project ID: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/projects/' + id).update(postdata);
                 } else {
+                    console.log('creating new record');
                     postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
-                    projectsInfo.$add(postdata);
+                    projectsInfo.$add(postdata).then(clearProjectForm());
                 }
-                clearProjectForm();    
-                $scope.projectEditForm = false;
+                //clearProjectForm(); 
+                //$scope.newProject = false;
+                //$scope.projectEditForm = false;
             };
             $scope.addProject = function() {
                 $scope.projectEditForm = true;
-            }
+                $scope.newProject = true;
+                $scope.project = undefined;
+            };
             $scope.deleteProject = function(project) {
                 if (confirm("Delete this project: " + project.ProjectName)) {
                     var targetProjectRef = firebase.database().ref('/projects/' + project.$id);
