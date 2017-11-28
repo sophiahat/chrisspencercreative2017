@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'ngSanitize', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'ngSanitize']);
 
 
 

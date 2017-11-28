@@ -23,18 +23,6 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             //console.log(userObj.$value);
             //console.log(userObj.firstname);
             
-            
-            // videos
-            function clearVideoForm() {
-                $scope.videotitle = 
-                $scope.videoactive =
-                $scope.videodescription =
-                $scope.videometatags =
-                $scope.videorating = 
-                $scope.videoprojectID =
-                $scope.videoworkperformed =
-                $scope.videoId = '';
-            }
             var videoRef = firebase.database().ref('/video');
             var videosInfo = $firebaseArray(videoRef);
 //            videosInfo.$loaded().then(function(videosInfo) {
@@ -43,82 +31,17 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 //                }                      
 //                                      });
             $scope.videos = videosInfo;
-            $scope.addVideo = function() {
-                $scope.videoEditForm = true;
-//                videosInfo.$add({
-//                    title: $scope.title,
-//                    dateCreated: firebase.database.ServerValue.TIMESTAMP,   
-//                    videoId: $scope.videoId,
-//                    workPerformed: $scope.workPerformed,
-//                    metatags: $scope.metatags,
-//                    description: $scope.description,
-//                    active: $scope.videoActive
-//                }).then(function() {
-//                    $scope.title =
-//                    $scope.description =
-//                    $scope.workPerformed =
-//                    $scope.metatags =
-//                    $scope.videoId = '';
-//                    $scope.videoActive = false;
-//                });//videosInfo.$add
-            };//addvideo
-            $scope.editVideo = function(video) {
-                $scope.video = video;
-//                
-                for (var item in video) {
-                
-//                console.log(item + " : " + video[item]);
+            ///Functions duplicated from Portfolio.js - to refactor into service???
+                function setAutoplayAudio() {
+                    console.log('setting autoplay audio');
+                    audioplayer.attr('autoplay', 'autoplay');
                 }
-                $scope.videoEditForm = true;
-                $scope.videotitle = video.title;
-                $scope.videoactive = video.active;
-                
-                $scope.videodescription = video.description;
-                $scope.videometatags = video.metatags;
-                $scope.videorating = video.rating;
-                $scope.videoid = video.videoId;
-                $scope.videoworkperformed = video.workPerformed;
-            };
-            $scope.updateVideo = function() { 
-                event.preventDefault();
-                var postdata = {
-                    title : $scope.videotitle,
-                    active : $scope.videoactive,
-                    description : $scope.videodescription,
-                    metatags : $scope.videometatags,
-                    rating : $scope.videorating,
-                    videoId : $scope.videoid,
-                    workPerformed : $scope.videoworkperformed,
+                function changeDisplayAudio(audio) {
+                    console.log('change display audio');
                     
-                };
-                
-                if($scope.video) {
-                    var videoEdit = $scope.video;
-                    var id = videoEdit.$id;
-                    console.log('Current video ID: ' + id);
-                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
-                    console.log("title: " + $scope.videotitle);  
-                    firebase.database().ref('/video/' + id).update(postdata);
-                } else {
-                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
-                    videosInfo.$add(postdata);
-                }
-                clearVideoForm();
-                $scope.videoEditForm = false;
-                
-            };//update Video
-            $scope.deleteVideo = function(video) {
-                if (confirm("Delete this video: " + video.title)) {
-                    var targetVideoRef = firebase.database().ref('/video/' + video.$id);
-                    targetVideoRef.remove()
-                    .then(function() {
-                        alert('video reference removed');
-                    })
-                    .catch(function(error) {
-                        alert('problem removing video ' + error.message);
-                    });
-                } else {return}
+                    setDisplayAudio(audio);
                     
+<<<<<<< HEAD
             };//delete Audio
             
             //end Videos
@@ -130,34 +53,31 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             function changeDisplayAudio(audio) {
                 console.log('change display audio');
                 setDisplayAudio(audio);
+=======
+                }
 
-            }
-            function setDisplayAudio(audio) {
+                function setDisplayAudio(audio) {
+                    
+                    $scope.displayAudio = audio;
+                    console.log('In audio stuff');
+>>>>>>> parent of fbe0676... added delete records for projects and videos along with clear form functions for each.Accordion style implementation final version
 
+                    var link = "/audio/" + audio.src;
+
+<<<<<<< HEAD
                 $scope.displayAudio = audio;
                 console.log('In audio stuff');
                 console.log(audio.src);
                 $scope.audioplayer = true;
+=======
+                    audioplayer.attr('src', link);
+                    setAutoplayAudio();
+>>>>>>> parent of fbe0676... added delete records for projects and videos along with clear form functions for each.Accordion style implementation final version
 
-                var link = "/audio/" + audio.src;
-
-                audioplayer.attr('src', link);
-                setAutoplayAudio();
-            }
-            //end functions duplicated in portfolio.js
-            function clearAudioForm() {
-                $scope.audiotitle = 
-                $scope.audioactive =
-                $scope.audiodescription =
-                $scope.audiometatags =
-                $scope.audiorating = 
-                $scope.audioprojectID =
-                $scope.audioimage =
-                $scope.audiotype =
-                $scope.audiosource = '';
-            }
-            
+                }
             $scope.getAudioSource = setDisplayAudio;
+
+            
             var audioRef = firebase.database().ref('/audio');
             var audioInfo = $firebaseArray(audioRef);
             
@@ -231,6 +151,17 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audioEditForm = false;
                     
             };//updated Audio
+            function clearAudioForm() {
+                $scope.audiotitle = 
+                $scope.audioactive =
+                $scope.audiodescription =
+                $scope.audiometatags =
+                $scope.audiorating = 
+                $scope.audioprojectID =
+                $scope.audioimage =
+                $scope.audiotype =
+                $scope.audiosource = '';
+            }
             $scope.deleteAudio = function(track) {
                 if (confirm("Delete this track: " + track.title)) {
                     var targetAudioRef = firebase.database().ref('/audio/' + track.$id);
@@ -244,6 +175,69 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 } else {return}
                     
             };//delete Audio
+            $scope.addVideo = function() {
+                $scope.videoEditForm = true;
+//                videosInfo.$add({
+//                    title: $scope.title,
+//                    dateCreated: firebase.database.ServerValue.TIMESTAMP,   
+//                    videoId: $scope.videoId,
+//                    workPerformed: $scope.workPerformed,
+//                    metatags: $scope.metatags,
+//                    description: $scope.description,
+//                    active: $scope.videoActive
+//                }).then(function() {
+//                    $scope.title =
+//                    $scope.description =
+//                    $scope.workPerformed =
+//                    $scope.metatags =
+//                    $scope.videoId = '';
+//                    $scope.videoActive = false;
+//                });//videosInfo.$add
+            };//addvideo
+            $scope.editVideo = function(video) {
+                $scope.video = video;
+//                
+                for (var item in video) {
+                
+//                console.log(item + " : " + video[item]);
+                }
+                $scope.videoEditForm = true;
+                $scope.videotitle = video.title;
+                $scope.videoactive = video.active;
+                
+                $scope.videodescription = video.description;
+                $scope.videometatags = video.metatags;
+                $scope.videorating = video.rating;
+                $scope.videoid = video.videoId;
+                $scope.videoworkperformed = video.workPerformed;
+            };
+            $scope.updateVideo = function() { 
+                event.preventDefault();
+                var postdata = {
+                    title : $scope.videotitle,
+                    active : $scope.videoactive,
+                    description : $scope.videodescription,
+                    metatags : $scope.videometatags,
+                    rating : $scope.videorating,
+                    videoId : $scope.videoid,
+                    workPerformed : $scope.videoworkperformed,
+                    
+                };
+                
+                if($scope.video) {
+                    var videoEdit = $scope.video;
+                    var id = videoEdit.$id;
+                    console.log('Current video ID: ' + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    console.log("title: " + $scope.videotitle);  
+                    firebase.database().ref('/video/' + id).update(postdata);
+                } else {
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    videosInfo.$add(postdata);
+                }
+                $scope.videoEditForm = false;
+                
+            };//update Video
             $scope.addAudio = function() {
                 $scope.audioEditForm = true;
                 $scope.track = false;
@@ -269,6 +263,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             
             
             // projects
+<<<<<<< HEAD
             $scope.newProject = false;
             function clearProjectForm() {
                 console.log('Project Description before: ' + $scope.projectDescription);
@@ -284,6 +279,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.projectID = '';
                 console.log('Project Description after: ' + $scope.projectDescription);
             }
+=======
+>>>>>>> parent of fbe0676... added delete records for projects and videos along with clear form functions for each.Accordion style implementation final version
             $scope.projectEditForm = false;
             $scope.toggleProjectForm = function() {
                 if ($scope.projectEditForm) {
@@ -332,6 +329,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
                     projectsInfo.$add(postdata).then(clearProjectForm());
                 }
+
                 //clearProjectForm(); 
                 //$scope.newProject = false;
                 //$scope.projectEditForm = false;
@@ -354,6 +352,11 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 } else {return}
                     
             };//delete Audio
+
+                    
+
+
+
         }// if user authenticated
     });// on Auth state changed
 }]);//controller
