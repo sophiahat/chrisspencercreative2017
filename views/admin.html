@@ -1,11 +1,15 @@
 <section class="admin card cf">
    <h1>Website Administration</h1>
-   <audio ng-show="audioplayer" id="audio-player" src="" controls></audio> 
-   <uib-tabset active="active">
-    <uib-tab index="0" heading="Video">
+   
+   <ul class="nav nav-pills" id="data-categories">
+       <li ng-class="{active: isSet(1)}"><a href ng-click="setTab(1)">Video</a></li>
+       <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
+       <li ng-class="{active: isSet(3)}"><a href ng-click="setTab(3)">Projects</a></li>
+   </ul>
+      <audio ng-show="isSet(2)" id="audio-player" src="" controls></audio> 
+       <div ng-show="isSet(1)" id="video">
 <!--        Current Videos-->
         <div class="cf">
-           <h3>Video</h3>
             <div id="current-videos" class="video-inventory">
                 <div ng-show="videoEditForm" class="data-edit-form" id="video-detail-edit">
                     <form  action="" name="video-detail-edit-form">
@@ -45,9 +49,10 @@
                    </form>
                 </div>
                 <button class="btn btn-default" ng-show="!videoEditForm" ng-click="addVideo()">Add Video</button>
+                <input class="form-control" type="text" placeholder="keywordsearch" ng-model="videoSearchKeyword">
                <div class="admin-scrolling-list">
                    <ul ng-show="!videoEditForm" class="videolist">
-                      <input class="form-control" type="text" placeholder="keywordsearch" ng-model="videoSearchKeyword">
+                      
                        <li class="video-data" ng-repeat="(key , video) in videos | filter : videoSearchKeyword">
 
                            <table class="table table-responsive table-bordered table-striped">
@@ -88,11 +93,10 @@
             </div>
        </div>
         
-    </uib-tab>
-    <uib-tab index="1" heading="Audio">
+    </div>
+       <div ng-show="isSet(2)" id="audio">
     <!--        Current Audio Files-->
         <div class="cf">
-           <h3>Audio</h3>
             <div id="current-audio" class="audio-inventory">
                
                 <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
@@ -140,9 +144,10 @@
                    </form>
                 </div>
                 <button class="btn btn-default" ng-show="!audioEditForm" ng-click="addAudio()">Add Audio</button>
+                <input class="form-control" type="text" placeholder="keywordsearch" ng-model="audioSearchKeyword">
                <div class="admin-scrolling-list">
                    <ul ng-show="!audioEditForm" class="audiolist">
-                   <input class="form-control" type="text" placeholder="keywordsearch" ng-model="audioSearchKeyword">
+                   
                    <li class="audio-data" ng-repeat="track in audios | filter : audioSearchKeyword">
                        
                        <table class="table table-responsive table-bordered table-striped">
@@ -181,11 +186,10 @@
             
         </div>
     
-    </uib-tab>
-    <uib-tab index="2" heading="Projects">
+    </div>
+       <div ng-show="isSet(3)" id="projects">
 <!--        Projects-->
         <div class="cf">
-           <h3>Projects</h3>
            <div ng-show="projectEditForm" class="data-edit-form" id="project-detail-edit">
                <form action="" name="project-detail-edit-form">
                    <ul>
@@ -237,10 +241,11 @@
            </div>
            <div id="projects" class="project-list">
                <button class="btn btn-default" ng-show="!projectEditForm" ng-click="addProject()">Add Project</button>
+               <input class="form-control" type="text" placeholder="keywordsearch" ng-model="projectSearchKeyword">
                 <div class="admin-scrolling-list">
 
                    <ul ng-show="!projectEditForm" class="projectlist">
-                     <input class="form-control" type="text" placeholder="keywordsearch" ng-model="projectSearchKeyword">
+                     
                       <li class="project-data" ng-repeat="project in projects | filter : projectSearchKeyword">
                           <table class="table table-responsive table-bordered table-striped">
                              <thead>
@@ -267,7 +272,7 @@
                                       <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
                                   </tr>
                                   <tr>
-                                      <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+                                      <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button><button class="btn btn-default" ng-click="deleteProject(project)">Delete</button></td>
                                       <td>Software: {{project.Encoding_Software}}</td>
                                       <td>Description: {{project.ProjectDescription}}</td>
                                   </tr>
@@ -280,8 +285,8 @@
            </div>
        </div>   
        
-    </uib-tab>
-  </uib-tabset>
+    </div>
+  
     
     
    

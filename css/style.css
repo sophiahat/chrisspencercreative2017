@@ -377,7 +377,9 @@ section .ng-scope {
 .admin .data-edit-form {
 
 }
-
+.admin #data-categories li {
+    display: inline;
+}
 .admin .videolist li {
 /*    text-align: center;*/
     width: 100%;
@@ -508,8 +510,10 @@ section .ng-scope {
     background: rgba(245, 245, 245, 0.4);
 }
 #audio-player {
+    margin: 15px 0 0 0;
     width: 100%;
     clear:both;
+    
 }
 /*
 .audio-item div:nth-child(even) {
