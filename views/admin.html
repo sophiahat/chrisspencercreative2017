@@ -54,6 +54,15 @@
                    <ul ng-show="!videoEditForm" class="videolist">
                       
                        <li class="video-data" ng-repeat="(key , video) in videos | filter : videoSearchKeyword">
+                           <table>
+                               <tr>
+                                   <td>{{video.title}}</td>
+                                   <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
+
+                           <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
+                           </a></td>
+                               </tr>
+                           </table>
 
                            <table class="table table-responsive table-bordered table-striped">
                               <tr>
