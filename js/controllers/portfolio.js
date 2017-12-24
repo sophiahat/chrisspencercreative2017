@@ -13,6 +13,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var videosInfo = $firebaseArray(videosRef);
     $scope.videos = videosInfo;
     
+    
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
@@ -39,8 +40,10 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     }
     
     audioInfo.$loaded().then(function(audioInfo) {
-        console.log('load complete');
-        console.log("length of audio array: " + audioInfo.length);
+//        console.log('load complete');
+//        console.log("length of audio array: " + audioInfo.length);
+//        console.log("first Audio object");
+//        console.log(audioInfo[0].showCSCreative);
         var audioArrayLength = audioInfo.length;
         var trackNumber = Math.floor(Math.random() * (audioArrayLength));
         console.log("Random choice is: " + trackNumber);

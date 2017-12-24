@@ -146,6 +146,14 @@
                                <label for="audioprojectID">Project ID: </label>
                                <input type="text" name="audioprojectID" ng-model="audioprojectID">
                            </li>
+                           <li>
+                               <label for="showCSCreative">Show On CS Creative</label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="showCSCreative" ng-model="showCSCreative">
+                           </li>
+                           <li>
+                               <label for="showSophiahat">Show On Sophiahat</label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="showSophiahat" ng-model="showSophiahat">
+                           </li>
                        </ul>
                        <button type="submit" class="btn btn-default" ng-click="updateAudio()">Save Updated Audio </button>
                        <button type="button" class="btn btn-default" ng-click="toggleAudioEditForm()">Cancel</button>

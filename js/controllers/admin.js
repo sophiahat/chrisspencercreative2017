@@ -163,6 +163,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audioprojectID =
                 $scope.audioimage =
                 $scope.audiotype =
+                $scope.showCSCreative =
+                $scope.showSophiahat =
                 $scope.audiosource = '';
             }
             
@@ -210,6 +212,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audioimage = track.img;
                 $scope.audiosource = track.src;
                 track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
+                $scope.showCSCreative = track.showCSCreative;
+                $scope.showSophiahat = track.showSophiahat;
             };//edit Audio
             $scope.updateAudio = function() {
                 event.preventDefault();
@@ -222,7 +226,9 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     projectID : $scope.audioprojectID, 
                     img : $scope.audioimage,
                     type : $scope.audiotype,
-                    src : $scope.audiosource
+                    src : $scope.audiosource,
+                    showCSCreative: $scope.showCSCreative,
+                    showSophiahat: $scope.showSophiahat
                 };
                 if ($scope.track) {
                     var audioedit = $scope.track;
