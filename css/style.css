@@ -120,6 +120,15 @@ strong {
 .accordion h4.panel-title {
     cursor: pointer;
 }
+.inline {
+    float: left;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
 
 .card {
   background: white;
@@ -380,7 +389,18 @@ section .ng-scope {
 .admin #data-categories li {
     display: inline;
 }
-.admin .videolist li {
+
+.admin .admin-list-item {
+    
+}
+.admin .admin-list-item-child {
+    
+    margin: 0 5px 0 5px;
+    
+    
+}
+.admin .videolist li,
+.admin .audiolist li {
 /*    text-align: center;*/
     width: 100%;
     float: left;
@@ -395,15 +415,15 @@ section .ng-scope {
     overflow: scroll;
     height: 300px;
 }
-.admin .videolist li:hover {
+.admin .admin-scrolling-list li:hover {
     background: rgba(120, 120, 120, 0.1);
 /*    border-radius: 5px; */
 }
 .portfolio img {
     width: 70%;
 }
-.admin .videolist img {
-    width: 90%;
+.admin .admin-scrolling-list img {
+    max-height: 40px;
 /*    float: left;*/
 
 }

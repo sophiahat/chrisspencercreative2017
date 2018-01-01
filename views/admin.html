@@ -41,6 +41,14 @@
                                <label for="workperformed">Work Performed:</label>
                                <input type="text" name="workperformed"  ng-model="videoworkperformed">
                            </li>
+                           <li>
+                               <label for="videoShowCSCreative">Show On CS Creative</label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="videoShowCSCreative" ng-model="videoShowCSCreative">
+                           </li>
+                           <li>
+                               <label for="videoShowSophiahat">Show On Sophiahat</label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="videoShowSophiahat" ng-model="videoShowSophiahat">
+                           </li>
                        </ul>
                        <button type="submit" class="btn btn-default" ng-click="updateVideo()">Save Updated Data</button>
                        <button type="button" class="btn btn-default" ng-click="toggleVideoEditForm()">Cancel</button>
@@ -50,11 +58,21 @@
                 </div>
                 <button class="btn btn-default" ng-show="!videoEditForm" ng-click="addVideo()">Add Video</button>
                 <input class="form-control" type="text" placeholder="keywordsearch" ng-model="videoSearchKeyword">
-               <div class="admin-scrolling-list">
+               <div class="admin-scrolling-list" id="video-list">
                    <ul ng-show="!videoEditForm" class="videolist">
                       
                        <li class="video-data" ng-repeat="(key , video) in videos | filter : videoSearchKeyword">
-                           <table>
+                          <div class="admin-list-item" >
+                              <a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
+                                   <img class="admin-list-item-child float-left" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
+                               </a>
+                              <h4 class="admin-list-item-child float-left">{{video.title}}</h4> 
+                              <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteVideo(video)">Delete</button> 
+                              <button class="btn btn-default admin-list-item-child float-right" ng-click="editVideo(video)">Edit</button>
+                                
+<!--
+                              <div id="{{video.title}}" class="collapse">
+                                   <table>
                                <tr>
                                    <td>{{video.title}}</td>
                                    <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
@@ -64,35 +82,40 @@
                                </tr>
                            </table>
 
-                           <table class="table table-responsive table-bordered table-striped">
-                              <tr>
-                                  <td>Title: {{video.title}}</td>
-                                  <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
+                                   <table class="table table-responsive table-bordered table-striped">
+                                      <tr>
+                                          <td>Title: {{video.title}}</td>
+                                          <td><a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
 
-                           <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
-                           </a></td>
-                              </tr>
-                               <tr>
-                                   <td>Active: {{video.active}}</td>
-                                   <td>Rating: {{video.rating}}</td>
-                               </tr>
-                               <tr>
-                                    <td>Date Created: {{video.dateCreated}}</td> 
-                                    <td>
-                                        Date Modified: {{video.dateModified}}
-                                    </td>
-                               </tr>
-                               <tr>
-                                    <td>Video ID: {{video.videoId}}</td>   
-                                    <td>Metatags: {{video.metatags}}</td>
-                               </tr>
-                               <tr>
-                                   <td>Description: {{video.description}}</td> 
-                                   <td>WorkPerformed: {{video.workPerformed}}</td>   
-                               </tr>
+                                   <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
+                                   </a></td>
+                                      </tr>
+                                       <tr>
+                                           <td>Active: {{video.active}}</td>
+                                           <td>Rating: {{video.rating}}</td>
+                                       </tr>
+                                       <tr>
+                                            <td>Date Created: {{video.dateCreated}}</td> 
+                                            <td>
+                                                Date Modified: {{video.dateModified}}
+                                            </td>
+                                       </tr>
+                                       <tr>
+                                            <td>Video ID: {{video.videoId}}</td>   
+                                            <td>Metatags: {{video.metatags}}</td>
+                                       </tr>
+                                       <tr>
+                                           <td>Description: {{video.description}}</td> 
+                                           <td>WorkPerformed: {{video.workPerformed}}</td>   
+                                       </tr>
 
-                           </table>
-                           <button class="btn btn-default" ng-click="editVideo(video)">Edit</button>
+                                   </table>
+                                   <button class="btn btn-default" ng-click="editVideo(video)">Edit</button>
+                                   <button class="btn btn-default" ng-click="deleteVideo(video)">Delete Video</button>  
+                              </div>
+-->
+                          </div>
+                           
 
 
 
@@ -162,40 +185,49 @@
                 </div>
                 <button class="btn btn-default" ng-show="!audioEditForm" ng-click="addAudio()">Add Audio</button>
                 <input class="form-control" type="text" placeholder="keywordsearch" ng-model="audioSearchKeyword">
-               <div class="admin-scrolling-list">
+               <div class="admin-scrolling-list panel-group">
                    <ul ng-show="!audioEditForm" class="audiolist">
                    
                    <li class="audio-data" ng-repeat="track in audios | filter : audioSearchKeyword">
-                       
-                       <table class="table table-responsive table-bordered table-striped">
-                          <tr>
-                              <td>Title: {{track.title}}</td>
-                              <td><button class="btn btn-default" ng-click="getAudioSource(track)"><span class="glyphicon glyphicon-play"></span> Play Track</button></td>
+                        <div class="admin-list-item">
+                            <img class="admin-list-item-child float-left" ng-src="images/thumbs/{{track.img}}" alt="Image for audio track: {{track.title}}">
+                           <h4 class="admin-list-item-child float-left">{{track.title}}</h4>
+                           <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                           <button class="btn btn-default admin-list-item-child float-right" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                           <button class="btn btn-default admin-list-item-child float-right" ng-click="getAudioSource(track)"><span class="glyphicon glyphicon-play"></span> Play Track</button>
 
-                          </tr>
-                           <tr>
-                               <td>Active: {{track.active}}</td>
-                               <td>Rating: {{track.rating}}</td>
-                           </tr>
-                           <tr>
-                                <td>Date Created: {{track.dateCreated | date}}</td> 
-                                <td>
-                                    Date Modified: {{track.dateModified | date}}
-                                </td>
-                           </tr>
-                           <tr>
-                                <td>Source File: {{track.src}}</td>   
-                                <td>Metatags: {{track.meta}}</td>
-                           </tr>
-                           <tr>
-                               <td>Description: {{track.description}}</td> 
-                               <td><button class="btn btn-default" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                               <button class="btn btn-default" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                               </td>   
-                           </tr>
-                        
-                       </table>
-                       
+    <!--
+                           <table class="table table-responsive table-bordered table-striped">
+                              <tr>
+                                  <td>Title: {{track.title}}</td>
+                                  <td><button class="btn btn-default" ng-click="getAudioSource(track)"><span class="glyphicon glyphicon-play"></span> Play Track</button></td>
+
+                              </tr>
+                               <tr>
+                                   <td>Active: {{track.active}}</td>
+                                   <td>Rating: {{track.rating}}</td>
+                               </tr>
+                               <tr>
+                                    <td>Date Created: {{track.dateCreated | date}}</td> 
+                                    <td>
+                                        Date Modified: {{track.dateModified | date}}
+                                    </td>
+                               </tr>
+                               <tr>
+                                    <td>Source File: {{track.src}}</td>   
+                                    <td>Metatags: {{track.meta}}</td>
+                               </tr>
+                               <tr>
+                                   <td>Description: {{track.description}}</td> 
+                                   <td><button class="btn btn-default" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                   <button class="btn btn-default" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                   </td>   
+                               </tr>
+
+                           </table>
+    -->
+
+                        </div>
                    </li>
                </ul>
                </div>

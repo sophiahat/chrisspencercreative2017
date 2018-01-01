@@ -42,6 +42,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videorating = 
                 $scope.videoprojectID =
                 $scope.videoworkperformed =
+                $scope.videoShowCSCreative =
+                $scope.videoShowSophiahat = 
                 $scope.videoId = '';
             }
             var videoRef = firebase.database().ref('/video');
@@ -87,6 +89,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videorating = video.rating;
                 $scope.videoid = video.videoId;
                 $scope.videoworkperformed = video.workPerformed;
+                $scope.videoShowCSCreative = video.showCSCreative;
+                $scope.videoShowSophiahat = video.showSophiahat;
             };
             $scope.updateVideo = function() { 
                 event.preventDefault();
@@ -98,6 +102,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     rating : $scope.videorating,
                     videoId : $scope.videoid,
                     workPerformed : $scope.videoworkperformed,
+                    showCSCreative : $scope.videoShowCSCreative,
+                    showSophiahat : $scope.videoShowSophiahat
                     
                 };
                 
