@@ -400,7 +400,8 @@ section .ng-scope {
     
 }
 .admin .videolist li,
-.admin .audiolist li {
+.admin .audiolist li,
+.admin .projectlist li {
 /*    text-align: center;*/
     width: 100%;
     float: left;
@@ -409,6 +410,10 @@ section .ng-scope {
     margin-left: 1.5%;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+.admin .projectlist h4 {
+    word-wrap: break-word;
 }
 .admin-scrolling-list {
     margin-top: 15px;

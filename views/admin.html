@@ -67,8 +67,8 @@
                                    <img class="admin-list-item-child float-left" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
                                </a>
                               <h4 class="admin-list-item-child float-left">{{video.title}}</h4> 
-                              <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteVideo(video)">Delete</button> 
-                              <button class="btn btn-default admin-list-item-child float-right" ng-click="editVideo(video)">Edit</button>
+                              <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteVideo(video)"><span class="glyphicon glyphicon-trash"> Delete</span></button> 
+                              <button class="btn btn-default admin-list-item-child float-right" ng-click="editVideo(video)"><span class="glyphicon glyphicon-edit"> Edit</span></button>
                                 
 <!--
                               <div id="{{video.title}}" class="collapse">
@@ -192,7 +192,7 @@
                         <div class="admin-list-item">
                             <img class="admin-list-item-child float-left" ng-src="images/thumbs/{{track.img}}" alt="Image for audio track: {{track.title}}">
                            <h4 class="admin-list-item-child float-left">{{track.title}}</h4>
-                           <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                           <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span>  Delete</button>
                            <button class="btn btn-default admin-list-item-child float-right" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                            <button class="btn btn-default admin-list-item-child float-right" ng-click="getAudioSource(track)"><span class="glyphicon glyphicon-play"></span> Play Track</button>
 
@@ -288,46 +288,60 @@
                    <button type="button" ng-click="toggleProjectForm()" class="btn btn-default">Cancel</button>
                </form>
            </div>
-           <div id="projects" class="project-list">
+           <div id="projects" class="projectlist">
                <button class="btn btn-default" ng-show="!projectEditForm" ng-click="addProject()">Add Project</button>
                <input class="form-control" type="text" placeholder="keywordsearch" ng-model="projectSearchKeyword">
-                <div class="admin-scrolling-list">
+                <div class="admin-scrolling-list panel-group">
 
                    <ul ng-show="!projectEditForm" class="projectlist">
                      
-                      <li class="project-data" ng-repeat="project in projects | filter : projectSearchKeyword">
-                          <table class="table table-responsive table-bordered table-striped">
-                             <thead>
-                                 <tr>
-                                     <th class="col-xs-2"></th>
-                                     <th class="col-xs-2"></th>
-                                     <th class="col-xs-8"></th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <tr>
-                                      <td>Disc ID: {{project.DiscID}}</td>
-                                      <td>Project ID: {{project.ProjectID}}</td>
-                                      <td>Disc Type: {{project.Disc_Type}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Project Beginning: {{project.ProjectBeginDate}}</td>
-                                      <td>Project End: {{project.ProjectEndDate}}</td>
-                                      <td>Project Name:  {{project.ProjectName}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Date Created: {{project.dateCreated | date}}</td>
-                                      <td>Date Modified: {{project.dateModified | date}}</td>
-                                      <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button><button class="btn btn-default" ng-click="deleteProject(project)">Delete</button></td>
-                                      <td>Software: {{project.Encoding_Software}}</td>
-                                      <td>Description: {{project.ProjectDescription}}</td>
-                                  </tr>
-                             </tbody>
-                          </table>
-                      </li>
+                          <li class="project-data" ng-repeat="project in projects | filter : projectSearchKeyword">
+                              <div class="admin-list-item cf">
+                                 <button class="btn btn-default admin-list-item-child float-left" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                 <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteProject(project)"><span class="glyphicon glyphicon-trash"> Delete</span></button>
+                                  <h4 class="admin-list-item-child">{{project.ProjectName}}</h4>
+<!--                                  <div class="cf float-right">-->
+                                  
+                                  
+<!--                                  </div>-->
+                                  
+                              </div>
+    
+<!--
+                              <table class="table table-responsive table-bordered table-striped">
+                                 <thead>
+                                     <tr>
+                                         <th class="col-xs-2"></th>
+                                         <th class="col-xs-2"></th>
+                                         <th class="col-xs-8"></th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr>
+                                          <td>Disc ID: {{project.DiscID}}</td>
+                                          <td>Project ID: {{project.ProjectID}}</td>
+                                          <td>Disc Type: {{project.Disc_Type}}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>Project Beginning: {{project.ProjectBeginDate}}</td>
+                                          <td>Project End: {{project.ProjectEndDate}}</td>
+                                          <td>Project Name:  {{project.ProjectName}}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>Date Created: {{project.dateCreated | date}}</td>
+                                          <td>Date Modified: {{project.dateModified | date}}</td>
+                                          <td>Backup Link: {{project.Link_to_Cloud_Backup}}</td>
+                                      </tr>
+                                      <tr>
+                                          <td><button class="btn btn-default" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span>Edit</button><button class="btn btn-default" ng-click="deleteProject(project)">Delete</button></td>
+                                          <td>Software: {{project.Encoding_Software}}</td>
+                                          <td>Description: {{project.ProjectDescription}}</td>
+                                      </tr>
+                                 </tbody>
+                              </table>
+-->
+    
+                          </li>
 
                    </ul>
                 </div>
