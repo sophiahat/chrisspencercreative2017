@@ -425,9 +425,10 @@ section .ng-scope {
 /*    border-radius: 5px; */
 }
 .portfolio img {
-    width: 70%;
+    
 }
-.admin .admin-scrolling-list img {
+.admin .admin-scrolling-list img,
+.portfolio .video img {
     max-height: 40px;
 /*    float: left;*/
 
@@ -449,6 +450,13 @@ section .ng-scope {
 .portfolio .preview-header-wrapper {
     z-index: 1;
 }
+
+.portfolio .portfolio-scrolling-list {
+/*    margin-top: 15px;*/
+    overflow: scroll;
+    height: 300px; 
+    
+}
 .preview-header-wrapper {
     display: none;
 }
@@ -459,18 +467,21 @@ section .ng-scope {
 
 .portfolio .video {
     text-align: center;
-    width: 48%;
+    width: 96%;
     float: left;
-    height: 220px;
+    height: auto;
     padding: 5px;
     margin-left: 1.5%;
-    margin-top: 10px;
+    margin-top: 0px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
 .portfolio .video a {
     text-decoration: none;
+}
+.portfolio .portfolio-tabs li {
+    margin: 5px 3px 5px 0;
 }
 
 .portfolio .video:hover {
@@ -490,18 +501,19 @@ section .ng-scope {
 }
 
 .displayAudio img {
-   
+   margin: 10px 0 0 5px;
+    height: 60px;
+    float: left;
 }
 
-.audioImg {
-    margin: 10px 0 0 5px;
-    width: 15%;
+.audioImg img {
+    margin: 5px 0 5px 5px;
+    height: 40px;
     float: left;
 }
 .audioTitle {
-    margin: 25px 0 0 0;
+    margin: 15px 0 0 10px;
     width: 35%;
-    text-align: center;
     float: left;
 }
 .audioTitle span {
@@ -518,7 +530,7 @@ section .ng-scope {
     border-radius: 3px;
 }
 .audio-list {
-    margin: 10px 0 0 0;
+/*    margin: 10px 0 0 0;*/
     border: solid 1px rgba(150, 150, 150, 0.9);
     border-radius: 4px;
     height: 250px;

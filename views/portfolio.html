@@ -8,113 +8,79 @@
                     <h1>Portfolio</h1>
                 </div>
             </header>
-           <div class="panel-group accordion" id="accordion">
-             <div class="panel panel-default">
-                 <div class="panel-heading">
-                     <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#audio">Audio</h4>
-                 </div>
-                 <div id="audio" class="panel-collapse  collapse">
-                   <div class="displayAudio">
-                                   <div class="audioImg"><img ng-src="/images/thumbs/{{displayAudio.img}}" alt=""></div>
-                                   <div class="audioTitle"><span>{{displayAudio.title}}</span></div>
-                                   
-                                   <div class="audiodescription">{{displayAudio.description}}</div>
-                                   
-                                   <audio id="audio-player" controls>
-                                   
-                                   <source src="" type="audio/mp3">
-                               </audio>
-                               </div>
-                    <div class="accordion" id="audio-accordion">
-    <div class="panel panel-default">
-                  
-                   <div class="panel-heading">
-                       <h4 class="panel-title" data-toggle="collapse" data-parent="#audio-accordion" data-target="#composition"  >Music Composition</h4>
-                   </div>
-                   <div id="composition" class="panel-collapse  collapse">
-                       <div class="panel-body" ng-model="audio">                      
-                           <div class="audioplayer">
-                             
-                               
-                               
-                               <div class="audio-list">
-                                    <div class="audio" ng-repeat="track in audio | filter: track.type='composition'" ng-show="track.showCSCreative&&track.active">
-                                  
-                                  
-                                       <a ng-click="getAudioSource(track)" href="">
-                                         <div class="audio-item">
-                                             <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
-                                            <div class="audioTitle"><span>{{track.title}}</span></div> 
-                                         </div>                                        
-                                       </a>
-                               </div>   
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-                <div class="panel panel-default">
-                   <div class="panel-heading">
-                       <h4 class="panel-title" data-toggle="collapse" data-parent="#audio-accordion" data-target="#voiceover"  >Voice Over</h4>
-                   </div>
-                   <div id="voiceover" class="panel-collapse  collapse">
-                       <div class="panel-body" ng-model="audio">
-                     
-                           <div class="audioplayer">
-                             
+               <ul class="nav nav-pills portfolio-tabs" id="data-categories">
+                   <li ng-class="{active: isSet(1)}"><a href ng-click="setTab(1)">Video</a></li>
+                   <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
+               </ul>
+               <div ng-show="isSet(2)" class="displayAudio">
+                   <div class=""><img ng-src="/images/thumbs/{{displayAudio.img}}" alt=""></div>
+                   <div class="audioTitle"><span>{{displayAudio.title}}</span></div>
 
-                               
-                               <div class="audio-list">
-                                    <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover'" ng-show="track.active&&track.showCSCreative">
-                                  
-                                  
-                                       <a ng-click="getAudioSource(track)" href="">
-                                         <div class="audio-item">
-                                             <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
-                                            <div class="audioTitle"><span>{{track.title}}</span></div> 
-                                         </div>                                        
-                                       </a>
-                                   
-                                
-                               </div>
-                                   
-                               </div>
+                   <div class="audiodescription">{{displayAudio.description}}</div>
 
-                               
-                               
-                           </div>
-                       </div>
-                   </div>
+                   <audio  id="audio-player" src="" controls></audio> 
                </div>
-</div>
-                     
-                 </div>
-             </div>
-              
-               
-               <div class="panel panel-default">
-                   <div class="panel-heading">
-                       <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#video">Video</h4>
-                   </div>
-                   <div id="video" class="panel-collapse  collapse in" ng-model="videos">
+               <div ng-show="isSet(1)" class="videoWrapper">
+                    <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/J_WQmwYVyIw?showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+               <div ng-show="isSet(1)" id="video" class="portfolio-scrolling-list" ng-model="videos">
                        <div class="panel-body">
-<div class="videoWrapper">
-    <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/J_WQmwYVyIw?showinfo=0" frameborder="0" allowfullscreen></iframe>
-</div>
                           <div class="row">
                               <div class="videos">
                                   <div class="video" ng-repeat="video in videos | orderBy: '-rating'" ng-show="video.active">
                                       <a href="" ng-click="getIframeSource(video)">
-                                          <h5>{{video.title}}</h5>
-                                          <img src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
+                                          <img class="float-left" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
+                                          <h5 class="float-left">{{video.title}}</h5>
                                       </a>
                                   </div>
                               </div>
                           </div>
                        </div>
                    </div>
-               </div>
-           </div>
+               <div ng-show="isSet(2)" id="audio" class="">
+                   <ul class="nav nav-pills portfolio-tabs" id="data-categories">
+                       <li ng-class="{active: subIsSet(3)}"><a href ng-click="setSubTab(3)">Music Composition</a></li>
+                       <li ng-class="{active: subIsSet(4)}" ><a href ng-click="setSubTab(4)">Voice-Over (VO)</a></li>
+                   </ul>
+                    <div class="" id="audio-panel">
+                        <div class="">
+                           <div ng-show="subIsSet(3)" id="composition" class="portfolio-scrolling-list">
+                               <div class="panel-body" ng-model="audio">                      
+                                   <div class="audioplayer">
+                                       <div class="audio-list">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition'" ng-show="track.showCSCreative&&track.active">
+                                               <a ng-click="getAudioSource(track)" href="">
+                                                 <div class="audio-item">
+                                                     <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
+                                                    <div class="audioTitle"><span>{{track.title}}</span></div> 
+                                                 </div>                                        
+                                               </a>
+                                           </div>   
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                        <div class="">
+                           <div ng-show="subIsSet(4)" id="voiceover" class="portfolio-scrolling-list">
+                               <div class="panel-body" ng-model="audio">
+                                   <div class="audioplayer">
+                                       <div class="audio-list">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover'" ng-show="track.active&&track.showCSCreative">
+                                               <a ng-click="getAudioSource(track)" href="">
+                                                 <div class="audio-item">
+                                                     <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
+                                                    <div class="audioTitle"><span>{{track.title}}</span></div> 
+                                                 </div>                                        
+                                               </a>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                    </div>   
+                 </div>
         </div>
          <div class="col-md-3 text-center">
             <aside role="complementary">

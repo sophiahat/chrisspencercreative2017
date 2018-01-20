@@ -9,6 +9,24 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     
     });
     
+    // tab management
+    $scope.tab = 1;
+    $scope.setTab = function(newTab) {
+        $scope.tab = newTab;
+    };
+
+    $scope.isSet = function(tabNum) {
+        console.log("Tab is" +tabNum);
+        return $scope.tab === tabNum;
+    };
+    $scope.subTab = 3;
+    $scope.setSubTab = function(newSubTab) {
+        $scope.subTab = newSubTab;  
+    };
+    $scope.subIsSet = function(subTabNum) {
+        return $scope.subTab === subTabNum;
+    };
+    
     var videosRef = firebase.database().ref('/video');
     var videosInfo = $firebaseArray(videosRef);
     $scope.videos = videosInfo;
