@@ -5,10 +5,15 @@
        <li ng-class="{active: isSet(1)}"><a href ng-click="setTab(1)">Video</a></li>
        <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
        <li ng-class="{active: isSet(3)}"><a href ng-click="setTab(3)">Projects</a></li>
+       <li ng-class="{active: isSet(4)}"><a href ng-click="setTab(4)">Clients</a></li>
+       <li ng-class="{active: isSet(5)}"><a href ng-click="setTab(5)">Albums</a></li>
+       <li ng-class="{active: isSet(6)}"><a href ng-click="setTab(6)">Gear</a></li>
    </ul>
-      <audio ng-show="isSet(2)" id="audio-player" src="" controls></audio> 
+      <audio ng-show="isSet(2)" id="audio-player" src="" controls></audio>
+      <input type="text" placeholder="Keyword Search" class="form-control" ng-model="searchKeyword">
        <div ng-show="isSet(1)" id="video">
 <!--        Current Videos-->
+           <h1>Videos</h1>
         <div class="cf">
             <div id="current-videos" class="video-inventory">
                 <div ng-show="videoEditForm" class="data-edit-form" id="video-detail-edit">
@@ -57,11 +62,10 @@
                    </form>
                 </div>
                 <button class="btn btn-default" ng-show="!videoEditForm" ng-click="addVideo()">Add Video</button>
-                <input class="form-control" type="text" placeholder="keywordsearch" ng-model="videoSearchKeyword">
                <div class="admin-scrolling-list" id="video-list">
                    <ul ng-show="!videoEditForm" class="videolist">
                       
-                       <li class="video-data" ng-repeat="(key , video) in videos | filter : videoSearchKeyword">
+                       <li class="video-data" ng-repeat="(key , video) in videos | filter : searchKeyword">
                           <div class="admin-list-item" >
                               <a href="https://youtu.be/{{video.videoId}}" target="_blank" class="video-thumbs-admin">
                                    <img class="admin-list-item-child float-left" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}"> 
@@ -83,10 +87,10 @@
         
     </div>
        <div ng-show="isSet(2)" id="audio">
+           <h1>Audio</h1>
     <!--        Current Audio Files-->
         <div class="cf">
-            <div id="current-audio" class="audio-inventory">
-               
+            <div id="current-audio" class="audio-inventory">      
                 <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
                     <form  action="" name="audio-detail-edit-form">
                        <ul>
@@ -144,7 +148,7 @@
                <div class="admin-scrolling-list panel-group">
                    <ul ng-show="!audioEditForm" class="audiolist">
                    
-                   <li class="audio-data" ng-repeat="track in audios | filter : audioSearchKeyword">
+                   <li class="audio-data" ng-repeat="track in audios | filter : searchKeyword">
                         <div class="admin-list-item">
                             <img class="admin-list-item-child float-left" ng-src="images/thumbs/{{track.img}}" alt="Image for audio track: {{track.title}}">
                            <h4 class="admin-list-item-child float-left">{{track.title}}</h4>
@@ -161,6 +165,7 @@
     
     </div>
        <div ng-show="isSet(3)" id="projects">
+           <h1>Projects</h1>
 <!--        Projects-->
         <div class="cf">
            <div ng-show="projectEditForm" class="data-edit-form" id="project-detail-edit">
@@ -170,18 +175,14 @@
                        <label for="discID">Disc ID: </label>
                        <input name="discID" type="text" ng-model="discid">
                        </li>
-
                        <li>
                        <label for="projectID">Project ID:</label>
                        <input name="projectID" ng-model="projectID" type="text">
                        </li>
-
                        <li>
                        <label for="disctype">Disc Type:</label>
                        <input name="disctype" ng-model="disctype" type="text">
-
                        </li>
-
                        <li>
                        <label for="software">Encoding Software:</label>
                        <input name="software" ng-model="encodingsoftware" type="text">
@@ -214,27 +215,214 @@
            </div>
            <div id="projects" class="projectlist">
                <button class="btn btn-default" ng-show="!projectEditForm" ng-click="addProject()">Add Project</button>
-               <input class="form-control" type="text" placeholder="keywordsearch" ng-model="projectSearchKeyword">
                 <div class="admin-scrolling-list panel-group">
-
                    <ul ng-show="!projectEditForm" class="projectlist">
-                     
-                          <li class="project-data" ng-repeat="project in projects | filter : projectSearchKeyword">
+                          <li class="project-data" ng-repeat="project in projects | filter : searchKeyword">
                               <div class="admin-list-item cf">
                                  <button class="btn btn-default admin-list-item-child float-left" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                                  <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteProject(project)"><span class="glyphicon glyphicon-trash"> Delete</span></button>
-                                  <h4 class="admin-list-item-child">{{project.ProjectName}}</h4>
-
-                                  
+                                  <h4 class="admin-list-item-child">{{project.ProjectName}}</h4>  
                               </div>
                           </li>
-
                    </ul>
                 </div>
            </div>
-       </div>   
+        </div>   
        
     </div>
+       <div ng-show="isSet(4)" id="clients">
+          <h1>Clients</h1>
+<!--          Clients-->
+           <div class="cf">
+               <div ng-show="clientEditForm" class="data-edit-form" id="client-detail-edit">
+                   <form action="" name="client-detail-edit-form">
+                       <ul>
+                           <li>
+                               <label for="clientname">Name: </label>
+                               <input name="clientname" ng-model="clientName" type="text">
+                           </li>
+                           <li>
+                               <label for="clientactive">Active: </label>
+                               <input name="clientactive" ng-model="clientActive" type="checkbox" ng-true-value="true" ng-false-value="false">
+                           </li>
+                           <li>
+                               <label for="clientdatecreated">Date Created: </label>
+                               <input name="clientdatecreated" ng-model="clientDateCreated" type="text">
+                           </li><li>
+                               <label for="clientdatemodifed">Date Modified: </label>
+                               <input name="clientdatemodifed" ng-model="clientDateModified" type="text">
+                           </li>
+                           <li>
+                               <label for="clientdescription">Description: </label>
+                               <input name="clientdescription" ng-model="clientDescription" type="text">
+                           </li>
+                           <li>
+                               <label for="clienttype">Type: </label>
+                               <input name="clienttype" ng-model="clientType" type="text">
+                           </li>
+                           <li>
+                               <label for="clientmeta">Meta: </label>
+                               <input name="clientmeta" ng-model="clientMeta" type="text">
+                           </li>
+                           <li>
+                               <label for="clientimage">Image: </label>
+                               <input name="clientimage" ng-model="clientImage" type="text">
+                           </li>
+                           <li>
+                               <label for="clientwebsite">URL: </label>
+                               <input name="clientwebsite" ng-model="clientWebsite" type="text">
+                           </li>
+                           <li>
+                               <label for="clientshowcscreative">Show CSCreative: </label>
+                               <input name="clientshowcscreative" ng-model="clientShowCSCreative" type="checkbox" ng-true-value="true" ng-false-value="false">
+                           </li>
+                           <li>
+                               <label for="clientshowsophiahat">Show Sophiahat: </label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="clientshowsophiahat" ng-model="clientShowSophiahat">
+                           </li>
+                           <li>
+                               <label for="clientrating">Rating: </label>
+                               <input name="clientrating" ng-model="clientRating" type="text">
+                           </li>   
+                       </ul>
+                       <button type="submit" class="btn btn-default" ng-click="updateClient()">Submit</button>
+                       <button type="button" ng-click="toggleClientForm()" class="btn btn-default">Cancel</button>
+                   </form>
+               </div>
+               <div id="clients" class="clientlist">
+                   <button class="btn btn-default" ng-show="!clientEditForm" ng-click="addClient()">Add Client</button>
+                   <div class="admin-scrolling-list panel-group">
+                       <ul ng-show="!clientEditForm" class="clientlist">
+                          <li class="client-data" ng-repeat="client in clients | filter : searchKeyword | orderBy: 'name'">
+                              <div class="admin-list-item cf">
+                                  <button class="btn btn-default admin-list-item-child float-left" ng-click="editClient(client)"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+                                  <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteClient(client)"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+                                  <h4 class="admin-list-item-child">{{client.name}}</h4>
+                              </div>
+                          </li>
+                           
+                       </ul>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div ng-show="isSet(5)" id="albums">
+           <h1>Albums</h1>
+<!--           Albums-->
+          <div class="cf">
+              <div ng-show="albumEditForm" class="data-edit-form" id="album-detail-edit">
+                  <form action="" name="album-edit-form">
+                      <ul>
+                          <li>
+                              <label for="album-clientID">Client ID</label>
+                              <input name="album-clientID" ng-model="albumClientID" type="text">
+                          </li>
+                          <li>
+                              <label for="album-daterelease">Date Release</label>
+                              <input name="album-daterelease" ng-model="albumDateRelease" type="text">
+                          </li>
+                          <li>
+                              <label for="album-image">Image</label>
+                              <input name="album-image" ng-model="albumImage" type="text">
+                          </li>
+                          <li>
+                              <label for="album-purchase-url">Purchase URL</label>
+                              <input name="album-purchase-url" ng-model="albumPurchaseURL" type="text">
+                          </li>
+                          <li>
+                              <label for="album-show-cscreative">Show CS Creative</label>
+                              <input name="album-show-cscreative" ng-model="albumShowCSCreative" type="checkbox" ng-true-value="true" ng-false-value="false">
+                          </li>
+                          <li>
+                              <label for="album-show-sophiahat">Show Sophiahat</label>
+                              <input name="album-show-sophiahat" ng-model="albumShowSophiahat" type="checkbox" ng-true-value="true" ng-false-value="false">
+                          </li>
+                          <li>
+                              <label for="album-title">Title</label>
+                              <input name="album-title" ng-model="albumTitle" type="text">
+                          </li>
+                      </ul>
+                      <button type="submit" class="btn btn-default" ng-click="updateAlbum()">Submit</button>
+                       <button type="button" ng-click="toggleAlbumForm()" class="btn btn-default">Cancel</button>
+                  </form>
+              </div>
+              <div class="albumlist" id="albums">
+                <button class="btn btn-default" ng-show="!albumEditForm" ng-click="addAlbum()">Add Album</button>  
+                <div class="admin-scrolling-list panel-group">
+                    <ul ng-show="!albumEditForm" class="albumlist">
+                        <li class="album-data" ng-repeat="album in albums | filter : searchKeyword">
+                            <div class="admin-list-item cf">
+                               <button class="btn btn-default admin-list-item-child float-left" ng-click="editAlbum(album)"><span class="glyphicon glyphicon-edit">Edit</span></button>
+                               <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteAlbum(album)"><span class="glyphicon glyphicon-trash">Delete</span></button>
+                                <h4 class="admin-list-item-child">{{album.title}}</h4>
+                            </div>
+                            
+                        </li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+       </div>
+       <div ng-show="isSet(6)" id="gear">
+           <h1>Gear</h1>
+<!--           Gear-->
+          <div class="cf">
+              <div ng-show="gearEditForm" class="data-edit-form" id="gear-detail-edit">
+                  <form action="" name="gear-edit-form">
+                      <ul>
+                          <li>
+                              <label for="gear-description">Description</label>
+                              <input name="gear-description" type="text" ng-model="gearDescription">
+                          </li>
+                          <li>
+                              <label for="gear-images">Images</label>
+                              <input name="gear-images" ng-model="gearImages" type="text">
+                          </li>
+                          <li>
+                              <label for="gear-manufacturer">Manufacturer</label>
+                              <input name="gear-manufacturer" ng-model="gearManufacturer" type="text">
+                          </li>
+                          <li>
+                              <label for="gear-model">Model</label>
+                              <input name="gear-model" ng-model="gearModel" type="text">
+                          </li>
+                          <li>
+                              <label for="gear-quantity">Quantity</label>
+                              <input name="gear-quantity" ng-model="gearQuantity" type="number">
+                          </li>
+                          <li>
+                              <label for="gear-subtype">Subtype</label>
+                              <input name="gear-subtype" ng-model="gearSubtype" type="text">
+                          </li>
+                          <li>
+                              <label for="gear-type">Type</label>
+                              <input ng-model="gearType" name="gear-type" type="text">
+                          </li>
+                          <li>
+                              <label for="gear-typeware">Typeware</label>
+                              <input name="gear-typeware" ng-model="gearTypeware" type="text">
+                          </li>
+                      </ul>
+                  </form>
+              </div>
+              <div class="gear" id="gearlist">
+                  <button class="btn btn-default" ng-show="!gearEditForm" ng-click="addGear()">Add Gear</button>
+                  <div class="admin-scrolling-list panel-group">
+                    <ul class="gearlist">
+                       <li class="gear-data" ng-repeat="gearitem in gear | filter : searchKeyword">
+                          <div class="admin-list-item cf">
+                             <button class="btn btn-default admin-list-item-child float-left" ng-click="editGear(gearitem)"><span class="glyphicon glyphicon-edit">Edit</span></button>
+                             <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteGear(gearitem)"><span class="glyphicon glyphicon-trash">Delete</span></button>
+                              <h4 class="admin-list-item-child">{{gearitem.manufacturer}} - {{gearitem.model}}</h4>
+                          </div>
+                           
+                       </li>
+                        
+                    </ul>
+                  </div>
+              </div>
+          </div>
+       </div>
   
     
     

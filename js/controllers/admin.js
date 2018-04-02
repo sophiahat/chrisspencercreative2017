@@ -14,6 +14,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
     var auth = firebase.auth();
     $rootScope.authObj = $firebaseAuth(auth);
     
+    
     auth.onAuthStateChanged(function(authUser) {
         if (authUser) {
             console.log('User verified as: ' + authUser.uid);
@@ -30,11 +31,12 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             };
             
             $scope.isSet = function(tabNum) {
-                console.log("Tab is" +tabNum);
+//                console.log("Tab is" +tabNum);
                 return $scope.tab === tabNum;
             };
             // videos
             function clearVideoForm() {
+                console.log('clearing video form');
                 $scope.videotitle = 
                 $scope.videoactive =
                 $scope.videodescription =
@@ -44,7 +46,9 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videoworkperformed =
                 $scope.videoShowCSCreative =
                 $scope.videoShowSophiahat = 
-                $scope.videoId = '';
+                $scope.videoid = '';
+                $scope.video = null;   
+                
             }
             var videoRef = firebase.database().ref('/video');
             var videosInfo = $firebaseArray(videoRef);
@@ -54,6 +58,9 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 //                }                      
 //                                      });
             $scope.videos = videosInfo;
+            $scope.videoEditForm = false;
+            $scope.videoActive = false;
+            $scope.video = null;
             $scope.addVideo = function() {
                 $scope.videoEditForm = true;
 //                videosInfo.$add({
@@ -83,7 +90,6 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videoEditForm = true;
                 $scope.videotitle = video.title;
                 $scope.videoactive = video.active;
-                
                 $scope.videodescription = video.description;
                 $scope.videometatags = video.metatags;
                 $scope.videorating = video.rating;
@@ -135,7 +141,21 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 } else {return}
                     
             };//delete Audio
-            
+            $scope.toggleVideoEditForm = function() {
+                console.log('toggling video edit form, scope of video:');
+                console.log($scope.video);
+                console.log('Video edit form: '+ $scope.videoEditForm);
+                
+                if ($scope.videoEditForm) {
+                    clearVideoForm();
+                    $scope.videoEditForm = false;
+                    
+                } else {
+                    $scope.videoEditForm = true;
+                }
+                console.log('Video edit form: ' + $scope.videoEditForm);
+                console.log($scope.video);
+            }
             //end Videos
             ///Functions duplicated from Portfolio.js - to refactor into service???
             function setAutoplayAudio() {
@@ -172,6 +192,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.showCSCreative =
                 $scope.showSophiahat =
                 $scope.audiosource = '';
+                $scope.track = null;
             }
             
             $scope.getAudioSource = setDisplayAudio;
@@ -180,7 +201,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             
             audioInfo.$loaded().then(function(audioInfo) {
                 for (var item in audioInfo) {
-                    console.log(item + " : " + audioInfo[item].title);
+//                    console.log(item + " : " + audioInfo[item].title);
                 }
                 //console.log(audioInfo);
                 $scope.audios = audioInfo;
@@ -188,22 +209,14 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             $scope.toggleAudioEditForm = function() {
                 console.log('toggling audio edit form');
                 if ($scope.audioEditForm) {
+                    clearAudioForm();
                     $scope.audioEditForm = false;
                 } else {
                     $scope.audioEditForm = true;
                 }
             }
             //$scope.audios = audioInfo;
-            $scope.videoEditForm = false;
-            $scope.toggleVideoEditForm = function() {
-                console.log('toggling video edit form');
-                if ($scope.videoEditForm) {
-                    $scope.videoEditForm = false;
-                } else {
-                    $scope.videoEditForm = true;
-                }
-            }
-            $scope.videoActive = false;
+
             $scope.audioEditForm = false;
             $scope.editAudio = function(track) {
                 $scope.track = track;
@@ -249,6 +262,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     audioInfo.$add(postdata);
                 }
                 clearAudioForm();
+                
                 $scope.audioEditForm = false;
                     
             };//updated Audio
@@ -300,10 +314,12 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.projectBeginDate =
                 $scope.projectEndDate = 
                 $scope.projectID = '';
+                $scope.project = null;
             }
             $scope.projectEditForm = false;
             $scope.toggleProjectForm = function() {
                 if ($scope.projectEditForm) {
+                    clearProjectForm();
                     $scope.projectEditForm = false;
                 } else {
                     $scope.projectEditForm = true;
@@ -362,11 +378,240 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                         alert('project reference removed');
                     })
                     .catch(function(error) {
-                        alert('problem removing project ' + error.message);
+                        alert('problem removing project: ' + error.message);
                     });
                 } else {return}
                     
-            };//delete Audio
+            };//delete Project
+            
+            //end projects
+            
+            //clients
+            function clearClientForm() {
+                $scope.clientName = 
+                $scope.clientActive = 
+                $scope.clientDateCreated = 
+                $scope.clientDateModified = 
+                $scope.clientDescription =
+                $scope.clientType =
+                $scope.clientMeta =
+                $scope.clientImage = 
+                $scope.clientWebsite = 
+                $scope.clientShowCSCreative =
+                $scope.clientShowSophiahat =
+                $scope.clientRating = '';
+                $scope.client = null;
+            }
+            $scope.clientEditForm = false;
+            $scope.toggleClientForm = function() {
+                if ($scope.clientEditForm) {
+                        $scope.clientEditForm = false;
+                        clearClientForm();
+                    } else {
+                        $scope.clientEditForm = true;
+                }   
+            };
+            var clientRef = firebase.database().ref('/clients');
+            var clientsInfo = $firebaseArray(clientRef);
+            $scope.clients = clientsInfo;
+            $scope.editClient = function(client) {
+                $scope.clientEditForm = true;
+                $scope.client = client;
+                $scope.clientName = client.name;
+                $scope.clientActive = client.active;
+                $scope.clientDateCreated = client.dateCreated;
+                $scope.clientDateModified = client.dateModified;
+                client.description ? $scope.clientDescription = client.description : $scope.clientDescription = '';
+                $scope.clientType = client.type;
+                client.meta ? $scope.clientMeta = client.meta : $scope.clientMeta = null;
+                $scope.clientImage = client.image;
+                client.website ? $scope.clientWebsite = client.website : $scope.clientWebsite = null;
+                client.showCSCreative ? $scope.clientShowCSCreative = client.showCSCreative : $scope.clientShowCSCreative = false;
+                client.showSophiahat ? $scope.clientShowSophiahat = client.showSophiahat : $scope.clientShowSophiahat = false;
+                client.rating ? $scope.clientRating = client.rating : $scope.clientRating = 0;
+            };
+            $scope.updateClient = function(client) {
+                event.preventDefault();
+                var postdata = {
+                    name : $scope.clientName,
+                    active : $scope.clientActive,
+                    description : $scope.clientDescription,
+                    type : $scope.clientType,
+                    meta : $scope.clientMeta,
+                    image : $scope.clientImage,
+                    url : $scope.clientWebsite,
+                    showCSCreative : $scope.clientShowCSCreative,
+                    showSophiahat : $scope.clientShowSophiahat,
+                    rating : $scope.clientRating      
+                };
+                if($scope.client) {
+                    var clientEdit = $scope.client;
+                    var id = clientEdit.$id;
+                    console.log("Current Client ID: " + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    firebase.database().ref('/clients/' + id).update(postdata);
+                }else{
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    clientsInfo.$add(postdata);
+                }
+                clearClientForm();
+                $scope.clientEditForm = false;
+            };
+            $scope.addClient = function(client) {
+                $scope.clientEditForm = true;
+            };
+            $scope.deleteClient = function(client) {
+                if (confirm("Delete this client: " + client.name)) {
+                    var targetClientRef = firebase.database().ref('/clients/' + client.$id);
+                    targetClientRef.remove()
+                    .then(function() {
+                        alert('client reference removed');
+                    })
+                    .catch(function(error) {
+                        alert('problem removing client: ' + error.message);  
+                    });
+                } else {return}
+            };//delete client
+            clearClientForm();
+            //end clients
+//            albums
+            function clearAlbumForm() {
+                $scope.album = null;
+                $scope.albumClientID = 
+                $scope.albumDateRelease = 
+                $scope.albumImage = 
+                $scope.albumPurchaseURL = 
+                $scope.albumShowCSCreative = 
+                $scope.albumShowSophiahat = 
+                $scope.albumTitle = null;
+            }//clear album form
+            $scope.albumEditForm = false;
+            $scope.toggleAlbumForm = function() {
+                if ($scope.albumEditForm) {
+                    clearAlbumForm();
+                    $scope.albumEditForm = false;
+                } else {
+                    $scope.albumEditForm = true;
+                }
+            };//toggle album form
+            var albumRef = firebase.database().ref('/albums');
+            var albumsInfo = $firebaseArray(albumRef);
+            $scope.albums = albumsInfo;
+            $scope.album = null;
+            $scope.editAlbum = function(album) {
+                $scope.albumEditForm = true;
+                $scope.album = album;
+                $scope.albumClientID = album.clientID;
+                $scope.albumDateRelease = album.dateRelease;
+                $scope.albumImage = album.image;
+                $scope.albumPurchaseURL = album.purchaseURL;
+                $scope.albumShowCSCreative = album.showCSCreative;
+                $scope.albumShowSophiahat = album.showSophiahat;
+                $scope.albumTitle = album.title;
+            };//end edit album
+            $scope.updateAlbum = function(album) {
+                event.preventDefault();
+                var postdata = {
+                    clientID : $scope.albumClientID,
+                    dateRelease : $scope.albumDateRelease,
+                    image : $scope.albumImage,
+                    purchaseURL : $scope.albumPurchaseURL,
+                    showCSCreative : $scope.albumShowCSCreative,
+                    showSophiahat : $scope.albumShowSophiahat,
+                    title : $scope.albumTitle
+                };
+                if($scope.album) {
+                    var albumEdit = $scope.album;
+                    var id = albumEdit.$id;
+                    console.log("current album ID: " + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    firebase.database().ref('/albums/' + id).update(postdata);
+                }else {
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    albumsInfo.$add(postdata);
+                }
+                clearAlbumForm();
+                $scope.albumEditForm = false;
+            };//end update album
+            $scope.addAlbum = function(album) {
+                $scope.albumEditForm = true;
+            };//end add album
+            $scope.deleteAlbum = function(album) {
+                if(confirm("Delete this Album: " + album.title)) {
+                    var targetAlbumRef = firebase.database().ref('/albums/' + album.$id);
+                    targetAlbumRef.remove()
+                    .then(function() {
+                        alert('Album Reference removed');
+                    })
+                    .catch(function(error) {
+                        alert('problem removing album' + error.message);
+                    });//delete album
+                }
+            };//end delete album
+            clearAlbumForm();
+            
+//            end albums
+//            gear
+            function clearGearForm() {
+                $scope.gearDescription =
+                $scope.gearImages =
+                $scope.gearManufacturer =
+                $scope.gearModel =
+                $scope.gearQuantity =
+                $scope.gearSubtype =
+                $scope.gearType =
+                $scope.gearTypeware = null;
+                $scope.gearItem = null;
+            }
+            $scope.gearEditForm = false;
+            $scope.toggleGearForm = function() {};
+            var gearRef = firebase.database().ref('/gear');
+            var gearInfo = $firebaseArray(gearRef);
+            $scope.gear = gearInfo;
+            $scope.gearItem = null;
+            $scope.editGear = function(gearitem) {
+                $scope.gearEditForm = true;
+                $scope.gearItem = gearitem;
+                $scope.gearDescription = gearitem.description;
+                $scope.gearImages = gearitem.images;
+                $scope.gearManufacturer = gearitem.manufacturer;
+                $scope.gearModel = gearitem.model;
+                $scope.gearQuantity = gearitem.quantity;
+                $scope.gearSubtype = gearitem.subtype;
+                $scope.gearType = gearitem.type;
+                $scope.gearTypeware = gearitem.typeware;
+                
+            };
+            $scope.updateGear = function(gearitem) {
+                event.preventDefault();
+                var postdata {
+                    description : $scope.gearDescription,
+                    images : $scope.gearImages,
+                    manufacturer : $scope.gearManufacturer,
+                    model : $scope.gearModel,
+                    quantity : $scope.gearQuantity,
+                    subtype : $scope.gearSubtype,
+                    type : $scope.gearType,
+                    typeware : $scope.gearTypeware
+                };
+                if ($scope.gearItem) {
+                    var gearEdit = $scope.gearItem;
+                    var id = gearEdit.$id;
+                    console.log("current Gear Id: " + id);
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    firebase.database().ref('/gear/' + id).update(postdata);
+                }else{
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    gearInfo.$add(postdata);
+                }
+                clearGearForm();
+                $scope.gearEditForm = false;
+            };
+            $scope.addGear = function(gearitem) {};
+            $scope.deleteGear = function(gearitem) {};
+            clearGearForm();
+//            end gear
+            
         }// if user authenticated
     });// on Auth state changed
 }]);//controller

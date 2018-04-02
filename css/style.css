@@ -401,7 +401,10 @@ section .ng-scope {
 }
 .admin .videolist li,
 .admin .audiolist li,
-.admin .projectlist li {
+.admin .projectlist li,
+.admin .clientlist li,
+.admin .albumlist li,
+.admin .gearlist li {
 /*    text-align: center;*/
     width: 100%;
     float: left;
