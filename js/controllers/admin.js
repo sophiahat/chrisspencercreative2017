@@ -584,7 +584,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             };
             $scope.updateGear = function(gearitem) {
                 event.preventDefault();
-                var postdata {
+                var postdata = {
                     description : $scope.gearDescription,
                     images : $scope.gearImages,
                     manufacturer : $scope.gearManufacturer,
@@ -606,9 +606,22 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 }
                 clearGearForm();
                 $scope.gearEditForm = false;
-            };
-            $scope.addGear = function(gearitem) {};
-            $scope.deleteGear = function(gearitem) {};
+            };//update gear
+            $scope.addGear = function(gearitem) {
+                $scope.gearEditForm = true;
+            };//add gear
+            $scope.deleteGear = function(gearitem) {
+                if(confirm("Delete this Gear: " + gearitem.manufacturer + " - " + gearitem.model)) {
+                    var targetGearRef = firebase.database().ref('/gear/' + gearitem.$id);
+                    targetGearRef.remove()
+                    .then(function() {
+                        alert('Gear Reference removed');
+                    })
+                    .catch(function(error) {
+                        alert('problem removing gear ' + error.message);
+                    });
+                }
+            };//delete gear
             clearGearForm();
 //            end gear
             
