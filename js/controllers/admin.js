@@ -182,6 +182,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             //end functions duplicated in portfolio.js
             function clearAudioForm() {
                 $scope.audiotitle = 
+                $scope.albumTitle = 
                 $scope.audioactive =
                 $scope.audiodescription =
                 $scope.audiometatags =
@@ -222,6 +223,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.track = track;
                 $scope.audioEditForm = true;
                 $scope.audiotitle = track.title;
+                $scope.albumTitle = track.albumTitle;
                 $scope.audioactive = track.active;
                 $scope.audiodescription = track.description;
                 $scope.audiometatags = track.meta;
@@ -238,6 +240,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 event.preventDefault();
                 var postdata = {
                     title : $scope.audiotitle,
+                    albumTitle : $scope.albumTitle,
                     active : $scope.audioactive,
                     description : $scope.audiodescription,
                     meta : $scope.audiometatags, 

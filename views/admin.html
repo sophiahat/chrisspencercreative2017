@@ -94,13 +94,20 @@
                 <div ng-show="audioEditForm" class="data-edit-form" id="audio-detail-edit">
                     <form  action="" name="audio-detail-edit-form">
                        <ul>
+                          <li>
+                               <label for="active">Active:</label>
+                               <input ng-true-value="true" ng-false-value="false" type="checkbox" name="active"  ng-model="audioactive">
+                           </li>
                            <li>
                                <label for="title">Title:</label>
                                <input type="text" name="title"  ng-model="audiotitle">
                            </li>
                            <li>
-                               <label for="active">Active:</label>
-                               <input ng-true-value="true" ng-false-value="false" type="checkbox" name="active"  ng-model="audioactive">
+                               <label for="audio-album-select">Album Title</label>
+                               <select name="audio-album-select" id="audio-album-select">
+                                    <option value="false">None</option>
+                                   <option ng-repeat="album in albums">{{album.title}}</option>
+                               </select>
                            </li>
                            <li>
                                <label for="description">Description:</label>
