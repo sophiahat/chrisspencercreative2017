@@ -13,7 +13,7 @@
                    <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
                </ul>
                <div ng-show="isSet(2)" class="displayAudio">
-                   <div class=""><img ng-src="/images/thumbs/{{displayAudio.img}}" alt=""></div>
+                   <div class=""><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{displayAudio.img}}" alt=""></div>
                    <div class="audioTitle"><span>{{displayAudio.title}}</span></div>
 
                    <div class="audiodescription">{{displayAudio.description}}</div>
@@ -51,7 +51,7 @@
                                             <div class="audio" ng-repeat="track in audio | filter: track.type='composition'" ng-show="track.showCSCreative&&track.active">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
-                                                     <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
+                                                     <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
                                                     <div class="audioTitle"><span>{{track.title}}</span></div> 
                                                  </div>                                        
                                                </a>
@@ -69,7 +69,7 @@
                                             <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover'" ng-show="track.active&&track.showCSCreative">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
-                                                     <div class="audioImg"><img ng-src="/images/thumbs/{{track.img}}" alt=""></div>
+                                                     <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
                                                     <div class="audioTitle"><span>{{track.title}}</span></div> 
                                                  </div>                                        
                                                </a>

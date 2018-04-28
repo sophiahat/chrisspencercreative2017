@@ -49,9 +49,9 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     
     function setDisplayAudio(audio) {
         $scope.displayAudio = audio;
-        console.log('In audio stuff');
+        console.log('In audio stuff, adjusted the audio source');
         
-        var link = "/audio/" + audio.src;
+        var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;
         
         audioplayer.attr('src', link);
         

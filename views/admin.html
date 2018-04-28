@@ -104,7 +104,7 @@
                            </li>
                            <li>
                                <label for="audio-album-select">Album Title</label>
-                               <select name="audio-album-select" id="audio-album-select">
+                               <select name="audio-album-select" id="audio-album-select" ng-model="albumTitle">
                                     <option value="false">None</option>
                                    <option ng-repeat="album in albums">{{album.title}}</option>
                                </select>
@@ -157,7 +157,7 @@
                    
                    <li class="audio-data" ng-repeat="track in audios | filter : searchKeyword">
                         <div class="admin-list-item">
-                            <img class="admin-list-item-child float-left" ng-src="images/thumbs/{{track.img}}" alt="Image for audio track: {{track.title}}">
+                            <img class="admin-list-item-child float-left" ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt="Image for audio track: {{track.title}}">
                            <h4 class="admin-list-item-child float-left">{{track.title}}</h4>
                            <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteAudio(track)"><span class="glyphicon glyphicon-trash"></span>  Delete</button>
                            <button class="btn btn-default admin-list-item-child float-right" ng-click="editAudio(track)"><span class="glyphicon glyphicon-edit"></span> Edit</button>

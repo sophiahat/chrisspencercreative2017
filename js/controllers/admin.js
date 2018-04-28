@@ -428,7 +428,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.clientType = client.type;
                 client.meta ? $scope.clientMeta = client.meta : $scope.clientMeta = null;
                 $scope.clientImage = client.image;
-                client.website ? $scope.clientWebsite = client.website : $scope.clientWebsite = null;
+                $scope.clientWebsite = client.url 
                 client.showCSCreative ? $scope.clientShowCSCreative = client.showCSCreative : $scope.clientShowCSCreative = false;
                 client.showSophiahat ? $scope.clientShowSophiahat = client.showSophiahat : $scope.clientShowSophiahat = false;
                 client.rating ? $scope.clientRating = client.rating : $scope.clientRating = 0;
