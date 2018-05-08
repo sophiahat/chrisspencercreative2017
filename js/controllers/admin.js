@@ -17,7 +17,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
     
     auth.onAuthStateChanged(function(authUser) {
         if (authUser) {
-            console.log('User verified as: ' + authUser.uid);
+           //console.log('User verified as: ' + authUser.uid);
             var userRef = firebase.database().ref('/users/' + authUser.uid + '/role');
             //console.log(userRef);
             var userObj = $firebaseObject(userRef);
@@ -36,7 +36,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             };
             // videos
             function clearVideoForm() {
-                console.log('clearing video form');
+                //console.log('clearing video form');
                 $scope.videotitle = 
                 $scope.videoactive =
                 $scope.videodescription =
@@ -63,6 +63,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             $scope.video = null;
             $scope.addVideo = function() {
                 $scope.videoEditForm = true;
+                clearVideoForm();
 //                videosInfo.$add({
 //                    title: $scope.title,
 //                    dateCreated: firebase.database.ServerValue.TIMESTAMP,   
@@ -88,7 +89,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 //                console.log(item + " : " + video[item]);
                 }
                 $scope.videoEditForm = true;
-                $scope.videotitle = video.title;
+                $scope.videotitle = $scope.video.title;
                 $scope.videoactive = video.active;
                 $scope.videodescription = video.description;
                 $scope.videometatags = video.metatags;
@@ -116,9 +117,9 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 if($scope.video) {
                     var videoEdit = $scope.video;
                     var id = videoEdit.$id;
-                    console.log('Current video ID: ' + id);
+                    //console.log('Current video ID: ' + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
-                    console.log("title: " + $scope.videotitle);  
+                    //console.log("title: " + $scope.videotitle);  
                     firebase.database().ref('/video/' + id).update(postdata);
                 } else {
                     postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
@@ -142,9 +143,9 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     
             };//delete Audio
             $scope.toggleVideoEditForm = function() {
-                console.log('toggling video edit form, scope of video:');
-                console.log($scope.video);
-                console.log('Video edit form: '+ $scope.videoEditForm);
+               //console.log('toggling video edit form, scope of video:');
+               //console.log($scope.video);
+               //console.log('Video edit form: '+ $scope.videoEditForm);
                 
                 if ($scope.videoEditForm) {
                     clearVideoForm();
@@ -153,25 +154,25 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 } else {
                     $scope.videoEditForm = true;
                 }
-                console.log('Video edit form: ' + $scope.videoEditForm);
-                console.log($scope.video);
+               //console.log('Video edit form: ' + $scope.videoEditForm);
+               //console.log($scope.video);
             }
             //end Videos
             ///Functions duplicated from Portfolio.js - to refactor into service???
             function setAutoplayAudio() {
-                console.log('setting autoplay audio');
+               //console.log('setting autoplay audio');
                 audioplayer.attr('autoplay', 'autoplay');
             }
             function changeDisplayAudio(audio) {
-                console.log('change display audio');
+               //console.log('change display audio');
                 setDisplayAudio(audio);
 
             }
             function setDisplayAudio(audio) {
 
                 $scope.displayAudio = audio;
-                console.log('In audio stuff');
-                console.log(audio.src);
+               //console.log('In audio stuff');
+               //console.log(audio.src);
                 $scope.audioplayer = true;
 
                 var link = "/audio/" + audio.src;
@@ -208,7 +209,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audios = audioInfo;
             });
             $scope.toggleAudioEditForm = function() {
-                console.log('toggling audio edit form');
+               //console.log('toggling audio edit form');
                 if ($scope.audioEditForm) {
                     clearAudioForm();
                     $scope.audioEditForm = false;
@@ -255,12 +256,12 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 if ($scope.track) {
                     var audioedit = $scope.track;
                     var id = audioedit.$id;
-                    console.log("Current Audio Track edit ID: " + id);
+                   //console.log("Current Audio Track edit ID: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/audio/' + id).update(postdata);
                 } else {
-                    console.log('creating a new track record');
-                    console.log(postdata);
+                   //console.log('creating a new track record');
+                   //console.log(postdata);
                     postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
                     audioInfo.$add(postdata);
                 }
@@ -283,6 +284,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     
             };//delete Audio
             $scope.addAudio = function() {
+                clearAudioForm();
                 $scope.audioEditForm = true;
                 $scope.track = false;
 //                audioInfo.$add({
@@ -360,7 +362,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 if ($scope.project) {
                     var projectEdit = $scope.project;
                     var id = projectEdit.$id;
-                    console.log("Current Project ID: " + id);
+                   //console.log("Current Project ID: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/projects/' + id).update(postdata);
                 } else {
@@ -371,6 +373,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.projectEditForm = false;
             };
             $scope.addProject = function() {
+                clearProjectForm();
                 $scope.projectEditForm = true;
             }
             $scope.deleteProject = function(project) {
@@ -450,7 +453,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 if($scope.client) {
                     var clientEdit = $scope.client;
                     var id = clientEdit.$id;
-                    console.log("Current Client ID: " + id);
+                   //console.log("Current Client ID: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/clients/' + id).update(postdata);
                 }else{
@@ -461,6 +464,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.clientEditForm = false;
             };
             $scope.addClient = function(client) {
+                clearClientForm();
                 $scope.clientEditForm = true;
             };
             $scope.deleteClient = function(client) {
@@ -526,7 +530,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 if($scope.album) {
                     var albumEdit = $scope.album;
                     var id = albumEdit.$id;
-                    console.log("current album ID: " + id);
+                   //console.log("current album ID: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/albums/' + id).update(postdata);
                 }else {
@@ -537,6 +541,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.albumEditForm = false;
             };//end update album
             $scope.addAlbum = function(album) {
+                clearAlbumForm();
                 $scope.albumEditForm = true;
             };//end add album
             $scope.deleteAlbum = function(album) {
@@ -600,7 +605,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 if ($scope.gearItem) {
                     var gearEdit = $scope.gearItem;
                     var id = gearEdit.$id;
-                    console.log("current Gear Id: " + id);
+                   //console.log("current Gear Id: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
                     firebase.database().ref('/gear/' + id).update(postdata);
                 }else{
@@ -611,6 +616,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.gearEditForm = false;
             };//update gear
             $scope.addGear = function(gearitem) {
+                clearGearForm();
                 $scope.gearEditForm = true;
             };//add gear
             $scope.deleteGear = function(gearitem) {

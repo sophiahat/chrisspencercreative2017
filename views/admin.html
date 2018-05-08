@@ -21,7 +21,7 @@
                        <ul>
                            <li>
                                <label for="title">Title:</label>
-                               <input type="text" name="title"  ng-model="videotitle">
+                               <input type="text" value="" name="title"  ng-model="videotitle">
                            </li>
                            <li>
                                <label for="active">Active:</label>
@@ -29,22 +29,22 @@
                            </li>
                            <li>
                                <label for="description">Description:</label>
-                               <input type="text" name="description"  ng-model="videodescription">
+                               <input type="text" value="" name="description"  ng-model="videodescription">
                            </li>
                            <li>
                                <label for="metatags">Metatags:</label>
-                               <input type="text" name="metatags"  ng-model="videometatags">
+                               <input type="text" value="" name="metatags"  ng-model="videometatags">
                            </li>
                            <li>
                                <label for="rating">Rating:</label>
-                               <input type="text" name="rating"  ng-model="videorating">
+                               <input type="text" value="" name="rating"  ng-model="videorating">
                            </li><li>
                                <label for="videoid">VideoID:</label>
-                               <input type="text" name="videoid"  ng-model="videoid">
+                               <input type="text" value="" name="videoid"  ng-model="videoid">
                            </li>
                            <li>
                                <label for="workperformed">Work Performed:</label>
-                               <input type="text" name="workperformed"  ng-model="videoworkperformed">
+                               <input type="text" value="" name="workperformed"  ng-model="videoworkperformed">
                            </li>
                            <li>
                                <label for="videoShowCSCreative">Show On CS Creative</label>
@@ -130,7 +130,11 @@
                            </li>
                            <li>
                                <label for="audiotype">Type:</label>
-                               <input type="text" name="audiotype" ng-model="audiotype">
+                               <select type="text" name="audiotype" ng-model="audiotype">
+                                   <option value="composition">Music Composition</option>
+                                   <option value="client track">Client Track</option>
+                                   <option value="voiceover">Voiceover</option>
+                               </select>
                            </li>
                            <li>
                                <label for="audioprojectID">Project ID: </label>
