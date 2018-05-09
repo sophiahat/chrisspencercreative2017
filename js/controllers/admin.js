@@ -175,7 +175,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                //console.log(audio.src);
                 $scope.audioplayer = true;
 
-                var link = "/audio/" + audio.src;
+                var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;
 
                 audioplayer.attr('src', link);
                 setAutoplayAudio();
