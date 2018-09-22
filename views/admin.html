@@ -228,11 +228,11 @@
                <button class="btn btn-default" ng-show="!projectEditForm" ng-click="addProject()">Add Project</button>
                 <div class="admin-scrolling-list panel-group">
                    <ul ng-show="!projectEditForm" class="projectlist">
-                          <li class="project-data" ng-repeat="project in projects | filter : searchKeyword">
+                          <li class="project-data" ng-repeat="project in projects | filter : searchKeyword | orderBy: '-ProjectID':reverse">
                               <div class="admin-list-item cf">
                                  <button class="btn btn-default admin-list-item-child float-left" ng-click="editProject(project)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                                  <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteProject(project)"><span class="glyphicon glyphicon-trash"> Delete</span></button>
-                                  <h4 class="admin-list-item-child">{{project.ProjectName}}</h4>  
+                                  <h4 class="admin-list-item-child">{{project.ProjectID}} - {{project.ProjectName}} - <span>{{project.DiscID}}</span></h4>  
                               </div>
                           </li>
                    </ul>
