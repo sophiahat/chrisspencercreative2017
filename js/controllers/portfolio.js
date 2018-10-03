@@ -35,8 +35,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
-    console.log("Audio Object from database: "); 
-    console.log($scope.audio);
+//    console.log("Audio Object from database: "); 
+//    console.log($scope.audio);
     var audioplayer = $('#audio-player');
     
     function setAutoplayAudio() {
@@ -62,20 +62,24 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //        console.log("length of audio array: " + audioInfo.length);
 //        console.log("first Audio object");
 //        console.log(audioInfo[0].showCSCreative);
-        var audioArrayLength = audioInfo.length;
+        var composerAudio = [];
+        $(audioInfo).each(function() {
+            if(this.type == "composition") {
+                console.log(this.title);
+                composerAudio.push(this);
+            }
+        });
+        var audioArrayLength = composerAudio.length;
         var trackNumber = Math.floor(Math.random() * (audioArrayLength));
         console.log("Random choice is: " + trackNumber);
         
-        var rec = audioInfo.$getRecord('audio1');
-        console.log('record 1 is:');
-        console.log(rec);
-        rec = audioInfo[trackNumber];
+        var rec = composerAudio[trackNumber];
         console.log('random pick is:');
-        console.log(rec);
+        console.log(rec.title);
         
         //$scope.displayAudioSrc = srcLink;
-        $scope.displayAudio = $scope.audio[trackNumber];
-        console.log("Current Audio is: " + $scope.displayAudio.title);
+//        $scope.displayAudio = $scope.audio[trackNumber];
+//        console.log("Current Audio is: " + $scope.displayAudio.title);
         setDisplayAudio(rec);
     });
     

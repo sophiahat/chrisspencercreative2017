@@ -48,7 +48,7 @@
                                <div class="panel-body" ng-model="audio">                      
                                    <div class="audioplayer">
                                        <div class="audio-list">
-                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition'" ng-show="track.showCSCreative&&track.active">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition' | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
                                                      <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
