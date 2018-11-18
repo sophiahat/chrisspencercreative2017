@@ -193,6 +193,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audiotype =
                 $scope.showCSCreative =
                 $scope.showSophiahat =
+                $scope.showCSMusic =
                 $scope.audiosource = '';
                 $scope.track = null;
             }
@@ -236,6 +237,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
                 $scope.showCSCreative = track.showCSCreative;
                 $scope.showSophiahat = track.showSophiahat;
+                $scope.showCSMusic = track.showCSMusic;
             };//edit Audio
             $scope.updateAudio = function() {
                 event.preventDefault();
@@ -251,7 +253,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     type : $scope.audiotype,
                     src : $scope.audiosource,
                     showCSCreative: $scope.showCSCreative,
-                    showSophiahat: $scope.showSophiahat
+                    showSophiahat: $scope.showSophiahat,
+                    showCSMusic: $scope.showCSMusic
                 };
                 if ($scope.track) {
                     var audioedit = $scope.track;
@@ -405,6 +408,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.clientWebsite = 
                 $scope.clientShowCSCreative =
                 $scope.clientShowSophiahat =
+                $scope.clientShowCSMusic =
                 $scope.clientRating = '';
                 $scope.client = null;
             }
@@ -434,6 +438,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.clientWebsite = client.url 
                 client.showCSCreative ? $scope.clientShowCSCreative = client.showCSCreative : $scope.clientShowCSCreative = false;
                 client.showSophiahat ? $scope.clientShowSophiahat = client.showSophiahat : $scope.clientShowSophiahat = false;
+                client.showCSMusic ? $scope.clientShowCSMusic = client.showCSMusic : $scope.clientShowCSMusic = false;
                 client.rating ? $scope.clientRating = client.rating : $scope.clientRating = 0;
             };
             $scope.updateClient = function(client) {
@@ -448,6 +453,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     url : $scope.clientWebsite,
                     showCSCreative : $scope.clientShowCSCreative,
                     showSophiahat : $scope.clientShowSophiahat,
+                    showCSMusic: $scope.clientShowCSMusic,
                     rating : $scope.clientRating      
                 };
                 if($scope.client) {
@@ -489,7 +495,8 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.albumImage = 
                 $scope.albumPurchaseURL = 
                 $scope.albumShowCSCreative = 
-                $scope.albumShowSophiahat = 
+                $scope.albumShowSophiahat =
+                $scope.albumShowCSMusic = 
                 $scope.albumTitle = null;
             }//clear album form
             $scope.albumEditForm = false;
@@ -512,8 +519,9 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.albumDateRelease = album.dateRelease;
                 $scope.albumImage = album.image;
                 $scope.albumPurchaseURL = album.purchaseURL;
-                $scope.albumShowCSCreative = album.showCSCreative;
-                $scope.albumShowSophiahat = album.showSophiahat;
+                album.showCSCreative ? $scope.albumShowCSCreative = album.showCSCreative : $scope.albumShowCSCreative = false;
+                album.showCSMusic ? $scope.albumShowCSMusic = album.showCSMusic: $scope.albumShowCSMusic = false;
+                album.showSophiahat ? $scope.albumShowSophiahat = album.showSophiahat : $scope.albumShowSophiahat = false;
                 $scope.albumTitle = album.title;
             };//end edit album
             $scope.updateAlbum = function(album) {
@@ -525,6 +533,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     purchaseURL : $scope.albumPurchaseURL,
                     showCSCreative : $scope.albumShowCSCreative,
                     showSophiahat : $scope.albumShowSophiahat,
+                    showCSMusic : $scope.albumShowCSMusic,
                     title : $scope.albumTitle
                 };
                 if($scope.album) {

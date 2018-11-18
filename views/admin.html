@@ -134,11 +134,16 @@
                                    <option value="composition">Music Composition</option>
                                    <option value="client track">Client Track</option>
                                    <option value="voiceover">Voiceover</option>
+                                   <option value="guitarist">Guitarist</option>
                                </select>
                            </li>
                            <li>
                                <label for="audioprojectID">Project ID: </label>
                                <input type="text" name="audioprojectID" ng-model="audioprojectID">
+                           </li>
+                           <li>
+                               <label for="showCSMusic">Show On CS Music</label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="showCSMusic" ng-model="showCSMusic">
                            </li>
                            <li>
                                <label for="showCSCreative">Show On CS Creative</label>
@@ -288,6 +293,10 @@
                                <input name="clientshowcscreative" ng-model="clientShowCSCreative" type="checkbox" ng-true-value="true" ng-false-value="false">
                            </li>
                            <li>
+                               <label for="clientshowcsmusic">Show CSMusic: </label>
+                               <input name="clientshowcsmusic" ng-model="clientShowCSMusic" type="checkbox" ng-true-value="true" ng-false-value="false">
+                           </li>
+                           <li>
                                <label for="clientshowsophiahat">Show Sophiahat: </label>
                                <input type="checkbox" ng-true-value="true" ng-false-value="false" name="clientshowsophiahat" ng-model="clientShowSophiahat">
                            </li>
@@ -308,7 +317,8 @@
                               <div class="admin-list-item cf">
                                   <button class="btn btn-default admin-list-item-child float-left" ng-click="editClient(client)"><span class="glyphicon glyphicon-edit"></span>Edit</button>
                                   <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteClient(client)"><span class="glyphicon glyphicon-trash"></span>Delete</button>
-                                  <h4 class="admin-list-item-child">{{client.name}}</h4>
+                                  <span class="admin-list-item-child"><strong>{{client.name}}</strong></span>
+                                  <span class="admin-list-item-child">{{client.$id}}</span>
                               </div>
                           </li>
                            
@@ -339,6 +349,10 @@
                           <li>
                               <label for="album-purchase-url">Purchase URL</label>
                               <input name="album-purchase-url" ng-model="albumPurchaseURL" type="text">
+                          </li>
+                          <li>
+                              <label for="album-show-csmusic">Show CS Music</label>
+                              <input name="album-show-csmusic" ng-model="albumShowCSMusic" type="checkbox" ng-true-value="true" ng-false-value="false">
                           </li>
                           <li>
                               <label for="album-show-cscreative">Show CS Creative</label>
