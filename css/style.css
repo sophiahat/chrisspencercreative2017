@@ -648,6 +648,48 @@ footer .btn {
     width: inherit;
     max-width: 750px;
 }
+.carousel-inner .active img  {
+    opacity: 0;
+    -webkit-animation: fadeinout 10s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeinout 10s; /* Firefox < 16 */
+        -ms-animation: fadeinout 10s; /* Internet Explorer */
+         -o-animation: fadeinout 10s; /* Opera < 12.1 */
+            animation: fadeinout 10s;
+}
+
+@keyframes fadeinout {
+    0% { opacity: 0; }
+    50%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeinout {
+    0% { opacity: 0; }
+    50%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeinout {
+    0% { opacity: 0; }
+    50%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeinout {
+    0% { opacity: 0; }
+    50%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeinout {
+    0% { opacity: 0; }
+    50%   { opacity: 1; }
+    100% { opacity: 0; }
+}
 
 .slider {
     border: 10px solid black;
