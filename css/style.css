@@ -133,12 +133,12 @@ strong {
 .card {
   background: white;
   width: 100%;
-  max-width: 950px;
+/*  max-width: 950px;*/
   margin-left: auto;
   margin-right: auto;
   padding: 10px 40px;
   position: relative;
-  opacity: .95;
+  opacity: .9;
   border-radius: 4px;
   border: 1px solid #e8e8e8;
   box-shadow: 0 1px 0 rgba(0,0,0,.25);
@@ -639,8 +639,13 @@ footer .btn {
 #contact-alternative {
     margin: 40px auto;
 }
-
-
+.carousel-inner {
+    position: relative;
+}
+.carousel-caption {
+    position: absolute;
+    top: 10px;
+}
 .carousel-slide {
     /*position: absolute;*/
     top: 0;
@@ -691,6 +696,9 @@ footer .btn {
     100% { opacity: 0; }
 }
 
+#tubular-container {
+    opacity: 0.3;
+}
 .slider {
     border: 10px solid black;
     border-radius: 5px;
@@ -881,6 +889,9 @@ footer  {
     .boat .boat-intro {
         width: 95%;
         display: block;
+    }
+    #tubular-container {
+        display: none;
     }
 }
 @media (max-width: 575px) {
