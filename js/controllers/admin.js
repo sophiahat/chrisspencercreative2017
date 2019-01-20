@@ -4,7 +4,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
     //update google analytics
     var url = window.location.href;
     gtag('config', 'UA-20609405-2', {
-        'page_path' : '/#/admin',
+        'page_path' : '/#!/admin',
         'page_location' : url,
         'page_title' : 'Admin'
     

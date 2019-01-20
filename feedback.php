@@ -60,9 +60,9 @@
 
 $mailto = 'chris@chrisspencercreative.com' ;
 $subject = "chrisspencercreative inquiry" ;
-$formurl = "http://chrisspencercreative.com/#/contact" ;
-$thankyouurl = "http://chrisspencercreative.com/#/thanks" ;
-$errorurl = "http://chrisspencercreative.com/#/error" ;
+$formurl = "http://chrisspencercreative.com/#!/contact" ;
+$thankyouurl = "http://chrisspencercreative.com/#!/thanks" ;
+$errorurl = "http://chrisspencercreative.com/#!/error" ;
 $want_tel_field = 0;
 $want_addr_field = 0;
 
