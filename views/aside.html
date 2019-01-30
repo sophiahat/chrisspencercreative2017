@@ -1,25 +1,25 @@
 <section class="aside">
     <div class="list-group">
         <div class="userinfo list-group-item" ng-hide="currentUser">
-            <p><a ng-href="#/login">Login</a> Or <a href="#/register">Register</a></p>
+            <p><a ng-href="#!/login">Login</a> Or <a href="#!/register">Register</a></p>
         </div>
         <div class="userinfo list-group-item" ng-show="currentUser" ng-controller="RegistrationController">
             <h4><span class="userinfo">Hi {{currentUser.firstname}} {{currentUser.lastname}}</span></h4>
-            <a ng-href="#/login" ng-click="logout()">Logout</a>
+            <a ng-href="#!/login" ng-click="logout()">Logout</a>
         </div>
-        <a ng-href="#/portfolio" class="list-group-item">
+        <a ng-href="#!/portfolio" class="list-group-item">
             <h4 class="list-group-item-heading">Audio Examples</h4>
             <p class="list-group-item-text">Check out our portfolio and sort through various models...<em>Visit our Gallery</em></p>
         </a>
-        <a ng-href="#/services" class="list-group-item">
+        <a ng-href="#!/services" class="list-group-item">
             <h4 class="list-group-item-heading">Need VO for your project?</h4>
             <p class="list-group-item-text">We&#39;ll capture clean audio and help produce a compelling dialogue for your product storyline <em>Check out our Voice Over / ADR Services</em></p>
         </a>
-        <a ng-href="#/contact" class="list-group-item">
+        <a ng-href="#!/contact" class="list-group-item">
             <h4 class="list-group-item-heading">Not sure what you need or even want?</h4>
             <p class="list-group-item-text">Send us a note with your ideas, we&#39;ll probably have some ideas for making your audio sizzle and pop. <em>Contact</em> </p>
         </a>
-        <a ng-href="#/news" class="list-group-item">
+        <a ng-href="#!/news" class="list-group-item">
             <h4 class="list-group-item-heading">Latest News</h4>
             <p class="list-group-item-text"><em>Check out what&#39;s going on in our world</em></p>
         </a>
