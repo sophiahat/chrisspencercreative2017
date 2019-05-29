@@ -51,6 +51,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         }).
         when('/about', {
             templateUrl: 'views/about.html',
+            controller: 'AboutController'
         }).
         when('/news', {
             templateUrl: 'views/news.html',

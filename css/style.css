@@ -585,6 +585,45 @@ section .ng-scope {
  width: 100%;
 }
 
+.about .maintext {
+    overflow-x: scroll;
+    height: 650px;
+}
+.about .maintext .client-image {
+    position: relative;
+	width:150px;
+	height:130px;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+.about .maintext .client-image img {
+    margin: 5px auto inherit auto;
+    max-width: 120px;
+    max-height: 110px;
+    border-radius: 3px;
+}
+.about .maintext .client-url {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.about .maintext ul li {
+    margin: 3px;
+    background: black;
+    display: inline-block;
+    width: 155px;
+    height: 195px;
+    border: solid 1px black;
+    border-radius: 4px;
+    text-align: center;
+}
+
 
 
 /*Bootstrap class alterations*/

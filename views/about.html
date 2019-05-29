@@ -1,7 +1,7 @@
 <section class="card about">
     <div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9 maintext">
                 <header>
                     <div class="panel-header">
                         <h1>About</h1>
@@ -18,57 +18,19 @@
                            </div>
                        </div>
                    </div>
-                   <div class="panel panel-default">
+                   <div class="panel panel-default clients">
                        <div class="panel-heading">
-                           <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#clients"  >Clients</h4>
+                           <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#client-list"  >Clients</h4>
                        </div>
-                       <div id="clients" class="panel-collapse collapse">
+                       <div id="client-list" class="panel-collapse collapse">
                            <div class="panel-body">
                                 <p>Here are some of my recent clients:</p>
-                                 <table>
-                                         <tr>
-                                             <td>LarkWire</td>
-                                             <td>Ember Entertainment</td>
-                                             <td>Mithun</td>
-                                             <td>Gun Media</td>
-                                         </tr>
-                                         <tr>
-                                             <td>Little Films</td>
-                                             <td>At&t Mobile</td>
-                                             <td>MLW Foundation</td>
-                                             <td>Patrick Barta</td>
-                                         </tr>
-                                         <tr>
-                                             <td>Tiffany Talent</td>
-                                             <td>Plus Citizen</td>
-                                             <td>David Albright Media</td>
-                                             <td>AllRecipes.com</td>
-                                         </tr>
-                                         <tr>
-                                             <td>ADP</td>
-                                             <td>The Off Hours Film</td>
-                                             <td>Fairway Studios</td>
-                                             <td>Frog Design</td>
-                                         </tr>
-                                         <tr>
-                                             <td>Media Locate</td>
-                                             <td>Enter The Studio</td>
-                                             <td>Lion Sky Productions</td>
-                                             <td>North Shore Productions</td>
-                                         </tr>
-                                         <tr>
-                                             <td>NWRPCA</td>
-                                             <td>GDL Multimedia</td>
-                                             <td>Sebastion T Sweet Productions</td>
-                                             <td>Becker&Mayer!</td>
-                                         </tr>
-                                         <tr>
-                                             <td>Loose Canon Studios</td>
-                                             <td>The Midnight Mystery Radio Theatre</td>
-                                             <td>Conexion Marketing</td>
-                                             <td></td>
-                                         </tr>
-                                     </table>      
+                                <ul id="clients">
+                                    <li class="clients" ng-repeat="client in clients | filter: client.type='corporate'" ng-show="client.showCSCreative&&client.active">
+                                        <div class="client-image"><a ng-href="{{client.url}}" target="_blank"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/client_images/{{client.image}}" alt="Client Image"></a></div>
+                                        <div class="client-url"><a ng-href="{{client.url}}" target="_blank">{{client.name}}</a></div>
+                                    </li>
+                                </ul>     
                            </div>
                        </div>
                    </div>
