@@ -378,7 +378,8 @@ section .ng-scope {
     
 }
 .accordion {
-    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+/*    -webkit-overflow-scrolling: touch;*/
 }
 .accordion h3.panel-title {
     cursor: pointer;
@@ -534,10 +535,10 @@ section .ng-scope {
 }
 .audio-list {
 /*    margin: 10px 0 0 0;*/
-    border: solid 1px rgba(150, 150, 150, 0.9);
+/*    border: solid 1px rgba(150, 150, 150, 0.9);*/
     border-radius: 4px;
     height: 250px;
-    overflow-y: scroll;
+/*    overflow-y: scroll;*/
 }
 .audio-list .audio {
     clear: both;
@@ -624,6 +625,19 @@ section .ng-scope {
     text-align: center;
 }
 
+#client-list {
+    height: 350px;
+/*    max-height: 70vh;*/
+    
+    
+}
+
+.touch-scroll {
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
 
 
 /*Bootstrap class alterations*/

@@ -23,7 +23,7 @@
                <div ng-show="isSet(1)" class="videoWrapper">
                     <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/-7mKc0NjrGU?showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
-               <div ng-show="isSet(1)" id="video" class="portfolio-scrolling-list" ng-model="videos">
+               <div ng-show="isSet(1)" id="video" class="portfolio-scrolling-list touch-scroll" ng-model="videos">
                        <div class="panel-body">
                           <div class="row">
                               <div class="videos">
@@ -47,7 +47,7 @@
                            <div ng-show="subIsSet(3)" id="composition" class="portfolio-scrolling-list">
                                <div class="panel-body" ng-model="audio">                      
                                    <div class="audioplayer">
-                                       <div class="audio-list">
+                                       <div class="audio-list touch-scroll">
                                             <div class="audio" ng-repeat="track in audio | filter: track.type='composition' | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
@@ -65,7 +65,7 @@
                            <div ng-show="subIsSet(4)" id="voiceover" class="portfolio-scrolling-list">
                                <div class="panel-body" ng-model="audio">
                                    <div class="audioplayer">
-                                       <div class="audio-list">
+                                       <div class="audio-list touch-scroll">
                                             <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover'" ng-show="track.active&&track.showCSCreative">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">

@@ -22,10 +22,10 @@
                        <div class="panel-heading">
                            <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#client-list"  >Clients</h4>
                        </div>
-                       <div id="client-list" class="panel-collapse collapse">
+                       <div id="client-list" class="touch-scroll panel-collapse collapse">
                            <div class="panel-body">
                                 <p>Here are some of my recent clients:</p>
-                                <ul id="clients">
+                                <ul class="" id="clients">
                                     <li class="clients" ng-repeat="client in clients | filter: client.type='corporate'" ng-show="client.showCSCreative&&client.active">
                                         <div class="client-image"><a ng-href="{{client.url}}" target="_blank"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/client_images/{{client.image}}" alt="Client Image"></a></div>
                                         <div class="client-url"><a ng-href="{{client.url}}" target="_blank">{{client.name}}</a></div>
