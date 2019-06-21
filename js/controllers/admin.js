@@ -159,6 +159,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
             }
             //end Videos
             ///Functions duplicated from Portfolio.js - to refactor into service???
+//            audio
             function setAutoplayAudio() {
                //console.log('setting autoplay audio');
                 audioplayer.attr('autoplay', 'autoplay');
@@ -561,14 +562,90 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                         alert('Album Reference removed');
                     })
                     .catch(function(error) {
-                        alert('problem removing album' + error.message);
+                        alert('problem removing album: ' + error.message);
                     });//delete album
                 }
             };//end delete album
             clearAlbumForm();
             
 //            end albums
-//            gear
+
+//            Images
+            function clearImageForm() {
+                $scope.image = null;
+                $scope.imageTitle = 
+                $scope.imageAuthor =
+                $scope.imageAuthorUrl =
+                $scope.imageFile =
+                $scope.imageLicense = 
+                $scope.imageLicenseUrl =
+                $scope.imageSourceUrl = null;
+            }
+            $scope.imageEditForm = false;
+            $scope.toggleImageForm = function() {
+                if ($scope.imageEditForm) {
+                    clearImageForm();
+                    $scope.imageEditForm = false;
+                } else {
+                    $scope.imageEditForm = true;
+                }
+            };
+            var imageRef = firebase.database().ref('/images');
+            var imageInfo = $firebaseArray(imageRef);
+            $scope.images = imageInfo;
+            $scope.editImage = function(image) {
+                $scope.imageEditForm = true;
+                $scope.image = image;
+                $scope.imageTitle = image.title;
+                $scope.imageAuthor = image.author;
+                $scope.imageAuthorUrl = image.authorurl;
+                $scope.imageFile = image.file;
+                $scope.imageLicense = image.license;
+                $scope.imageLicenseUrl = image.licenseurl;
+                $scope.imageSourceUrl = image.sourceurl;
+            };//end edit Images
+            $scope.updateImage = function(image) {
+                event.preventDefault();
+                var postdata = {
+                    author: $scope.imageAuthor,
+                    authorurl: $scope.imageAuthorUrl,
+                    file: $scope.imageFile,
+                    license: $scope.imageLicense,
+                    licenseurl: $scope.imageLicenseUrl,
+                    sourceurl: $scope.imageSourceUrl,
+                    title: $scope.imageTitle
+                };
+                if($scope.image) {
+                    var imageEdit = $scope.image;
+                    var id = imageEdit.$id;
+                    postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    firebase.database().ref('/images/' + id).update(postdata);
+                }else {
+                    postdata.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+                    imageInfo.$add(postdata);
+                }
+                clearImageForm();
+                $scope.imageEditForm = false;
+            };//end update Images
+            $scope.addImage = function() {
+                clearImageForm();
+                $scope.imageEditForm = true;
+            };//end add Image
+            $scope.deleteImage = function(image) {
+                if(confirm("Delete this Image: " + image.title)) {
+                    var targetImageRef = firebase.database().ref('/images/' + image.$id);
+                    targetImageRef.remove()
+                    .then(function() {
+                        alert('Image reference removed');
+                    })
+                    .catch(function(error) {
+                        alert('problem removing image: ' + error.message );
+                    });//delete Image
+                }
+            };// end delete Image
+            clearImageForm();
+//            end Images
+            //            gear
             function clearGearForm() {
                 $scope.gearDescription =
                 $scope.gearImages =
@@ -581,7 +658,14 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.gearItem = null;
             }
             $scope.gearEditForm = false;
-            $scope.toggleGearForm = function() {};
+            $scope.toggleGearForm = function() {
+                if ($scope.gearEditForm) {
+                    clearGearForm();
+                    $scope.gearEditForm = false;
+                } else {
+                    $scope.gearEditForm = true;
+                }
+            };
             var gearRef = firebase.database().ref('/gear');
             var gearInfo = $firebaseArray(gearRef);
             $scope.gear = gearInfo;

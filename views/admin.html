@@ -8,6 +8,7 @@
        <li ng-class="{active: isSet(4)}"><a href ng-click="setTab(4)">Clients</a></li>
        <li ng-class="{active: isSet(5)}"><a href ng-click="setTab(5)">Albums</a></li>
        <li ng-class="{active: isSet(6)}"><a href ng-click="setTab(6)">Gear</a></li>
+       <li ng-class="{active: isSet(7)}"><a href ng-click="setTab(7)">Images</a></li>
    </ul>
       <audio ng-show="isSet(2)" id="audio-player" src="" controls></audio>
       <input type="text" placeholder="Keyword Search" class="form-control" ng-model="searchKeyword">
@@ -442,14 +443,51 @@
                              <button class="btn btn-default admin-list-item-child float-left" ng-click="deleteGear(gearitem)"><span class="glyphicon glyphicon-trash">Delete</span></button>
                               <h4 class="admin-list-item-child">{{gearitem.manufacturer}} - {{gearitem.model}}</h4>
                           </div>
-                           
-                       </li>
-                        
+                       </li>  
                     </ul>
                   </div>
               </div>
           </div>
        </div>
+       <div ng-show="isSet(7)" id="images">
+          <h1>Images</h1> 
+<!--          Images-->
+          <div class="cf">
+              <div ng-show="imageEditForm" class="data-edit-form" id="image-detail-edit">
+                  <form action="" name="image-edit-form">
+                      <ul>
+                          <li><label for="image-title">Title</label><input name="image-title" ng-model="imageTitle" type="text"></li>
+                          <li><label for="image-author">Author</label><input name="image-author" ng-model="imageAuthor" type="text"></li>
+                          <li><label for="image-authorurl">Author URL</label><input name="image-authorurl" ng-model="imageAuthorUrl" type="text"></li>
+                          <li><label for="image-file">FilePath</label><input name="image-file" ng-model="imageFile" type="text"></li>
+                          <li><label for="image-license">License</label><input name="image-license" ng-model="imageLicense" type="text"></li>
+                          <li><label for="image-licenseurl">License URL</label><input name="image-licenseurl" ng-model="imageLicenseUrl" type="text"></li>
+                          <li><label for="image-sourceurl">Source URL</label><input name="image-sourceurl" ng-model="imageSourceUrl" type="text"></li>
+                      </ul>
+                      <button type="button" ng-click="updateImage()" class="btn btn-default">Submit</button>
+                      <button type="button" ng-click="toggleImageForm()" class="btn btn-default">Cancel</button>
+                  </form>
+              </div>
+              <div class="images" id="imagelist">
+                  <button ng-show="!imageEditForm" ng-click="addImage()" class="btn btn-default">Add Image</button>
+                  <div class="admin-scrolling-list panel-group">
+                      <ul class="imagelist">
+                          <li class="image-data" ng-repeat=" image in images | filter : searchKeyword">
+                              <div class="admin-list-item cf">
+                                 <img class="admin-list-item-child float-left" ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{image.file}}" alt="" class="admin-list-item-child">
+                                 <h4 class="admin-list-item-child float-left">{{image.title}}</h4>
+                                  <button class="btn btn-default admin-list-item-child float-right" ng-click="editImage(image)"><span class="glyphicon glyphicon-edit">Edit</span></button>
+                                  <button class="btn btn-default admin-list-item-child float-right" ng-click="deleteImage(image)"><span class="glyphicon glyphicon-trash">Delete</span></button>
+                                  
+                                  
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+       </div>
+       
   
     
     
