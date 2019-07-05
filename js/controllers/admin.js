@@ -236,9 +236,12 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audioimage = track.img;
                 $scope.audiosource = track.src;
                 track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
-                $scope.showCSCreative = track.showCSCreative;
-                $scope.showSophiahat = track.showSophiahat;
-                $scope.showCSMusic = track.showCSMusic;
+                track.showCSCreative ? $scope.showCSCreative = track.showCSCreative : $scope.showCSCreative = false;
+                track.showSophiahat ? $scope.showSophiahat = track.showSophiahat : $scope.showSophiahat = false;
+                track.showCSMusic ? $scope.showCSMusic = track.showCSMusic : $scope.showCSMusic = false;
+//                $scope.showCSCreative = track.showCSCreative;
+//                $scope.showSophiahat = track.showSophiahat;
+//                $scope.showCSMusic = track.showCSMusic;
             };//edit Audio
             $scope.updateAudio = function() {
                 event.preventDefault();
@@ -262,6 +265,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     var id = audioedit.$id;
                    //console.log("Current Audio Track edit ID: " + id);
                     postdata.dateModified = firebase.database.ServerValue.TIMESTAMP;
+                    console.table(postdata);
                     firebase.database().ref('/audio/' + id).update(postdata);
                 } else {
                    //console.log('creating a new track record');

@@ -125,9 +125,20 @@
                                <label for="audiosource">Source:</label>
                                <input type="text" name="audiosource"  ng-model="audiosource">
                            </li>
+<!--
                            <li>
                                <label for="audioimg">Image File:</label>
                                <input type="text" name="audioimg" ng-model="audioimage">
+                           </li>
+-->
+                           <li>
+                               <label for="audio-image-select">Image File:</label>
+                               <input type="text" name="audioimg" readonly ng-model="audioimage">
+                               <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{audioimage}}" alt="">
+                               <select name="audio-image-select" ng-model="audioimage" id="audio-image-select">
+                                   <option value="false">None</option>
+                                   <option value="{{image.file}}" ng-repeat="image in images">{{image.file}}</option>
+                               </select>
                            </li>
                            <li>
                                <label for="audiotype">Type:</label>
@@ -459,7 +470,7 @@
                           <li><label for="image-title">Title</label><input name="image-title" ng-model="imageTitle" type="text"></li>
                           <li><label for="image-author">Author</label><input name="image-author" ng-model="imageAuthor" type="text"></li>
                           <li><label for="image-authorurl">Author URL</label><input name="image-authorurl" ng-model="imageAuthorUrl" type="text"></li>
-                          <li><label for="image-file">FilePath</label><input name="image-file" ng-model="imageFile" type="text"></li>
+                          <li><label for="image-file">FileName</label><input name="image-file" ng-model="imageFile" type="text"></li>
                           <li><label for="image-license">License</label><input name="image-license" ng-model="imageLicense" type="text"></li>
                           <li><label for="image-licenseurl">License URL</label><input name="image-licenseurl" ng-model="imageLicenseUrl" type="text"></li>
                           <li><label for="image-sourceurl">Source URL</label><input name="image-sourceurl" ng-model="imageSourceUrl" type="text"></li>
