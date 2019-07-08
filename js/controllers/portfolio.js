@@ -1,4 +1,4 @@
-myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$sce', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $sce) {
+myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$sce','$filter', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $sce, $filter) {
     
     //update google analytics
     var url = window.location.href;
@@ -16,7 +16,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     };
 
     $scope.isSet = function(tabNum) {
-        console.log("Tab is" +tabNum);
+//        console.log("Tab is" +tabNum);
         return $scope.tab === tabNum;
     };
     $scope.subTab = 3;
@@ -26,11 +26,19 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     $scope.subIsSet = function(subTabNum) {
         return $scope.subTab === subTabNum;
     };
-    
+//    Videos
     var videosRef = firebase.database().ref('/video');
     var videosInfo = $firebaseArray(videosRef);
     $scope.videos = videosInfo;
+    $scope.getIframeSource = function(video) {
+        var link = 'https://www.youtube.com/embed/' + video.videoId + '?autoplay=1&amp;showinfo=0&amp;rel=0';
+        var videoplayer = $('#portfolio-video-player');
+        videoplayer.attr('src', link); 
+        
+        return;
+    };
     
+//    Audio
     
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
@@ -46,7 +54,6 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         setDisplayAudio(audio);
         setAutoplayAudio();
     }
-    
     function setDisplayAudio(audio) {
         $scope.displayAudio = audio;
         console.log('In audio stuff, adjusted the audio source');
@@ -55,8 +62,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         
         audioplayer.attr('src', link);
         
-    }
-    
+    } 
     audioInfo.$loaded().then(function(audioInfo) {
 //        console.log('load complete');
 //        console.log("length of audio array: " + audioInfo.length);
@@ -65,7 +71,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         var composerAudio = [];
         $(audioInfo).each(function() {
             if(this.type == "composition") {
-                console.log(this.title);
+//                console.log(this.title);
                 composerAudio.push(this);
             }
         });
@@ -82,17 +88,32 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //        console.log("Current Audio is: " + $scope.displayAudio.title);
         setDisplayAudio(rec);
     });
-    
-    
-    
     $scope.getAudioSource = changeDisplayAudio;
                     
+//    Images
+    var imagesRef = firebase.database().ref('/images');
+    var imagesInfo = $firebaseArray(imagesRef);
+    $scope.images = imagesInfo;
+    imagesInfo.$loaded().then(function(imagesInfo) {
+//        $scope.images.forEach(function(item, index) {
+//            console.log('Item author:' + item.author);
+//        });    
+//        getImageInfo('RayVegaChapterTwo.jpg');
+
+    });
+    $scope.getImageInfo = function(filename){
+        console.log(filename);
+        var image = $filter('filter')(imagesInfo, {'file': filename})
+        var info = image[0].title + ', by ' + image[0].author + ', is licensed under ' + image[0].license; 
+        console.log(info);
+        return info
+    }
+
     
-    $scope.getIframeSource = function(video) {
-        var link = 'https://www.youtube.com/embed/' + video.videoId + '?autoplay=1&amp;showinfo=0&amp;rel=0';
-        var videoplayer = $('#portfolio-video-player');
-        videoplayer.attr('src', link); 
-        
-        return;
-    };
+    
+    
+    //07719
+    
+    
+
 }]);//Controller
