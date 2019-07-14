@@ -103,12 +103,9 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 
     });
     $scope.getImageInfo = function(filename){
-        console.log(filename);
         var image = $filter('filter')(imagesInfo, {'file': filename})
         var info = image[0].title + ', by ' + image[0].author + ', is licensed under ' + image[0].license; 
-        console.log(info);
         $scope.imageInfo = info;
-        return info;
     };
     $scope.clearImageInfo = function() {
         $scope.imageInfo = 'Mouse over an image to display image attribution information';
