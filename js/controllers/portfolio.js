@@ -94,6 +94,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var imagesRef = firebase.database().ref('/images');
     var imagesInfo = $firebaseArray(imagesRef);
     $scope.images = imagesInfo;
+    $scope.imageInfo = 'Mouse over an image to display image attribution information';
     imagesInfo.$loaded().then(function(imagesInfo) {
 //        $scope.images.forEach(function(item, index) {
 //            console.log('Item author:' + item.author);
@@ -106,13 +107,16 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         var image = $filter('filter')(imagesInfo, {'file': filename})
         var info = image[0].title + ', by ' + image[0].author + ', is licensed under ' + image[0].license; 
         console.log(info);
-        return info
-    }
-
+        $scope.imageInfo = info;
+        return info;
+    };
+    $scope.clearImageInfo = function() {
+        $scope.imageInfo = 'Mouse over an image to display image attribution information';
+    };
     
     
     
-    //07719
+   
     
     
 
