@@ -429,9 +429,7 @@ section .ng-scope {
     background: rgba(120, 120, 120, 0.1);
 /*    border-radius: 5px; */
 }
-.portfolio img {
-    
-}
+
 .admin .admin-scrolling-list img,
 .portfolio .video img {
     max-height: 40px;
@@ -499,19 +497,28 @@ section .ng-scope {
     padding: 2px 5px 0 5px;
     text-align: center;
 }
-.displayAudio {
+.portfolio .displayAudio {
     border: solid 1px rgba(150, 150, 150, 0.9);
     background: rgba(245, 245, 245, 0.4);
     border-radius: 4px;
 }
 
-.displayAudio img {
-   margin: 10px 0 0 5px;
-    height: 60px;
+.portfolio .display-audio-details {
+    margin-top: 10px;
+    margin-left: 10px;
     float: left;
+    max-width: 400px;
 }
 
-.audioImg img {
+.portfolio .displayAudio img {
+   margin: 10px 0 0 10px;
+    height: 150px;
+    float: left;
+    border: solid 1px black;
+    border-radius: 4px;
+}
+
+/*.audioImg img {*/
     margin: 5px 0 5px 5px;
     height: 40px;
     float: left;
@@ -521,7 +528,7 @@ section .ng-scope {
     width: 35%;
     float: left;
 }
-.audioTitle span {
+/*.audioTitle span {*/
     vertical-align: middle;
 }
 .audiodescription {
@@ -542,11 +549,24 @@ section .ng-scope {
 /*    overflow-y: scroll;*/
 }
 .audio-list .audio {
-    clear: both;
+/*    clear: both;*/
+    float: left;
+    width: 190px;
+    
     overflow: auto;
 }
 .audio-item {
-    overflow:auto
+    overflow:auto;
+    background: rgba(245, 245, 245, 0.8);
+    display:inline-block;
+    border: solid 1px rgba(150, 150, 150, 0.9);
+    border-radius: 4px;
+    text-align: center;
+    width: 155px;
+    height: 195px;
+    margin: 5px;
+    padding: 3px;
+    
 }
 .audio-list .audio div:hover {
     background: rgba(245, 245, 245, 0.4);
@@ -591,7 +611,8 @@ section .ng-scope {
     overflow-x: scroll;
     height: 650px;
 }
-.about .maintext .client-image {
+.about .maintext .client-image,
+.portfolio .audio .audioImg {
     position: relative;
 	width:150px;
 	height:130px;
@@ -601,11 +622,13 @@ section .ng-scope {
     justify-content: center;
     align-items: center;
 }
-.about .maintext .client-image img {
+.about .maintext .client-image img,
+.portfolio .audio .audioImg img {
     margin: 5px auto inherit auto;
     max-width: 120px;
     max-height: 110px;
-    border-radius: 3px;
+    border-radius: 4px;
+    border: 1px solid black;
 }
 .about .maintext .client-url {
     display: flex;
@@ -617,7 +640,7 @@ section .ng-scope {
 
 .about .maintext ul li {
     margin: 3px;
-    background: black;
+    background: rgba(245, 245, 245, 0.8);
     display: inline-block;
     width: 155px;
     height: 195px;

@@ -13,10 +13,11 @@
                    <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
                </ul>
                <div ng-show="isSet(2)" class="displayAudio">
-                   <div class=""><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{displayAudio.img}}" alt=""></div>
-                   <div class="audioTitle"><span>{{displayAudio.title}}</span></div>
-
-                   <div class="audiodescription">{{displayAudio.description}}</div>
+                   <div class="display-audio-img"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{displayAudio.img}}" alt=""></div>
+                   <div class="display-audio-details">
+                       <div class="audioTitle"><span><h4>{{displayAudio.title}}</h4></span></div>
+                       <div class="audiodescription"><span>{{displayAudio.description}}</span></div>
+                   </div>
 
                    <audio  id="audio-player" src="" controls></audio> 
                </div>
@@ -57,7 +58,7 @@
                                                </a>
                                            </div>   
                                        </div>
-                                       <div class="image-credits"><strong>Image Credits: </strong> {{imageInfo}}</div>
+                                       <div class="image-credits"><strong>Image Credits: </strong> <span ng-bind-html="imageInfo"></span></div>
                                    </div>
                                </div>
                            </div>
