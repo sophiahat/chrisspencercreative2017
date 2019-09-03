@@ -24,15 +24,17 @@
                <div ng-show="isSet(1)" class="videoWrapper">
                     <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/-7mKc0NjrGU?showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
-               <div ng-show="isSet(1)" id="video" class="portfolio-scrolling-list touch-scroll" ng-model="videos">
+               <div ng-show="isSet(1)" id="video" class="" ng-model="videos">
                        <div class="panel-body">
                           <div class="row">
-                              <div class="videos">
-                                  <div class="video" ng-repeat="video in videos | orderBy: '-rating'" ng-show="video.active">
-                                      <a href="" ng-click="getIframeSource(video)">
-                                          <img class="float-left" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
-                                          <h5 class="float-left">{{video.title}}</h5>
-                                      </a>
+                              <div class="videos portfolio-scrolling-list touch-scroll">
+                                  <div class="video-container">
+                                      <div class="video" ng-repeat="video in videos | orderBy: '-rating'" ng-show="video.active">
+                                          <a href="" ng-click="getIframeSource(video)">
+                                              <img class="" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
+                                              <h5>{{video.title | limitTo : 60}}</h5>
+                                          </a>
+                                      </div>
                                   </div>
                               </div>
                           </div>
@@ -49,6 +51,7 @@
                                <div class="panel-body" ng-model="audio">                      
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
+                                        <div class="audio-container">
                                             <div class="audio" ng-repeat="track in audio | filter: track.type='composition' | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
@@ -56,7 +59,9 @@
                                                     <div class="audioTitle"><span>{{track.title}}</span></div> 
                                                  </div>                                        
                                                </a>
-                                           </div>   
+                                           </div>
+
+                                        </div>   
                                        </div>
                                        <div class="image-credits"><strong>Image Credits: </strong> <span ng-bind-html="imageInfo"></span></div>
                                    </div>

@@ -430,15 +430,16 @@ section .ng-scope {
 /*    border-radius: 5px; */
 }
 
-.admin .admin-scrolling-list img,
-.portfolio .video img {
+.admin .admin-scrolling-list img {
     max-height: 40px;
-/*    float: left;*/
-
 }
 .admin li,
 .portfolio li {
     list-style: none;
+}
+
+.portfolio .header-carousel {
+    display: none;
 }
 
 .portfolio iframe {
@@ -468,14 +469,22 @@ section .ng-scope {
     bottom: -20px!important;
 }
 
+.portfolio .video img {
+    width: 85%;
+    border-radius: 5px;
+}
+
+
 .portfolio .video {
+    background: rgba(245, 245, 245, 0.8);
     text-align: center;
-    width: 96%;
-    float: left;
-    height: auto;
-    padding: 5px;
+    width: 160px;
+/*    float: left;*/
+    display:inline-flex;
+    height: 170px;
+    padding: 7px;
     margin-left: 1.5%;
-    margin-top: 0px;
+    margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -491,8 +500,7 @@ section .ng-scope {
     background: rgba(120, 120, 120, 0.1);
     border-radius: 5px;
 }
-.admin .videolist h5,
-.portfolio .video h5 {
+.admin .videolist h5 {
     height: 45px;
     padding: 2px 5px 0 5px;
     text-align: center;
@@ -504,32 +512,30 @@ section .ng-scope {
 }
 
 .portfolio .display-audio-details {
-    margin-top: 10px;
-    margin-left: 10px;
     float: left;
-    max-width: 400px;
+    width: 45%;
+    height: 100px;
+    overflow-y: scroll;
 }
 
-.portfolio .displayAudio img {
-   margin: 10px 0 0 10px;
-    height: 150px;
+
+
+.portfolio .displayAudio .display-audio-img {
+    margin: 10px 0 0 10px;
     float: left;
     border: solid 1px black;
     border-radius: 4px;
+    width: 45%;
+    height: 100px;
 }
+.portfolio .displayAudio .display-audio-img img {
+    width: 100%;
+};
 
-/*.audioImg img {*/
-    margin: 5px 0 5px 5px;
-    height: 40px;
-    float: left;
-}
+
 .audioTitle {
     margin: 15px 0 0 10px;
-    width: 35%;
-    float: left;
-}
-/*.audioTitle span {*/
-    vertical-align: middle;
+    width: 80%;
 }
 .audiodescription {
     margin: 5px 5px 5px 0;
@@ -548,11 +554,16 @@ section .ng-scope {
     height: 250px;
 /*    overflow-y: scroll;*/
 }
+.audio-list .audio-container,
+.portfolio .videos .video-container {
+    width: inherit;
+    height: inherit;
+    text-align: center;
+}
+
 .audio-list .audio {
-/*    clear: both;*/
     float: left;
-    width: 190px;
-    
+    min-width:25%;
     overflow: auto;
 }
 .audio-item {
@@ -568,7 +579,8 @@ section .ng-scope {
     padding: 3px;
     
 }
-.audio-list .audio div:hover {
+.audio-list .audio div:hover,
+.portfolio .video {
     background: rgba(245, 245, 245, 0.4);
 }
 #audio-player {
@@ -979,6 +991,21 @@ footer  {
         float: none;
         width: 100%;
     }
+    
+/*
+    .audio-list .audio {
+    width: 165px;
+}
+*/
+    
+/*
+.audio-item {
+    width: 92%;
+    margin: 2px;
+    padding: 2px;
+    
+}
+*/
 /*
     .header-carousel {
         height: 175px;
@@ -987,17 +1014,38 @@ footer  {
 }
 
 @media (max-width: 490px) {
-    .boat h3,
-    .boat p {
-        display: none;
-    }
-    div.boat {
-        margin: 10px auto;
-    }
+
     .navbar-nav>li {
         width: 100%;
         padding: none;
     }
+    .portfolio .video {
+        width: 120px;
+    }
+    .audio-list .audio {
+        width: 120px;
+        margin: 2px;
+    }
+    .audio-list .audio .audioImg {
+        position: inherit;
+        width: 100%;
+        height: 80px;
+        margin-top: 5px;
+    }
+    .audio-list .audio .audio-item {
+        width: 120px;
+        margin: 0;
+        padding: 0;
+        height: 170px;
+    }
+    .audio-list .audio img {
+        width: 80px;
+        height: 80px;
+    }
+    .audio-list .audioTitle {
+        width: 80%;
+    }
+    
 
 }
 

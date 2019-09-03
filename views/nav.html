@@ -12,12 +12,12 @@
         </button>
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right ">
-                <li><a href="https://www.chrisspencercreative.com/#!/contact" ng-href="#!/contact">Contact</a></li>
-                <li><a href="https://www.chrisspencercreative.com/#!/news" ng-href="#!/news">News</a></li>
-                <li><a href="https://www.chrisspencercreative.com/#!/portfolio" ng-href="#!/portfolio">Portfolio</a></li>
-                <li><a href="https://www.chrisspencercreative.com/#!/services" ng-href="#!/services">Services</a></li>
-                <li><a href="https://www.chrisspencercreative.com/#!/about" ng-href="#!/about">About</a></li>
-                <li ng-show="currentUser.role == 'admin'"><a ng-href="#!/admin">Admin</a></li>   
+                <li><a data-toggle="collapse" data-target=".navbar-collapse.in" href="https://www.chrisspencercreative.com/#!/contact" ng-href="#!/contact">Contact</a></li>
+                <li><a data-toggle="collapse" data-target=".navbar-collapse.in" href="https://www.chrisspencercreative.com/#!/news" ng-href="#!/news">News</a></li>
+                <li><a data-toggle="collapse" data-target=".navbar-collapse.in" href="https://www.chrisspencercreative.com/#!/portfolio" ng-href="#!/portfolio">Portfolio</a></li>
+                <li><a data-toggle="collapse" data-target=".navbar-collapse.in" href="https://www.chrisspencercreative.com/#!/services" ng-href="#!/services">Services</a></li>
+                <li><a data-toggle="collapse" data-target=".navbar-collapse.in" href="https://www.chrisspencercreative.com/#!/about" ng-href="#!/about">About</a></li>
+                <li ng-show="currentUser.role == 'admin'"><a data-toggle="collapse" data-target=".navbar-collapse.in" ng-href="#!/admin">Admin</a></li>   
             </ul>
         </div>
     </div>
