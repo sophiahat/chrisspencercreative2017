@@ -61,6 +61,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'views/contact.html',
             controller: 'ContactController'
         }).
+        when('/consult', {
+            templateUrl: 'views/consult.html',
+            controller: 'iFramesController'
+        }).
         when('/admin', {
             templateUrl: 'views/admin.html',
             controller: 'AdminController',

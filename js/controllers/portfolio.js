@@ -8,6 +8,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         'page_title' : 'Portfolio'
     
     });
+    //hide carousel
+//    $('.header-carousel').hide();
     
     // tab management
     $scope.tab = 1;

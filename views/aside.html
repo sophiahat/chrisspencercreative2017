@@ -1,4 +1,4 @@
-<section class="aside">
+<section class="aside" ng-controller="iFramesController">
     <div class="list-group">
         <div class="userinfo list-group-item" ng-hide="currentUser">
             <p><a ng-href="#!/login">Login</a> Or <a href="#!/register">Register</a></p>
@@ -23,6 +23,19 @@
             <h4 class="list-group-item-heading">Latest News</h4>
             <p class="list-group-item-text"><em>Check out what&#39;s going on in our world</em></p>
         </a>
-        <br>
+        <div class="panel-group accordion consult" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#calendly-widget">
+                    <h4 class="list-group-item-heading panel-title" >Let&#39;s Talk!</h4>
+                    <p>Click to schedule a free 30-minute conversation about your project, just fill out the form and I'll confirm the meeting time via email</p>    
+                </div>
+                <div id="calendly-widget" class="panel-collapse collapse">
+                 <div class="panel-body">
+                     <iframe ng-src="{{iframeUrl | trustUrl}}" min-width="320" height="630" frameborder="0"></iframe>
+                 </div>   
+                </div>
+            </div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+        </div>
         </div>
 </section>

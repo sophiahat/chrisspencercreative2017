@@ -52,6 +52,7 @@
         <script src="js/controllers/news.js"></script>
         <script src="js/controllers/portfolio.js"></script>
         <script src="js/controllers/about.js"></script>
+        <script src='js/controllers/consult.js'></script>
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20609405-2"></script>
         <script>
@@ -79,7 +80,18 @@
            </header>
            <div class="page">
                <div class="container">
-                   <main class="cf" role="main" ng-view></main>
+                  <div class="row">
+                      <div class="col-md-8">
+                          <main class="cf" role="main" ng-view></main>    
+                      </div>
+                      <div class="col-md-4 text-center">
+                         <aside role="complementary">
+                         <div ng-include="'views/aside.html'" ></div>
+                        </aside>
+                          
+                      </div>
+                  </div>
+                   
                </div>
            </div>
            <footer class="navbar-fixed-bottom">
