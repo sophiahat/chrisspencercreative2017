@@ -191,6 +191,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.audiorating = 
                 $scope.audioprojectID =
                 $scope.audioimage =
+                $scope.stripeSku =
                 $scope.audiotype =
                 $scope.showCSCreative =
                 $scope.showSophiahat =
@@ -234,6 +235,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 //                $scope.audiorating = track.rating;
                 track.projectID ? $scope.audioprojectID = track.projectID : $scope.audioprojectID = '';
                 $scope.audioimage = track.img;
+                $scope.stripeSku = track.stripeSku;
                 $scope.audiosource = track.src;
                 track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
                 track.showCSCreative ? $scope.showCSCreative = track.showCSCreative : $scope.showCSCreative = false;
@@ -254,6 +256,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     rating : $scope.audiorating,
                     projectID : $scope.audioprojectID, 
                     img : $scope.audioimage,
+                    stripeSku : $scope.stripeSku,
                     type : $scope.audiotype,
                     src : $scope.audiosource,
                     showCSCreative: $scope.showCSCreative,

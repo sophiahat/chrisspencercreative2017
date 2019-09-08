@@ -514,10 +514,23 @@ section .ng-scope {
 .portfolio .display-audio-details {
 /*    float: left;*/
 /*    width: 45%;*/
+    margin-top: 10px;
+    position: relative;
     height: 150px;
     overflow-y: scroll;
 }
 
+.portfolio .display-audio-details button.purchase {
+    background-color:#6772E5;
+    color:#FFF;
+    padding:8px 12px;
+    border:0;
+    border-radius:4px;
+    font-size:1em;
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+}
 
 
 .portfolio .displayAudio .display-audio-img {
@@ -535,7 +548,7 @@ section .ng-scope {
 
 
 .audioTitle {
-    margin: 15px 0 0 10px;
+    margin: 0 0 0 10px;
     width: 80%;
 }
 

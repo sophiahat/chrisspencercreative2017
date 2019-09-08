@@ -65,6 +65,15 @@ myApp.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'views/consult.html',
             controller: 'iFramesController'
         }).
+        when('/success', {
+            templateUrl: 'views/success.html'
+        }).
+        when('/cancelled', {
+            templateUrl: 'views/cancelled.html'
+        }).
+        when('/test', {
+            templateUrl: 'views/test.html'
+        }).
         when('/admin', {
             templateUrl: 'views/admin.html',
             controller: 'AdminController',

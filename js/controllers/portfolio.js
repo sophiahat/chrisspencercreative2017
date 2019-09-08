@@ -89,8 +89,35 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //        $scope.displayAudio = $scope.audio[trackNumber];
 //        console.log("Current Audio is: " + $scope.displayAudio.title);
         setDisplayAudio(rec);
+        $scope.buyTrack = function(track){
+            console.log(track);
+            console.log('running stripe script');
+            var stripe = Stripe('pk_test_wh6ktDfmaFhY2gadYPaHABd300uTUBToVG');
+            stripe.redirectToCheckout({
+              items: [{sku: $scope.displayAudio.stripeSku, quantity: 1}],
+
+              // Do not rely on the redirect to the successUrl for fulfilling
+              // purchases, customers may not always reach the success_url after
+              // a successful payment.
+              // Instead use one of the strategies described in
+              // https://stripe.com/docs/payments/checkout/fulfillment
+              successUrl: window.location.protocol + '//www.chrisspencercreative.com/#!/success',
+              cancelUrl: window.location.protocol + '//www.chrisspencercreative.com/#!/cancelled',
+            })
+            .then(function (result) {
+              if (result.error) {
+                // If `redirectToCheckout` fails due to a browser or network
+                // error, display the localized error message to your customer.
+                var displayError = document.getElementById('error-message');
+                displayError.textContent = result.error.message;
+              }
+            });
+        };
     });
     $scope.getAudioSource = changeDisplayAudio;
+    
+    // config Stripe audiotrack purchase widget
+    
                     
 //    Images
     var imagesRef = firebase.database().ref('/images');

@@ -17,6 +17,12 @@
                    <div class="display-audio-details">
                        <div class="audioTitle"><span><h4>{{displayAudio.title}}</h4></span></div>
                        <div class="audiodescription"><span>{{displayAudio.description}}</span></div>
+                        <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+                        <button ng-show="displayAudio.stripeSku" id="checkout-button-sku_FlfntUu5z0WqDb" ng-click="buyTrack(track)" class="purchase" role="link"
+                        >Purchase Track</button>
+
+                        <div id="error-message"></div>
+
                    </div>
 
                    <audio  id="audio-player" src="" controls></audio> 
@@ -89,13 +95,7 @@
                     </div>   
                  </div>
         </div>
-<!--
-         <div class="col-md-4 text-center">
-            <aside role="complementary">
-                <div ng-include="'views/aside.html'"></div>
-            </aside>
-        </div>
--->
+
     </div>
     
 </section>
