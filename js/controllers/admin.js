@@ -43,10 +43,12 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videometatags =
                 $scope.videorating = 
                 $scope.videoprojectID =
+                $scope.videoType =
                 $scope.videoworkperformed =
                 $scope.videoShowCSCreative =
                 $scope.videoShowSophiahat = 
-                $scope.videoid = '';
+                $scope.videoShowCSMusic =
+                $scope.videoid = ''; 
                 $scope.video = null;   
                 
             }
@@ -95,9 +97,11 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                 $scope.videometatags = video.metatags;
                 $scope.videorating = video.rating;
                 $scope.videoid = video.videoId;
+                $scope.videoType = video.videoType;
                 $scope.videoworkperformed = video.workPerformed;
                 $scope.videoShowCSCreative = video.showCSCreative;
                 $scope.videoShowSophiahat = video.showSophiahat;
+                (video.showCSMusic) ? $scope.videoShowCSMusic = video.showCSMusic : $scope.videoShowCSMusic = false ;
             };
             $scope.updateVideo = function() { 
                 event.preventDefault();
@@ -108,9 +112,11 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
                     metatags : $scope.videometatags,
                     rating : $scope.videorating,
                     videoId : $scope.videoid,
+                    videoType : $scope.videoType,
                     workPerformed : $scope.videoworkperformed,
                     showCSCreative : $scope.videoShowCSCreative,
-                    showSophiahat : $scope.videoShowSophiahat
+                    showSophiahat : $scope.videoShowSophiahat,
+                    showCSMusic : $scope.videoShowCSMusic
                     
                 };
                 

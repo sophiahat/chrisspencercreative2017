@@ -39,21 +39,35 @@
                            <li>
                                <label for="rating">Rating:</label>
                                <input type="text" value="" name="rating"  ng-model="videorating">
-                           </li><li>
+                           </li>
+                          <li>
                                <label for="videoid">VideoID:</label>
                                <input type="text" value="" name="videoid"  ng-model="videoid">
+                           </li>
+                           <li>
+                               <label for="videoType">Video Type:</label>
+                               <select name="videoType" multiple id="videoType" ng-model="videoType">
+                                   <option value="false" selected>None</option>
+                                   <option value="composition">Composition</option>
+                                   <option value="instructional">Instructional</option>
+                                   <option value="performance">Performance</option>
+                               </select>
                            </li>
                            <li>
                                <label for="workperformed">Work Performed:</label>
                                <input type="text" value="" name="workperformed"  ng-model="videoworkperformed">
                            </li>
                            <li>
-                               <label for="videoShowCSCreative">Show On CS Creative</label>
+                               <label for="videoShowCSCreative">Show On CS Creative:</label>
                                <input type="checkbox" ng-true-value="true" ng-false-value="false" name="videoShowCSCreative" ng-model="videoShowCSCreative">
                            </li>
                            <li>
-                               <label for="videoShowSophiahat">Show On Sophiahat</label>
+                               <label for="videoShowSophiahat">Show On Sophiahat:</label>
                                <input type="checkbox" ng-true-value="true" ng-false-value="false" name="videoShowSophiahat" ng-model="videoShowSophiahat">
+                           </li>
+                           <li>
+                               <label for="videoShowCSMusic">Show on CS Music:</label>
+                               <input type="checkbox" ng-true-value="true" ng-false-value="false" name="videoShowCSMusic" ng-model="videoShowCSMusic">
                            </li>
                        </ul>
                        <button type="submit" class="btn btn-default" ng-click="updateVideo()">Save Updated Data</button>
@@ -106,7 +120,7 @@
                            <li>
                                <label for="audio-album-select">Album Title</label>
                                <select name="audio-album-select" id="audio-album-select" ng-model="albumTitle">
-                                    <option value="false">None</option>
+                                    <option value="false" selected>None</option>
                                    <option ng-repeat="album in albums">{{album.title}}</option>
                                </select>
                            </li>

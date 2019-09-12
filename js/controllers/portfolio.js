@@ -90,6 +90,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //        console.log("Current Audio is: " + $scope.displayAudio.title);
         setDisplayAudio(rec);
         $scope.buyTrack = function(track){
+//            TODO remove 'track' and test 
             console.log(track);
             console.log('running stripe script');
             var stripe = Stripe('pk_test_wh6ktDfmaFhY2gadYPaHABd300uTUBToVG');
