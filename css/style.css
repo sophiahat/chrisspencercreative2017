@@ -459,11 +459,14 @@ section .ng-scope {
 }
 
 .portfolio .portfolio-scrolling-list {
-/*    margin-top: 15px;*/
     overflow: scroll;
-    height: 300px; 
-    
+    height: 300px;   
 }
+.portfolio .track-search input {
+    width: 95%;
+    display: inline;
+}
+
 .preview-header-wrapper {
     display: none;
 }
@@ -612,6 +615,9 @@ section .ng-scope {
     width: 100%;
     clear:both;
     
+}
+.portfolio .audio-playlist .audio-playlist-list button {
+    float: left;
 }
 /*
 .audio-item div:nth-child(even) {

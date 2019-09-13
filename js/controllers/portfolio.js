@@ -41,7 +41,14 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     };
     
 //    Audio
-    
+    $scope.searchActive = false;
+    $scope.isSearchActive = function() {
+        var active = ($scope.audioSearchKeyword) ? true : false;
+        $scope.searchActive = active;
+        console.log('active Search: ' + active);
+        return active;
+    };
+    $scope.audioPlaylist = [];
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
@@ -58,6 +65,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     }
     function setDisplayAudio(audio) {
         $scope.displayAudio = audio;
+//        $scope.audioPlaylist.push(audio);
         console.log('In audio stuff, adjusted the audio source');
         
         var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;
@@ -77,6 +85,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
                 composerAudio.push(this);
             }
         });
+        $scope.audioPlaylist = composerAudio;
+        console.log($scope.audioPlaylist);
         var audioArrayLength = composerAudio.length;
         var trackNumber = Math.floor(Math.random() * (audioArrayLength));
         console.log("Random choice is: " + trackNumber);
@@ -116,6 +126,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         };
     });
     $scope.getAudioSource = changeDisplayAudio;
+    
     
     // config Stripe audiotrack purchase widget
     

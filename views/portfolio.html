@@ -50,15 +50,20 @@
                    <ul class="nav nav-pills portfolio-tabs" id="data-categories">
                        <li ng-class="{active: subIsSet(3)}"><a href ng-click="setSubTab(3)">Music Composition</a></li>
                        <li ng-class="{active: subIsSet(4)}" ><a href ng-click="setSubTab(4)">Voice-Over (VO)</a></li>
+                       <li ng-class="{active: isSearchActive()}" id="trackfilterclear"><a href ng-click="audioSearchKeyword = ''">Clear Track Search</a></li>
                    </ul>
                     <div class="" id="audio-panel">
+                       <div class="track-search">
+                           <input type="search" ng-change="searchActive = true" class="form-control" placeholder="Keyword Search" ng-model="audioSearchKeyword">
+                           <a href="" ng-click="audioSearchKeyword = ''" class="clear"><span class="glyphicon glyphicon-remove"></span></a>
+                       </div>
                         <div class="">
                            <div ng-show="subIsSet(3)" id="composition" class="portfolio-scrolling-list">
                                <div class="panel-body" ng-model="audio">                      
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
                                         <div class="audio-container">
-                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition' | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition'&&audioSearchKeyword | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
                                                      <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.img}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
@@ -94,6 +99,16 @@
                        </div>
                     </div>   
                  </div>
+                <div ng-show="isSet(2)" class="audio-playlist">
+                    <button class="btn btn-default" ng-click="show=!show">Audio Playlist</button>
+                    <div class="audio-playlist-container" ng-model="audioPlaylist" ng-show="show">
+                        <h3 class="audio-playlist-header">List Items</h3>
+                        <div ng-repeat="track in audioPlaylist" class="audio-playlist-list">
+                            <div><button class="">{{track.title}}</button></div>
+                        </div>
+                        
+                    </div>
+                </div>
         </div>
 
     </div>
