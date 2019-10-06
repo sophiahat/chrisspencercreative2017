@@ -603,8 +603,18 @@ section .ng-scope {
     width: 155px;
     height: 195px;
     margin: 5px;
-    padding: 3px;
-    
+    padding: 3px;  
+}
+
+.portfolio .audio-item .add-to-playlist input {
+    width: 20%;
+    margin: 5px!important;
+}
+.portfolio .audio-item .add-to-playlist {
+    display: block;
+    height: 25px;
+    width: 100%;
+    background: gray;
 }
 .audio-list .audio div:hover,
 .portfolio .video {

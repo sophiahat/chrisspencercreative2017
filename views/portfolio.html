@@ -63,13 +63,16 @@
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
                                         <div class="audio-container">
-                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition'&&audioSearchKeyword | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
-                                               <a ng-click="getAudioSource(track)" href="">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition' | filter: audioSearchKeyword | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
+                                               
                                                  <div class="audio-item">
-                                                     <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.img}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
-                                                    <div class="audioTitle"><span>{{track.title}}</span></div> 
-                                                 </div>                                        
+                                                    <a ng-click="getAudioSource(track)" href="">
+                                                     <div class="audioImg">
+                                                   <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.img}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
+                                                    <div class="audioTitle"><span>{{track.title}}</span></div>                                       
                                                </a>
+                                               <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
+                                                 </div> 
                                            </div>
 
                                         </div>   
@@ -84,7 +87,7 @@
                                <div class="panel-body" ng-model="audio">
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
-                                            <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover'" ng-show="track.active&&track.showCSCreative">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover' | filter: audioSearchKeyword" ng-show="track.active&&track.showCSCreative">
                                                <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
                                                      <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
@@ -104,11 +107,37 @@
                     <div class="audio-playlist-container" ng-model="audioPlaylist" ng-show="show">
                         <h3 class="audio-playlist-header">List Items</h3>
                         <div ng-repeat="track in audioPlaylist" class="audio-playlist-list">
-                            <div><button class="">{{track.title}}</button></div>
+                            <div><button class=""><a href="{{track.src}}">{{track.title}}</a></button></div>
+                        </div>
+                        <div class="audio-playlist-controls">
+                           <input type="number" ng-model="cue">
+                            <button ng-click="playPlaylist();" id="playlist-play">Play</button>
+                            <button id="playlist-pause">Pause</button>
+                            <button id="playlist-previous" ng-click="adjustCurrentTrack(-1)">Previous</button>
+                            <button id="playlist-next" ng-click="adjustCurrentTrack(1)">Next</button>
                         </div>
                         
                     </div>
                 </div>
+<!--
+           <div class="temp-playlist-test">
+                <p>Demo Music From <a href="http://incompetech.com">incompetech.com</a></p>
+                <audio src="" controls id="audioPlayer" >
+                    Sorry, your browser doesn't support html5!
+                </audio>
+                <ul id="playlist">
+                    <li><a href="../audio/chairHumor.wav">chair</a></li>
+                    <li><a href="../audio/EnglishKiss_1.mp3">Bossa Antigua</a></li>
+                    <li><a href="../audio/Panic.mp3">Exit the Premises</a></li>
+                    <li><a href="../audio/Tourism.wav">Severe Tire Damage</a></li>
+                    <li><a href="../audio/WebSocial.wav">Broken Reality</a></li>
+
+                </ul>
+                <a href="#" onclick="playlist.prevTrack();">Prev Track</a>
+                <a href="#" onclick="playlist.nextTrack();">Next Track</a>
+                <a href="#" onclick="playlist.toggleShuffle();">Toggle Shuffle</a> 
+           </div>
+-->
         </div>
 
     </div>

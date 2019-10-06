@@ -12,7 +12,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //    $('.header-carousel').hide();
     
     // tab management
-    $scope.tab = 1;
+    $scope.tab = 2;
     $scope.setTab = function(newTab) {
         $scope.tab = newTab;
     };
@@ -41,6 +41,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     };
     
 //    Audio
+    $scope.audioPlaylist = [];
     $scope.searchActive = false;
     $scope.isSearchActive = function() {
         var active = ($scope.audioSearchKeyword) ? true : false;
@@ -48,14 +49,52 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         console.log('active Search: ' + active);
         return active;
     };
-    $scope.audioPlaylist = [];
+    
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
 //    console.log("Audio Object from database: "); 
 //    console.log($scope.audio);
     var audioplayer = $('#audio-player');
-    
+    $scope.adjustPlaylist = function(track, track_selected) {
+        console.log('adjust playlist called');
+//        console.log($scope.audioPlaylist);
+        if(track_selected) {
+            console.log('track ' + track.title + ' is selected');
+            $scope.audioPlaylist.push(track);
+        } else {
+            console.log('track ' + track.title + ' is not selected');
+            var index = $scope.audioPlaylist.indexOf(track);
+            if(index > -1) {
+                $scope.audioPlaylist.splice(index, 1);
+            }
+            console.log($scope.audioPlaylist);
+        }
+        $($scope.audioPlaylist).each(function() {
+            console.log(this.title);
+        });
+    };
+    $scope.cue = 1;
+    $scope.adjustCurrentTrack = function(increment) {
+        $scope.cue = $scope.cue + increment;
+        if($scope.cue > $scope.audioPlaylist.length) {
+            $scope.cue = 1;
+        }
+        if($scope.cue < 1) {
+            $scope.cue = $scope.audioPlaylist.length;
+        }
+        var currentTrack = $scope.audioPlaylist[$scope.cue -1];
+        console.log(currentTrack);
+        changeDisplayAudio(currentTrack);
+            
+    };
+
+    $scope.playPlaylist = function () {
+        var currentTrack = $scope.audioPlaylist[$scope.cue - 1];
+        console.log(currentTrack);
+        changeDisplayAudio(currentTrack);
+    };
+   
     function setAutoplayAudio() {
         audioplayer.attr('autoplay', 'autoplay');
     }
@@ -65,7 +104,6 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     }
     function setDisplayAudio(audio) {
         $scope.displayAudio = audio;
-//        $scope.audioPlaylist.push(audio);
         console.log('In audio stuff, adjusted the audio source');
         
         var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;
@@ -85,7 +123,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
                 composerAudio.push(this);
             }
         });
-        $scope.audioPlaylist = composerAudio;
+//        $scope.audioPlaylist = composerAudio;
         console.log($scope.audioPlaylist);
         var audioArrayLength = composerAudio.length;
         var trackNumber = Math.floor(Math.random() * (audioArrayLength));
