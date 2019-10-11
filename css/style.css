@@ -594,6 +594,7 @@ section .ng-scope {
     display: inline;
 }
 .audio-item {
+    position: relative;
     overflow:auto;
     background: rgba(245, 245, 245, 0.8);
     display:inline-block;
@@ -601,9 +602,9 @@ section .ng-scope {
     border-radius: 4px;
     text-align: center;
     width: 155px;
-    height: 195px;
+    height: 205px;
     margin: 5px;
-    padding: 3px;  
+/*    padding: 3px;  */
 }
 
 .portfolio .audio-item .add-to-playlist input {
@@ -611,10 +612,15 @@ section .ng-scope {
     margin: 5px!important;
 }
 .portfolio .audio-item .add-to-playlist {
+    position: absolute;
+    bottom: 0;
     display: block;
     height: 25px;
     width: 100%;
-    background: gray;
+    background: #DCDFE0;
+}
+.portfolio .audio-item .add-to-playlist:hover {
+    background: rgb(169,169,169);
 }
 .audio-list .audio div:hover,
 .portfolio .video {

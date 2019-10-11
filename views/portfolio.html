@@ -25,7 +25,24 @@
 
                    </div>
 
-                   <audio  id="audio-player" src="" controls></audio> 
+                   <audio  id="audio-player" src="" controls controlsList="nodownload"></audio> 
+                   <div ng-show="isSet(2)&&audioPlaylist.length > 0" class="audio-playlist">
+                                <button class="btn btn-default" ng-click="show=!show">Audio Playlist</button>
+                                <p>AudioPlaylistActive: {{audioPlaylistActive}}</p>
+                                <div class="audio-playlist-container" ng-model="audioPlaylist" ng-show="show">
+                                    <h3 class="audio-playlist-header">List Items</h3>
+                                    <div ng-repeat="track in audioPlaylist" class="audio-playlist-list">
+                                        <div><button class=""><a href="{{track.src}}">{{track.title}}</a></button></div>
+                                    </div>
+                                    <div class="audio-playlist-controls">
+                                       <input type="number" ng-model="cue">
+                                        <button ng-click="playPlaylist();" id="playlist-play">Play</button>
+                                        <button id="playlist-previous" ng-click="adjustCurrentTrack(-1)">Previous</button>
+                                        <button id="playlist-next" ng-click="adjustCurrentTrack(1)">Next</button>
+                                    </div>
+
+                                </div>
+                            </div>
                </div>
                <div ng-show="isSet(1)" class="videoWrapper">
                     <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/-7mKc0NjrGU?showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -71,7 +88,7 @@
                                                    <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.img}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
                                                     <div class="audioTitle"><span>{{track.title}}</span></div>                                       
                                                </a>
-                                               <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
+                                               <div class="add-to-playlist"><label for="playlist-selector">Add to Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
                                                  </div> 
                                            </div>
 
@@ -102,23 +119,7 @@
                        </div>
                     </div>   
                  </div>
-                <div ng-show="isSet(2)" class="audio-playlist">
-                    <button class="btn btn-default" ng-click="show=!show">Audio Playlist</button>
-                    <div class="audio-playlist-container" ng-model="audioPlaylist" ng-show="show">
-                        <h3 class="audio-playlist-header">List Items</h3>
-                        <div ng-repeat="track in audioPlaylist" class="audio-playlist-list">
-                            <div><button class=""><a href="{{track.src}}">{{track.title}}</a></button></div>
-                        </div>
-                        <div class="audio-playlist-controls">
-                           <input type="number" ng-model="cue">
-                            <button ng-click="playPlaylist();" id="playlist-play">Play</button>
-                            <button id="playlist-pause">Pause</button>
-                            <button id="playlist-previous" ng-click="adjustCurrentTrack(-1)">Previous</button>
-                            <button id="playlist-next" ng-click="adjustCurrentTrack(1)">Next</button>
-                        </div>
-                        
-                    </div>
-                </div>
+                            
 <!--
            <div class="temp-playlist-test">
                 <p>Demo Music From <a href="http://incompetech.com">incompetech.com</a></p>

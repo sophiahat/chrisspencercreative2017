@@ -41,7 +41,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     };
     
 //    Audio
-    $scope.audioPlaylist = [];
+    $scope.audioPlaylistActive = false; //determines if audioplayer is following the playlist
+    $scope.audioPlaylist = []; // initialize playlist
     $scope.searchActive = false;
     $scope.isSearchActive = function() {
         var active = ($scope.audioSearchKeyword) ? true : false;
@@ -86,6 +87,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         var currentTrack = $scope.audioPlaylist[$scope.cue -1];
         console.log(currentTrack);
         changeDisplayAudio(currentTrack);
+        $scope.audioPlaylistActive = true;
             
     };
 
@@ -93,10 +95,15 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         var currentTrack = $scope.audioPlaylist[$scope.cue - 1];
         console.log(currentTrack);
         changeDisplayAudio(currentTrack);
+        $scope.audioPlaylistActive = true;
     };
    
     function setAutoplayAudio() {
         audioplayer.attr('autoplay', 'autoplay');
+    }
+    function playSingleTrack(audio) {
+        $scope.audioPlaylistActive = false;
+        changeDisplayAudio(audio);
     }
     function changeDisplayAudio(audio) {
         setDisplayAudio(audio);
@@ -104,13 +111,13 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     }
     function setDisplayAudio(audio) {
         $scope.displayAudio = audio;
-        console.log('In audio stuff, adjusted the audio source');
-        
-        var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;
-        
-        audioplayer.attr('src', link);
-        
+        console.log('In audio stuff, adjusted the audio source'); 
+        var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;    
+        audioplayer.attr('src', link);    
     } 
+    $(audioplayer).on('ended', function() {
+        ($scope.audioPlaylistActive) ? $('#playlist-next').click() : console.log('single track ended');
+    });
     audioInfo.$loaded().then(function(audioInfo) {
 //        console.log('load complete');
 //        console.log("length of audio array: " + audioInfo.length);
@@ -163,7 +170,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
             });
         };
     });
-    $scope.getAudioSource = changeDisplayAudio;
+    $scope.getAudioSource = playSingleTrack;
     
     
     // config Stripe audiotrack purchase widget
