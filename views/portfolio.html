@@ -109,12 +109,13 @@
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
                                             <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover' | filter: audioSearchKeyword" ng-show="track.active&&track.showCSCreative">
-                                               <a ng-click="getAudioSource(track)" href="">
                                                  <div class="audio-item">
+                                                    <a ng-click="getAudioSource(track)" href="">
                                                      <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
                                                     <div class="audioTitle"><span>{{track.title}}</span></div> 
+                                                    </a>
+                                                    <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
                                                  </div>                                        
-                                               </a>
                                            </div>
                                        </div>
                                    </div>
