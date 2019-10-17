@@ -580,11 +580,16 @@ section .ng-scope {
     height: 250px;
 /*    overflow-y: scroll;*/
 }
-.audio-list .audio-container,
 .portfolio .videos .video-container {
     width: inherit;
     height: inherit;
     text-align: center;
+}
+.audio-list .audio-container {
+    width: inherit;
+    height: calc(100% + 20px);
+    text-align: center; 
+/*    height: inherit;*/
 }
 
 .audio-list .audio {
@@ -1045,6 +1050,18 @@ footer  {
         padding: 2.5px 10px;
         line-height: 15px
     }
+    main {
+        padding: 5px 0;
+    }
+    .card {
+        padding: 10px 3px;
+    }
+    .portfolio .audio-list {
+       height: auto;
+    }
+    .portfolio .portfolio-scrolling-list {
+        height: auto;
+    }
 }
 
 @media (max-width: 680px) {
@@ -1064,12 +1081,13 @@ footer  {
 }
 @media (max-width: 575px) {
     .social-buttons {
-        display: none;
+/*        display: none;*/
     }
     .news img {
         float: none;
         width: 100%;
     }
+
     
 /*
     .audio-list .audio {

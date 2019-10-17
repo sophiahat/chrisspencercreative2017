@@ -1,5 +1,7 @@
 myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$sce','$filter', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $sce, $filter) {
-    
+    console.log(document.cookie);
+    document.cookie = "SameSite=None; Secure";
+    console.log(document.cookie);
     //update google analytics
     var url = window.location.href;
     gtag('config', 'UA-20609405-2', {
