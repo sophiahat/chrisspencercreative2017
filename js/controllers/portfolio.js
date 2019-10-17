@@ -91,7 +91,16 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
             
     };
     $scope.playlistClear = function() {
-        $scope.audioPlaylist = [];
+//        $scope.audioPlaylist = [];
+        $($scope.audioPlaylist).each(function() {
+            var index = $scope.audioPlaylist.indexOf(this);
+            if(index > -1) {
+                $scope.audioPlaylist.splice(index, 1);
+            }
+            
+        });
+        console.log($scope.audioPlaylist);
+        $('.add-to-playlist input').prop("checked", false);
     };
 
     $scope.playPlaylist = function () {
