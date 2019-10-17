@@ -59,7 +59,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var audioplayer = $('#audio-player');
     $scope.adjustPlaylist = function(track, track_selected) {
         console.log('adjust playlist called');
-//        console.log($scope.audioPlaylist);
+        console.log('track: ' + track + ' track.selected: ' + track_selected);
         if(track_selected) {
             console.log('track ' + track.title + ' is selected');
             $scope.audioPlaylist.push(track);
@@ -89,6 +89,9 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         changeDisplayAudio(currentTrack);
         $scope.audioPlaylistActive = true;
             
+    };
+    $scope.playlistClear = function() {
+        $scope.audioPlaylist = [];
     };
 
     $scope.playPlaylist = function () {
