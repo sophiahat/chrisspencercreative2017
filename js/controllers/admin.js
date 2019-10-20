@@ -241,7 +241,7 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
 //                $scope.audiorating = track.rating;
                 track.projectID ? $scope.audioprojectID = track.projectID : $scope.audioprojectID = '';
                 $scope.audioimage = track.img;
-                $scope.stripeSku = track.stripeSku;
+                track.stripeSku ? $scope.stripeSku = track.stripeSku : $scope.stripeSku = '';
                 $scope.audiosource = track.src;
                 track.type ? $scope.audiotype = track.type : $scope.audiotype = 'unknown';
                 track.showCSCreative ? $scope.showCSCreative = track.showCSCreative : $scope.showCSCreative = false;
