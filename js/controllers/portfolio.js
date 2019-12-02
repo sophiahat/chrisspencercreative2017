@@ -1,4 +1,4 @@
-myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$sce','$filter', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $sce, $filter) {
+myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseArray', '$firebaseObject', '$sce','$filter', '$location', '$routeParams', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $sce, $filter, $location, $routeParams) {
     console.log(document.cookie);
     document.cookie = "SameSite=None; Secure";
     console.log(document.cookie);
@@ -43,8 +43,23 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     };
     
 //    Audio
+    var playlistRef = firebase.database().ref('/playlists');
+    var playlistInfo = $firebaseArray(playlistRef);
     $scope.audioPlaylistActive = false; //determines if audioplayer is following the playlist
     $scope.audioPlaylist = []; // initialize playlist
+    playlistInfo.$loaded().then(function() {
+        console.log('playlist Loaded from database');
+//        console.log(playlistInfo);
+        $(playlistInfo).each(function() {
+            if (this.$id == audioPlaylistID) {
+                $scope.audioPlaylist = this.tracks;
+                console.log($scope.audioPlaylist);
+                $scope.audioPlaylistActive = true;
+            }
+        });
+    });
+    
+    
     $scope.searchActive = false;
     $scope.isSearchActive = function() {
         var active = ($scope.audioSearchKeyword) ? true : false;
@@ -56,8 +71,13 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
-//    console.log("Audio Object from database: "); 
-//    console.log($scope.audio);
+    var audioPlaylistID = null;
+    ($routeParams.param1) ? audioPlaylistID = $routeParams.param1 : audioPlaylistID = null;
+    if (audioPlaylistID) {
+        console.log('Audio Playlist ID: ' + audioPlaylistID);
+        } else {
+        console.log('AudioPlaylistID is not there, it is:' + audioPlaylistID);
+        }
     var audioplayer = $('#audio-player');
     $scope.adjustPlaylist = function(track, track_selected) {
         console.log('adjust playlist called');
@@ -91,6 +111,28 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         changeDisplayAudio(currentTrack);
         $scope.audioPlaylistActive = true;
             
+    };
+    $scope.savePlaylist = function() {
+        console.log('saving playlist now');
+        console.log($scope.audioPlaylist);
+        var playlistTracks = [];
+        var playlistTitle = prompt('Enter a Playlist Title', 'mars lander');
+        
+        $($scope.audioPlaylist).each(function() {
+            var playlistTrack = this;
+            playlistTracks.push(playlistTrack);
+        });
+        var postdata = {
+            title: playlistTitle,
+            dateCreated: firebase.database.ServerValue.TIMESTAMP,
+            tracks: playlistTracks
+        };
+        playlistInfo.$add(postdata).then(function(ref) {
+            $scope.playlistDatabaseId = ref.key;
+            console.log('added to database, id: ' + $scope.playlistDatabaseId);
+            $scope.playlistURL = $location.absUrl() + '/' + $scope.playlistDatabaseId;
+//            $scope.playlistLink = '<a href="' + $scope.playlistURL + '">' + playlistTitle + '</a>';
+        });
     };
     $scope.playlistClear = function() {
 //        $scope.audioPlaylist = [];
@@ -144,8 +186,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
                 composerAudio.push(this);
             }
         });
-//        $scope.audioPlaylist = composerAudio;
-        console.log($scope.audioPlaylist);
+        
         var audioArrayLength = composerAudio.length;
         var trackNumber = Math.floor(Math.random() * (audioArrayLength));
         console.log("Random choice is: " + trackNumber);

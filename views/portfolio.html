@@ -35,6 +35,10 @@
                                         <button class="btn btn-info" id="playlist-previous" ng-click="adjustCurrentTrack(-1)">Previous</button>
                                         <button class="btn btn-info" id="playlist-next" ng-click="adjustCurrentTrack(1)">Next</button>
                                         <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()">Clear</button>
+                                        <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" >Save</button>                       <input ng-show="playlistDatabaseId" type="text" id="playlist-url" value="{{playlistURL}}">
+                                        <button ng-show="playlistDatabaseId" ngclipboard data-clipboard-target="#playlist-url" class="btn btn-info" ><img class="image-icon" src="/images/clippy.svg" alt="copy to clipboard"></button>
+                                        <input ng-show="playlistDatabaseId" type="text" id="playlist-link" value="{{playlistLink}}">
+                                        <button ng-show="playlistDatabaseId" ngclipboard data-clipboard-target="#playlist-link"><img class="image-icon" src="/images/clippy.svg" alt="copy to clipboard"></button>
                                     </div>
                                     <h3 class="audio-playlist-header">Current Playlist</h3>
                                     <div class="audio-playlist-list">

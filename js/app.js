@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'ngSanitize']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'ngSanitize', 'ngclipboard']);
 
 
 
@@ -42,6 +42,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
             controller: 'RegistrationController'
         }).
         when('/portfolio', {
+            templateUrl: 'views/portfolio.html',
+            controller: 'PortfolioController'
+        }).
+        when('/portfolio/:param1', {
             templateUrl: 'views/portfolio.html',
             controller: 'PortfolioController'
         }).

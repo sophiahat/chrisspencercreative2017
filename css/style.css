@@ -387,6 +387,10 @@ section .ng-scope {
 .accordion h3.panel-title {
     cursor: pointer;
 }
+
+.image-icon {
+    width: 13px;
+}
 .admin .data-edit-form {
 
 }
@@ -633,7 +637,9 @@ section .ng-scope {
 .portfolio .audio-item .add-to-playlist:hover {
     background: rgb(169,169,169);
 }
-
+.portfolio #playlist-url {
+    width: 90%;
+}
 .portfolio .audio-playlist-controls {
     clear: both;
     display: block;
