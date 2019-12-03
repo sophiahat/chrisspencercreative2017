@@ -5,6 +5,7 @@
 ##Ignore audio files
 /audio
 /images
+/examples
 
 
 /databackup/ImagesImportCSCreative.numbers

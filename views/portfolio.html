@@ -37,8 +37,6 @@
                                         <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()">Clear</button>
                                         <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" >Save</button>                       <input ng-show="playlistDatabaseId" type="text" id="playlist-url" value="{{playlistURL}}">
                                         <button ng-show="playlistDatabaseId" ngclipboard data-clipboard-target="#playlist-url" class="btn btn-info" ><img class="image-icon" src="/images/clippy.svg" alt="copy to clipboard"></button>
-                                        <input ng-show="playlistDatabaseId" type="text" id="playlist-link" value="{{playlistLink}}">
-                                        <button ng-show="playlistDatabaseId" ngclipboard data-clipboard-target="#playlist-link"><img class="image-icon" src="/images/clippy.svg" alt="copy to clipboard"></button>
                                     </div>
                                     <h3 class="audio-playlist-header">Current Playlist</h3>
                                     <div class="audio-playlist-list">
@@ -75,7 +73,7 @@
                    <ul class="nav nav-pills portfolio-tabs" id="data-categories">
                        <li ng-class="{active: subIsSet(3)}"><a href ng-click="setSubTab(3)">Music Composition</a></li>
                        <li ng-class="{active: subIsSet(4)}" ><a href ng-click="setSubTab(4)">Voice-Over (VO)</a></li>
-                       <li ng-class="{active: isSearchActive()}" id="trackfilterclear"><a href ng-click="audioSearchKeyword = ''">Clear Track Search</a></li>
+                       <li ng-class="{active: isSearchActive()}" ng-show="isSearchActive()" id="trackfilterclear"><a href ng-click="audioSearchKeyword = ''">Clear Track Search</a></li>
                    </ul>
                     <div class="" id="audio-panel">
                        <div class="track-search">
@@ -112,7 +110,8 @@
                                <div class="panel-body" ng-model="audio">
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
-                                            <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover' | filter: audioSearchKeyword" ng-show="track.active&&track.showCSCreative">
+                                            <div class="audio-container">
+                                                <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover' | filter: audioSearchKeyword" ng-show="track.active&&track.showCSCreative">
                                                  <div class="audio-item">
                                                     <a ng-click="getAudioSource(track)" href="">
                                                      <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
@@ -121,6 +120,7 @@
                                                     <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
                                                  </div>                                        
                                            </div>
+                                            </div>
                                        </div>
                                    </div>
                                </div>

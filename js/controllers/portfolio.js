@@ -68,6 +68,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         return active;
     };
     
+    
     var audioRef = firebase.database().ref('/audio');
     var audioInfo = $firebaseArray(audioRef);
     $scope.audio = audioInfo;
