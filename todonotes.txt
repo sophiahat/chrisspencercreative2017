@@ -1,7 +1,7 @@
-contact button in footer creates rectangles after repeated clicks
-contact page doesn't scroll to top when on phone
+contact button in footer creates rectangles after repeated clicks - can't replicate
+contact page doesn't scroll to top when on phone - Done
 
-ads after you make an appointment from calendly
+ads after you make an appointment from calendly - Can't change
 
 make the player take up less space by default, it could possibly unfold to reveal info about the track
 
