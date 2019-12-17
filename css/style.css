@@ -482,7 +482,7 @@ section .ng-scope {
 
 .portfolio .portfolio-scrolling-list {
     overflow: scroll;
-    height: 300px;   
+    height: 330px;   
 }
 .portfolio .track-search input {
     width: 95%;
@@ -577,6 +577,9 @@ section .ng-scope {
     width: 100%;
 };
 
+.portfolio .image-credits {
+    background: rgba(150, 150, 150, 0.9);    
+}
 
 .audioTitle {
     margin: 0 0 0 10px;
@@ -736,7 +739,7 @@ section .ng-scope {
 .about .maintext .client-image,
 .portfolio .audio .audioImg {
     position: relative;
-	width:120px;
+	width:117px;
 	height:120px;
     display: flex;
     padding: 0;
