@@ -93,6 +93,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         if(track_selected) {
             console.log('track ' + track.title + ' is selected');
             $scope.audioPlaylist.push(track);
+            console.log(track);
         } else {
             console.log('track ' + track.title + ' is not selected');
             var index = $scope.audioPlaylist.indexOf(track);

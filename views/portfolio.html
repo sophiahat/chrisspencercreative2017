@@ -34,20 +34,22 @@
                                     <div class="audio-playlist-list">
                                         <div ng-repeat="track in audioPlaylist" class="audio-playlist-list-item">
                                         <div><button class="btn btn-default">
+                                           <span><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt="track-image"></span>
                                             <span href="{{track.src}}">{{track.title}}</span>
                                             <a ng-model="track.selected" href="" ng-click="adjustPlaylist(track, track.selected=false)" class="clear"><span class="glyphicon glyphicon-remove"></span></a>
                                         </button></div>
                                     </div>
                                     </div>
                                 </div>
-                                <div ng-show="isSet(2)&&audioPlaylist.length > 0" class="audio-playlist-controls">
-                                   <button class="btn btn-info" ng-show="showplaylist" ng-click="showplaylist=!showplaylist">Hide Playlist</button>
-                                   <button class="btn btn-info" ng-show="!showplaylist > 0" ng-click="showplaylist=!showplaylist">Show Playlist</button>
-                                    <button class="btn btn-info" ng-click="playPlaylist();" id="playlist-play">Play Playlist</button>
-                                    <button class="btn btn-info" id="playlist-previous" ng-click="adjustCurrentTrack(-1)">Previous</button>
-                                    <button class="btn btn-info" id="playlist-next" ng-click="adjustCurrentTrack(1)">Next</button>
-                                    <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()">Clear</button>
-                                    <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" >Save</button>                       <input ng-show="playlistDatabaseId" type="text" id="playlist-url" value="{{playlistURL}}">
+                                <div ng-show="isSet(2)&&audioPlaylist.length > 0" class="fade in audio-playlist-controls">
+                                   <button class="btn btn-info" ng-show="showplaylist" ng-click="showplaylist=!showplaylist"><i class="glyphicon glyphicon-eye-close"></i>Hide Playlist</button>
+                                   <button class="btn btn-info" ng-show="!showplaylist > 0" ng-click="showplaylist=!showplaylist"><i class="glyphicon glyphicon-eye-open"></i>Show Playlist</button>
+                                    <button class="btn btn-info" ng-click="playPlaylist();" id="playlist-play"><i class="glyphicon glyphicon-play-circle"></i>Play Playlist</button>
+                                    <button class="btn btn-info" id="playlist-previous" ng-click="adjustCurrentTrack(-1)"><i class="glyphicon glyphicon-step-backward"></i>Previous</button>
+                                    <button class="btn btn-info" id="playlist-next" ng-click="adjustCurrentTrack(1)"><i class="glyphicon glyphicon-step-forward"></i>Next</button>
+                                    <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()"><i class="glyphicon glyphicon-trash"></i>Clear</button>
+                                    <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" ><i class="glyphicon glyphicon-floppy-disk"></i>Save</button>                       
+                                    <input ng-show="playlistDatabaseId" type="text" id="playlist-url" value="{{playlistURL}}">
                                     <button ng-show="playlistDatabaseId" ngclipboard data-clipboard-target="#playlist-url" class="btn btn-info" ><img class="image-icon" src="/images/clippy.svg" alt="copy to clipboard"></button>
                                 </div>
                             </div>

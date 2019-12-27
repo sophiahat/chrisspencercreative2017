@@ -133,11 +133,13 @@ strong {
     opacity: 0.90;
 }
 
-.audio-playlist-container.ng-hide {
+.audio-playlist-container.ng-hide,
+.audio-playlist-controls.ng-hide {
   transition:1.25s linear all;
   opacity:0;
 }
-.audio-playlist-container.ng-show {
+.audio-playlist-container.ng-show,
+.audio-playlist-controls.ng-show {
     transition:1.25s linear all;
     opacity: 1;
 }
@@ -684,6 +686,12 @@ section .ng-scope {
 }
 
 .portfolio .audio-playlist-container {
+/*    border-top-left-radius: 4px;*/
+/*    border-top-right-radius: 4px;*/
+/*    background: #DCDFE0;*/
+}
+.portfolio .audio-playlist {
+    border-radius: 4px;
     background: #DCDFE0;
 }
 
@@ -691,10 +699,13 @@ section .ng-scope {
     clear: both;
     display: block;
     text-align: center;
-    background: #DCDFE0;
-    border-radius: 4px;
+/*    background: #DCDFE0;*/
+/*    border-radius: 4px;*/
 /*    margin-bottom: 3px;*/
-    padding-bottom: 7px;
+    padding: 0 10px 7px 10px;
+}
+.portfolio .audio-playlist-controls i {
+    margin-right: 4px;
 }
 .portfolio .audio-playlist-header {
     text-align: center;
@@ -713,14 +724,20 @@ section .ng-scope {
     clear: both;
 }
 .portfolio .audio-playlist .audio-playlist-list {
-/*    display: block;*/
     height: 75px;
     overflow-y: scroll;
+    
 }
 .portfolio .audio-playlist .audio-playlist-list button {
     float: left;
     color: black;
     font-size: 13px;
+    margin: 4px 0 0 4px;
+}
+.portfolio .audio-playlist .audio-playlist-list img {
+    width: 18px;
+    float: left;
+    margin-right: 5px;
 }
 
 /*
@@ -1210,7 +1227,7 @@ footer  {
         height: 80px;
     }
     .audio-list .audioTitle {
-        width: 100%;
+/*        width: 100%;*/
     }
     
 
@@ -1220,4 +1237,8 @@ footer  {
     .portfolio .audio-description {
         margin: 0 0 0 22%;
     }
+    .portfolio .track-search input {
+    width: 90%;
+    display: inline;
+}
 }
