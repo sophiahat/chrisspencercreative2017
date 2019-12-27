@@ -45,6 +45,13 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //    Audio
     var playlistRef = firebase.database().ref('/playlists');
     var playlistInfo = $firebaseArray(playlistRef);
+    $scope.showplaylist = false;
+    if($scope.showplaylist) {
+        $scope.playlistButton = "Hide Playlist"; 
+    }else{
+        $scope.playlistButton = "Show Playlist";   
+    }
+    
     $scope.audioPlaylistActive = false; //determines if audioplayer is following the playlist
     $scope.audioPlaylist = []; // initialize playlist
     playlistInfo.$loaded().then(function() {
