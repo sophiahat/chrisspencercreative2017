@@ -34,8 +34,7 @@
                                     <div class="audio-playlist-list">
                                         <div ng-repeat="track in audioPlaylist" class="audio-playlist-list-item">
                                         <div><button class="btn btn-default">
-                                           <span><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt="track-image"></span>
-                                            <span href="{{track.src}}">{{track.title}}</span>
+                                           <span><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" title='{{track.title}}' ng-mouseover="getImageInfo(track.img)" alt="track-image"></span>
                                             <a ng-model="track.selected" href="" ng-click="adjustPlaylist(track, track.selected=false)" class="clear"><span class="glyphicon glyphicon-remove"></span></a>
                                         </button></div>
                                     </div>
@@ -95,7 +94,7 @@
                                                  <div class="audio-item">
                                                     <a ng-click="getAudioSource(track)" href="">
                                                      <div class="audioImg">
-                                                   <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.img}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
+                                                   <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.title}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
                                                     <div class="audioTitle"><span>{{track.title}}</span></div>                                       
                                                </a>
                                                <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>

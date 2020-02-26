@@ -3,8 +3,7 @@ contact page doesn't scroll to top when on phone - Done
 
 ads after you make an appointment from calendly - Can't change
 
-make the player take up less space by default, it could possibly unfold to reveal info about the track
+Playlist items should be just an image with title on mouseover
 
-make the playlist have its own space, hide the remaining tracks and offer a button to clear the list and bring the remaining tracks back
 
 about section - change to 3rd person and draft a master biography to fit in this area on all three sites.
