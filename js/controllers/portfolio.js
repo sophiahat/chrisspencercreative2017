@@ -154,6 +154,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         });
         console.log($scope.audioPlaylist);
         $('.add-to-playlist input').prop("checked", false);
+        $scope.audioPlaylistActive = false;
+        $scope.showplaylist = false;
     };
 
     $scope.playPlaylist = function () {

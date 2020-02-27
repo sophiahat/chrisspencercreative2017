@@ -1180,33 +1180,17 @@ footer  {
 }
 @media (max-width: 575px) {
     .social-buttons {
-/*        display: none;*/
+
     }
     .news img {
         float: none;
         width: 100%;
     }
 
-    
-/*
-    .audio-list .audio {
-    width: 165px;
-}
-*/
-    
-/*
-.audio-item {
-    width: 92%;
-    margin: 2px;
-    padding: 2px;
-    
-}
-*/
-/*
-    .header-carousel {
-        height: 175px;
+    .portfolio .audio-item .audioTitle {
+        font-size: 95%;
     }
-*/
+
 }
 
 @media (max-width: 490px) {
