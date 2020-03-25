@@ -57,6 +57,7 @@
         <script src="js/controllers/portfolio.js"></script>
         <script src="js/controllers/about.js"></script>
         <script src='js/controllers/consult.js'></script>
+        <script src="js/controllers/modal.js"></script>
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20609405-2"></script>
         <script>
@@ -91,6 +92,7 @@
                       <div class="col-md-4 text-center">
                          <aside role="complementary">
                          <div ng-include="'views/aside.html'" ></div>
+                         <button id="modal-btn" class="btn">Open Modal</button>
                         </aside>
                           
                       </div>
@@ -98,9 +100,18 @@
                    
                </div>
            </div>
+           <div id="global-modal" class="modal" ng-controller="ModalController">
+              <div class="modal-content">
+                  <div class="modal-header"><span class="close">&times;</span><h2>Modal Header</h2></div>
+                  <div class="modal-body" ng-include="'views/login.html'"></div>
+                  <div class="modal-footer"><h3>Modal Footer</h3></div>
+              </div>
+               
+           </div>
            <footer class="navbar-fixed-bottom">
                <div class="cf" ng-include="'views/footer.html'" role="content info"></div>
            </footer>
+           
         </div>
     </body>
     <script>
