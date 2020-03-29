@@ -1,6 +1,7 @@
 myApp.controller('ModalController', ['$scope', '$rootScope', function($scope, $rootScope) {
+    $scope.registrationActive = false;
+    console.log('registration active is: ' + $scope.registrationActive);
     const modal = $('#global-modal');
-    console.log(modal);
     const modalBtn = $('#modal-btn');
     const closeBtn = $('.close');
 //    use jquery controls
@@ -8,7 +9,7 @@ myApp.controller('ModalController', ['$scope', '$rootScope', function($scope, $r
     $(modalBtn).click(openModal);
 
     $(closeBtn).click(closeModal);
-
+    
     $(modal).click(outsideClick);
     //open modal
     function openModal() {
@@ -18,10 +19,16 @@ myApp.controller('ModalController', ['$scope', '$rootScope', function($scope, $r
     function closeModal() {
         $(modal).hide();
     }
+    $rootScope.closeModal = closeModal;
 //    close modal if outside click
     function outsideClick(e) {
         if (e.target.id == 'global-modal') {
             $(modal).hide();
         }
     }
+    $scope.toggleRegistration = function() {
+        $scope.registrationActive = !$scope.registrationActive;
+        console.log('registration active is: ' + $scope.registrationActive);
+    };
+
 }]);

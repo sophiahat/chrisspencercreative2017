@@ -22,6 +22,10 @@ myApp.run(['$rootScope', '$location', function($rootScope, $location) {
             $location.path('/login');
         }//AUTH REQUIRED
     });// event info
+                                                $rootScope.$on('$locationChangeStart', function() {
+        $rootScope.previousPage = location.href;
+        console.log($rootScope.previousPage);
+    });
 }]);//run
 
 

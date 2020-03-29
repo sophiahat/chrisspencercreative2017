@@ -1,12 +1,6 @@
 <section class="aside" ng-controller="iFramesController">
     <div class="list-group">
-        <div class="userinfo list-group-item" ng-hide="currentUser">
-            <p><a ng-href="#!/login">Login</a> Or <a href="#!/register">Register</a></p>
-        </div>
-        <div class="userinfo list-group-item" ng-show="currentUser" ng-controller="RegistrationController">
-            <h4><span class="userinfo">Hi {{currentUser.firstname}} {{currentUser.lastname}}</span></h4>
-            <a ng-href="#!/login" ng-click="logout()">Logout</a>
-        </div>
+        
         <a ng-href="#!/portfolio" class="list-group-item">
             <h4 class="list-group-item-heading">Audio Examples</h4>
             <p class="list-group-item-text">Check out our portfolio and sort through various models...<em>Visit our Gallery</em></p>

@@ -19,7 +19,8 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseObject', '$firebaseAuth
             $rootScope.authObj.$signInWithEmailAndPassword(user.email, user.password)
             .then(function(regUser) {
                 console.log("Signed in as: " + regUser.uid);
-                $location.path('/home');
+//                $location.path('/home');
+                $rootScope.closeModal();
             }).catch(function(error){
                 $rootScope.message = "Error: " + error.message;
             });
@@ -52,6 +53,7 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseObject', '$firebaseAuth
 //        },//require Admin access level
         
         register: function(user) {
+            console.log('running registration');
             $rootScope.authObj.$createUserWithEmailAndPassword(user.email, user.password)
             .then(function(regUser) {
                 var timestamp = firebase.database.ServerValue.TIMESTAMP;
