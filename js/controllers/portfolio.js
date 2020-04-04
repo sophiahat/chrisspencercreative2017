@@ -62,6 +62,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
                 $scope.audioPlaylist = this.tracks;
                 console.log($scope.audioPlaylist);
                 $scope.audioPlaylistActive = true;
+                $scope.playlistTitle = this.title;
             }
         });
     });
@@ -83,6 +84,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     ($routeParams.param1) ? audioPlaylistID = $routeParams.param1 : audioPlaylistID = null;
     if (audioPlaylistID) {
         console.log('Audio Playlist ID: ' + audioPlaylistID);
+        $scope.showplaylist = true;
         } else {
         console.log('AudioPlaylistID is not there, it is:' + audioPlaylistID);
         }
@@ -125,7 +127,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         console.log('saving playlist now');
         console.log($scope.audioPlaylist);
         var playlistTracks = [];
-        var playlistTitle = prompt('Enter a Playlist Title', 'mars lander');
+        var playlistTitle = prompt('Enter a Playlist Title', "My Playlist");
+        $scope.playlistTitle = playlistTitle;
         
         $($scope.audioPlaylist).each(function() {
             var playlistTrack = this;
@@ -157,13 +160,13 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         $scope.audioPlaylistActive = false;
         $scope.showplaylist = false;
     };
-
-    $scope.playPlaylist = function () {
+    function playPlaylist() {
         var currentTrack = $scope.audioPlaylist[$scope.cue - 1];
         console.log(currentTrack);
         changeDisplayAudio(currentTrack);
         $scope.audioPlaylistActive = true;
-    };
+    }
+    $scope.playPlaylist = playPlaylist;
    
     function setAutoplayAudio() {
         audioplayer.attr('autoplay', 'autoplay');

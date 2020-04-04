@@ -746,6 +746,11 @@ section .ng-scope {
 }
 .portfolio #playlist-url {
     width: 90%;
+    padding: 2px;
+    margin-left: 3px;
+}
+.portfolio .playlist-url button {
+    margin-top: 0;
 }
 
 .portfolio .audio-playlist-container {
@@ -756,6 +761,7 @@ section .ng-scope {
 .portfolio .audio-playlist {
     border-radius: 4px;
     background: #DCDFE0;
+    padding: 5px;
 }
 
 .portfolio .audio-playlist-controls {
@@ -806,6 +812,9 @@ section .ng-scope {
 /*    float: left;*/
     display: block;
     margin: 2px;
+}
+.portfolio #playlist-url {
+    
 }
 
 /*
