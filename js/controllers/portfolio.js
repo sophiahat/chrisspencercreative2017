@@ -43,6 +43,53 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     };
     
 //    Audio
+//    TEST Wavesurfer.js
+    
+    var activeUrl = null;
+    $scope.paused =true;
+    $scope.$on('wavesurferInit', function(e, wavesurfer) {
+        $scope.wavesurfer = wavesurfer;
+        $scope.wavesurfer.on('play', function() {
+            $scope.paused = false;
+        });
+        $scope.wavesurfer.on('pause', function() {
+            $scope.paused = true;
+        });
+        $scope.wavesurfer.on('finish', function() {
+            $scope.paused = true;
+            $scope.wavesurfer.seekTo(0);
+            $scope.$apply();
+        });
+    });
+    
+    $scope.play = function(url) {
+        if (!$scope.wavesurfer) {
+            console.log('wavesurfer Not loaded');
+            return
+        }
+        console.log('Playing Wavesurfer');
+        activeUrl = url;
+        
+        $scope.wavesurfer.once('ready', function() {
+            $scope.wavesurfer.play();
+            $scope.$apply();
+        });
+        
+        $scope.wavesurfer.load(activeUrl);
+    };
+    
+    $scope.isPlaying = function(url) {
+        return url == activeUrl;
+    };
+    
+    
+//        var wavesurfer = Wavesurfer.create({
+//            container: 'waveform',
+//            waveColor: 'violet',
+//            progressColor: 'purple'
+//        });
+//        wavesurfer.load('AllBlues.mp3');
+//    END TEST Wavesurfer.js
     var playlistRef = firebase.database().ref('/playlists');
     var playlistInfo = $firebaseArray(playlistRef);
     $scope.showplaylist = false;
