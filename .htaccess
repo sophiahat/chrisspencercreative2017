@@ -28,7 +28,7 @@ Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains
   # Handle Prerender.io
     RequestHeader set X-Prerender-Token "JVzn7VcfcG4YRodQHpfm"
 
-    RewriteCond %{HTTP_USER_AGENT} baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} googlebot|bingbot|yandex|baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest [NC,OR]
     RewriteCond %{QUERY_STRING} _escaped_fragment_
     RewriteCond %{QUERY_STRING} _escaped_fragment_=([^&]*)
 

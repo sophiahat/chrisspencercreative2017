@@ -13,7 +13,29 @@
                    <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
                </ul>
                <div ng-show="isSet(2)" class="displayAudio">
-                  <audio  id="audio-player" src="" controls controlsList="nodownload"></audio> 
+<!--                 WavesurferTest-->
+<div class="row" style="margin: 30px 0">
+                    <div class="col-sm-10">
+                        <ng-wavesurfer url="../audio/Audiobook1.wav" wave-color="#337ab7" progress-color="#23527c" height="64">
+                        </ng-wavesurfer>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <button class="btn btn-success btn-block" ng-click="wavesurfer.playPause()">
+                            <span id="play" ng-show="paused">
+                                <i class="glyphicon glyphicon-play"></i>
+                                Play
+                            </span>
+
+                            <span id="pause" ng-show="!paused">
+                                <i class="glyphicon glyphicon-pause"></i>
+                                Pause
+                            </span>
+                        </button>
+                    </div>
+                </div>
+<!--                 END WavesurferTest-->
+<!--                  <audio  id="audio-player" src="" controls controlsList="nodownload"></audio> -->
                    <div class="display-audio-details">
                       <div class="display-audio-img"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{displayAudio.img}}" alt="display audio image"></div>
                        <div class="audioTitle"><span><h4>{{displayAudio.title}}</h4></span></div>
@@ -148,9 +170,10 @@
 
 <!--Test WaveSurfer-->
 <div id="demo">
+<!--
                 <div class="row" style="margin: 30px 0">
                     <div class="col-sm-10">
-                        <ng-wavesurfer url="../media/demo.wav" wave-color="#337ab7" progress-color="#23527c" height="64">
+                        <ng-wavesurfer url="../audio/Audiobook1.wav" wave-color="#337ab7" progress-color="#23527c" height="64">
                         </ng-wavesurfer>
                     </div>
 
@@ -168,6 +191,7 @@
                         </button>
                     </div>
                 </div>
+-->
 
                 <div class="list-group" id="playlist">
                     <a href=""

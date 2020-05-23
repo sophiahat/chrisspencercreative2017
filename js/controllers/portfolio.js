@@ -235,8 +235,10 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     function setDisplayAudio(audio) {
         $scope.displayAudio = audio;
         console.log('In audio stuff, adjusted the audio source'); 
-        var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;    
-        audioplayer.attr('src', link);    
+        var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src; 
+//        $scope.wavesurfer.load(link);
+        $scope.play(link);
+//        audioplayer.attr('src', link);    
     } 
     $(audioplayer).on('ended', function() {
         ($scope.audioPlaylistActive) ? $('#playlist-next').click() : console.log('single track ended');
