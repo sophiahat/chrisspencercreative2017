@@ -1,0 +1,166 @@
+
+   <section class="card portfolio">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <header>
+                <div class="pull-left panel-header">
+                    <h1>Portfolio</h1>
+                </div>
+            </header>
+               <ul class="nav nav-pills pull-right portfolio-tabs" id="data-categories">
+                   <li ng-class="{active: isSet(1)}"><a href ng-click="setTab(1)">Video</a></li>
+                   <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
+               </ul>
+               <div ng-show="isSet(2)" class="displayAudio">
+                  <audio  id="audio-player" src="" controls controlsList="nodownload"></audio> 
+                   <div class="display-audio-details">
+                      <div class="display-audio-img"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{displayAudio.img}}" alt="display audio image"></div>
+                       <div class="audioTitle"><span><h4>{{displayAudio.title}}</h4></span></div>
+                       <div class="audiodescription"><span>{{displayAudio.description}}</span></div>
+                        <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+                        <button ng-show="displayAudio.stripeSku" id="checkout-button-sku_FlfntUu5z0WqDb" ng-click="buyTrack(track)" class="purchase" role="link"
+                        >Buy</button>
+
+                        <div id="error-message"></div>
+
+                   </div>
+
+                                   
+                        <div class="audio-playlist">
+                                
+                                <div ng-show="showplaylist" class="fade in audio-playlist-container" ng-model="audioPlaylist">
+                                    <h3 ng-hide="playlistTitle" class="audio-playlist-header">Current Playlist</h3>    
+                                    <h3 class="audio-playlist-header" ng-show="playlistTitle"><a ng-href="{{playlistURL}}" target="_blank">{{playlistTitle}}</a></h3>
+                                    <div class="audio-playlist-list">
+                                        <div ng-repeat="track in audioPlaylist" class="audio-playlist-list-item">
+                                        <div><button class="btn btn-default">
+                                           <span><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" title='{{track.title}}' ng-mouseover="getImageInfo(track.img)" alt="track-image"></span>
+                                            <a ng-model="track.selected" href="" ng-click="adjustPlaylist(track, track.selected=false)" class="clear"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </button></div>
+                                    </div>
+                                    </div>
+                                    <div class="playlist-url">
+                                        <input ng-show="playlistDatabaseId" type="text" id="playlist-url" value="{{playlistURL}}">
+                                        <button ng-show="playlistDatabaseId" ngclipboard data-clipboard-target="#playlist-url" class="btn btn-info" ><img class="image-icon" src="/images/clippy.svg" title="Copy to Clipboard" alt="copy to clipboard"></button>
+                                    </div>
+                                </div>
+                                <div ng-show="isSet(2)&&audioPlaylist.length > 0" class="fade in audio-playlist-controls">
+                                   <button class="btn btn-info" ng-show="showplaylist" ng-click="showplaylist=!showplaylist"><i class="glyphicon glyphicon-eye-close"></i>Hide Playlist</button>
+                                   <button class="btn btn-info" ng-show="!showplaylist > 0" ng-click="showplaylist=!showplaylist"><i class="glyphicon glyphicon-eye-open"></i>Show Playlist</button>
+                                    <button class="btn btn-info" ng-click="playPlaylist();" id="playlist-play"><i class="glyphicon glyphicon-play-circle"></i>Play Playlist</button>
+                                    <button class="btn btn-info" id="playlist-previous" ng-click="adjustCurrentTrack(-1)"><i class="glyphicon glyphicon-step-backward"></i>Previous</button>
+                                    <button class="btn btn-info" id="playlist-next" ng-click="adjustCurrentTrack(1)"><i class="glyphicon glyphicon-step-forward"></i>Next</button>
+                                    <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()"><i class="glyphicon glyphicon-trash"></i>Clear</button>
+                                    <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" ><i class="glyphicon glyphicon-floppy-disk"></i>Save</button>                    
+                                    
+                                    
+                                </div>
+                            </div>
+               </div>
+               <div ng-show="isSet(1)" class="videoWrapper">
+                    <iframe id="portfolio-video-player" src="https://www.youtube.com/embed/-7mKc0NjrGU?showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+               <div ng-show="isSet(1)" id="video" class="" ng-model="videos">
+                       <div class="panel-body">
+                          <div class="row">
+                              <div class="videos portfolio-scrolling-list touch-scroll">
+                                  <div class="video-container">
+                                      <div class="video" ng-repeat="video in videos | orderBy: '-rating'" ng-show="video.active">
+                                          <a href="" ng-click="getIframeSource(video)">
+                                              <img class="" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg"  alt="videoID:{{video.$id}}">
+                                              <h5>{{video.title | limitTo : 60}}</h5>
+                                          </a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                       </div>
+                   </div>
+               <div ng-show="isSet(2)" id="audio" class="">
+                   <ul class="nav nav-pills portfolio-tabs" id="data-categories">
+                       <li ng-class="{active: subIsSet(3)}"><a href ng-click="setSubTab(3)">Music Composition</a></li>
+                       <li ng-class="{active: subIsSet(4)}" ><a href ng-click="setSubTab(4)">Voice-Over (VO)</a></li>
+                       <li ng-class="{active: isSearchActive()}" ng-show="isSearchActive()" id="trackfilterclear"><a href ng-click="audioSearchKeyword = ''">Clear Track Search</a></li>
+                   </ul>
+                    <div class="" id="audio-panel">
+                       <div class="track-search">
+                           <input type="search" ng-change="searchActive = true" class="form-control" placeholder="Keyword Search" ng-model="audioSearchKeyword">
+                           <a href="" ng-click="audioSearchKeyword = ''" class="clear"><span class="glyphicon glyphicon-remove"></span></a>
+                       </div>
+                        <div class="">
+                           <div ng-show="subIsSet(3)" id="composition" class="portfolio-scrolling-list">
+                               <div class="panel-body" ng-model="audio">                      
+                                   <div class="audioplayer">
+                                       <div class="audio-list touch-scroll">
+                                        <div class="audio-container">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='composition' | filter: audioSearchKeyword | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
+                                               
+                                                 <div class="audio-item">
+                                                    <a ng-click="getAudioSource(track)" href="">
+                                                     <div class="audioImg">
+                                                   <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.title}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
+                                                    <div class="audioTitle"><span>{{track.title}}</span></div>                                       
+                                               </a>
+                                               <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
+                                                 </div> 
+                                           </div>
+
+                                        </div>   
+                                       </div>
+                                       <div class="image-credits"><strong>Image Credits: </strong> <span ng-bind-html="imageInfo"></span></div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                        <div class="">
+                           <div ng-show="subIsSet(4)" id="voiceover" class="portfolio-scrolling-list">
+                               <div class="panel-body" ng-model="audio">
+                                   <div class="audioplayer">
+                                       <div class="audio-list touch-scroll">
+                                            <div class="audio-container">
+                                                <div class="audio" ng-repeat="track in audio | filter: track.type='voiceover' | filter: audioSearchKeyword" ng-show="track.active&&track.showCSCreative">
+                                                 <div class="audio-item">
+                                                    <a ng-click="getAudioSource(track)" href="">
+                                                     <div class="audioImg"><img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" alt=""></div>
+                                                    <div class="audioTitle"><span>{{track.title}}</span></div> 
+                                                    </a>
+                                                    <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
+                                                 </div>                                        
+                                           </div>
+                                            </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                    </div>   
+                 </div>
+                            
+<!--
+           <div class="temp-playlist-test">
+                <p>Demo Music From <a href="http://incompetech.com">incompetech.com</a></p>
+                <audio src="" controls id="audioPlayer" >
+                    Sorry, your browser doesn't support html5!
+                </audio>
+                <ul id="playlist">
+                    <li><a href="../audio/chairHumor.wav">chair</a></li>
+                    <li><a href="../audio/EnglishKiss_1.mp3">Bossa Antigua</a></li>
+                    <li><a href="../audio/Panic.mp3">Exit the Premises</a></li>
+                    <li><a href="../audio/Tourism.wav">Severe Tire Damage</a></li>
+                    <li><a href="../audio/WebSocial.wav">Broken Reality</a></li>
+
+                </ul>
+                <a href="#" onclick="playlist.prevTrack();">Prev Track</a>
+                <a href="#" onclick="playlist.nextTrack();">Next Track</a>
+                <a href="#" onclick="playlist.toggleShuffle();">Toggle Shuffle</a> 
+           </div>
+-->
+        </div>
+
+    </div>
+    
+</section>
+
+
+                

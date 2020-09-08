@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Spencer Creative | Audio | Music Composer for Media | Sound Designer | Audio Engineer | Seattle</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--IE config-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Spencer Creative is a portfolio of sound design, music composition and sound recordings of musician, audio engineer and composer Chris Spencer">
+        <meta name="google-site-verification" content="pl3433ACg541_kKMdt5VpmifsNPeCqjP8fqkNlf4Fzs" />
+        <meta name="author" content="Chris Spencer, ChrisSpencerCreative, SophiaHat Studios">
+        <meta name="keywords" content="sound design, Seattle Music Composer, Seattle sound design, Seattle sound designer, Seattle sound editing, Seattle voice over recording, Seattle ADR, Seattle film sound, Seattle dialog replacement, Seattle sound effects, Seattle game audio, seattle game sound, Seattle sound efx, seattle sound for games, Seattle, Pacific Northwest, sound design pacific northwest, pacific northwest sound design, sound editing, voice over recording, ADR, film sound, dialogue replacement, dialog recording, sound effects, sound EFX, Chris Spencer, musician, sound recorder, recording studio, game audio, music composition, soundtrack, film scoring, Website sound, web sound, Web audio, website audio, website music, website soundtrack, project studio, sound for games">
+        
+        <meta property="og:url" content="http://www.chrisspencercreative.com/">
+        <meta property="og:type" content="website">
+        <!-- <meta property="fb:app_id" content="">
+        <meta property="fb:admins" content=""> -->
+        <meta property="og:site_name" content="Chris Spencer Creative">
+        <meta property="og:image" content="https://www.chrisspencercreative.com/images/guitar.jpg">
+        <meta property="og:title" content="Spencer Creative | Audio | Music Composer for Media | Sound Designer | Audio Engineer | Seattle">
+        <meta property="og:description" content="Spencer Creative is a portfolio of sound design, music composition and sound recordings of musician, audio engineer and composer Chris Spencer">
+        
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@sophiahatstudio" />
+        <meta name="twitter:title" content="Spencer Creative | Audio | Music Composer for Media | Sound Designer | Audio Engineer | Seattle" />
+        <meta name="twitter:description" content="Spencer Creative is a portfolio of sound design, music composition and sound recordings of musician, audio engineer and composer Chris Spencer" />
+        <meta name="twitter:image" content="https://www.chrisspencercreative.com/images/guitar.jpg" />
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,500|Roboto:300,700" rel="stylesheet">
+        <link rel="stylesheet" href="/favicon.ico" type="image/x-icon">
+        
+        <script src="js/lib/angular/angular.min.js"></script>
+        <script src="js/lib/angular/angular-route.min.js"></script>
+        <script src="js/lib/angular/angular-animate.min.js"></script>
+        <script src="js/lib/angular/angular-touch.min.js"></script>
+        <script src="js/lib/angular/angular-sanitize.min.js"></script>
+<!--        <script src="js/lib/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>-->
+
+        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/2.0.2/angularfire.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+        <script src="js/lib/bootstrap/bootstrap.min.js"></script>
+        <script src="js/lib/jquery/jquery.tubular.1.0.js"></script>
+        <script src="js/lib/ng-clipboard/ngclipboard-master/dist/ngclipboard.js"></script>
+        <script src="https://js.stripe.com/v3"></script>
+
+
+        <script src="js/app.js"></script>
+        <script src="js/services/authentication.js"></script>
+        <script src="js/controllers/registration.js"></script>
+        <script src='js/controllers/contact.js'></script>
+        <script src="js/controllers/services.js"></script>
+        <script src="js/controllers/admin.js"></script>
+        <script src="js/controllers/news.js"></script>
+        <script src="js/controllers/portfolio.js"></script>
+        <script src="js/controllers/about.js"></script>
+        <script src='js/controllers/consult.js'></script>
+        <script src="js/controllers/modal.js"></script>
+        <script src="js/controllers/footer.js"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20609405-2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          var url = window.location.href;
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+
+          gtag('config', 'UA-20609405-2', {
+            'page_title' : 'Home',
+            'page_location' : url,
+            'page_path' : '/#!/home'
+          });
+        </script>
+        
+
+<!--        <title>Chris Spencer Creative</title>-->
+    </head>
+    <body ng-app="myApp">
+        <div id="wrapper">
+           <header>
+               <nav id="csc-nav" class="cf" role="navigation" ng-include="'views/nav.html'"></nav>
+               <div class="header-carousel" ng-include="'views/carousel.html'"></div>
+               <div class="header-lower-rail"></div>
+           </header>
+           <div class="page">
+               <div class="container">
+                  <div class="row">
+                      <div class="col-md-8">
+                          <main class="cf" role="main" ng-view></main>    
+                      </div>
+                      <div class="col-md-4 text-center">
+                         <aside role="complementary">
+<div class="userinfo list-group-item" ng-hide="currentUser">
+            <p>
+            <button id="modal-btn" class="btn btn-success">Login/Register</button>
+<!--            <button class="btn"><a ng-href="#!/login">Login</a></button> Or <button class="btn"><a href="#!/register">Register</a></button>-->
+            </p>
+        </div>
+        <div class="userinfo list-group-item" ng-show="currentUser" ng-controller="RegistrationController">
+            <h4><span class="userinfo">Hi {{currentUser.firstname}} {{currentUser.lastname}}</span></h4>
+            <a ng-href="#!/login" ng-click="logout()">Logout</a>
+        </div>                         
+                         <div ng-include="'views/aside.html'" ></div>
+                         
+                        </aside>
+                          
+                      </div>
+                  </div>
+                   
+               </div>
+           </div>
+           <div id="global-modal" class="modal" ng-controller="ModalController">
+              <div class="modal-content">
+                  <div class="modal-header"><span class="close">&times;</span><h2>Modal Header</h2></div>
+                  
+                  <div class="modal-body" ng-show="!registrationActive" ng-include="'views/login.html'"></div>
+                  <div class="modal-body" ng-show="registrationActive" ng-include="'views/register.html'"></div>
+                  <div class="modal-footer"><h3>Modal Footer</h3></div>
+              </div>
+               
+           </div>
+           <footer class="navbar-fixed-bottom">
+               <div class="cf" ng-include="'views/footer.html'" role="content info"></div>
+           </footer>
+           
+        </div>
+    </body>
+    <script>
+        $(document).ready(function() {
+            $('#wrapper').tubular({videoId: 'fcGt5PRbZ6Q', repeat: true}); //fcGt5PRbZ6Q - aged paper E8rZaFvge_k - decal
+            console.log('document ready');
+        });
+    </script>
+</html>
