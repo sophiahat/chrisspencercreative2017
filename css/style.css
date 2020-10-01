@@ -684,8 +684,10 @@ section .ng-scope {
 }
 
 .audioTitle {
-    margin: 0 0 0 10px;
-    width: 80%;
+/*    margin: 0 0 0 10px;*/
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .displayAudio .audioTitle {
@@ -724,7 +726,8 @@ section .ng-scope {
 
 .audio-list .audio {
     height: min-content;
-    min-width:25%;
+    min-width: 32%;
+    max-width: 33%;
     overflow: auto;
     display: inline-flex;
 }
@@ -739,7 +742,7 @@ section .ng-scope {
 /*    border: solid 1px rgba(150, 150, 150, 0.9);*/
     border-radius: 4px;
     text-align: center;
-    width: 120px;
+    width: 98%;
     height: 220px;
     margin: 5px;
 /*    padding: 3px;  */
@@ -876,10 +879,10 @@ section .ng-scope {
 }
 .portfolio .audio .audioImg {
     position: relative;
-	width:117px;
-	height:120px;
+	width:auto;
+	height:auto;
     display: flex;
-    padding: 0;
+    padding: 10px;
     margin: 0;
     justify-content: center;
     align-items: center;
@@ -894,8 +897,9 @@ section .ng-scope {
     margin: 5px auto inherit auto;
     max-width: 100px;
 /*    max-height: 110px;*/
-    border-radius: 4px;
+    border-radius: 10px;
 /*    border: 1px solid black;*/
+    padding: 5px;
 }
 .about .maintext .client-url {
     display: flex;
@@ -1276,7 +1280,8 @@ footer  {
         width: 120px;
     }
     .audio-list .audio {
-        width: 120px;
+        min-width: 48%;
+        max-width: 49%;
         margin: 2px;
     }
     .audio-list .audio .audioImg {
@@ -1286,17 +1291,18 @@ footer  {
         margin-top: 5px;
     }
     .audio-list .audio .audio-item {
-        width: 120px;
+        width: 95%;
         margin: 2px;
-        padding: 0;
+        padding-top: 10px;
         height: 170px;
     }
     .audio-list .audio img {
-        width: 80px;
-        height: 80px;
+        width: 100%;
+        height: auto;
     }
     .audio-list .audioTitle {
-/*        width: 100%;*/
+        width: 100%;
+        margin-top: 10px!important;
     }
     
 
