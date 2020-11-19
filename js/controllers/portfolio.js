@@ -149,8 +149,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
 //            $scope.playlistLink = '<a href="' + $scope.playlistURL + '">' + playlistTitle + '</a>';
         });
     };
+//    Remove an item from the playlist
     $scope.playlistClear = function() {
-//        $scope.audioPlaylist = [];
         $($scope.audioPlaylist).each(function() {
             var index = $scope.audioPlaylist.indexOf(this);
             if(index > -1) {
@@ -179,9 +179,16 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
             console.log ('composerAudio length: ' + composerAudio.length);
             radioPlaylist.push(audioCopy.splice(random,1));
         }
-        console.log(composerAudio);
-        console.log(audioCopy);
-        console.log(radioPlaylist);
+        console.log(composerAudio);//original array of audio
+        console.log(audioCopy);//empty
+        console.log(radioPlaylist);//random array of audio
+        
+        $(radioPlaylist).each(function() {
+            console.log(this[0].title);
+            $scope.audioPlaylist.push(this[0]);
+            playPlaylist();
+        });
+        $scope.audioPlaylistActive = true;
     };
     function setAutoplayAudio() {
         audioplayer.attr('autoplay', 'autoplay');

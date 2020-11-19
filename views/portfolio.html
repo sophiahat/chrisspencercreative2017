@@ -9,6 +9,7 @@
                 </div>
             </header>
                <ul class="nav nav-pills pull-right portfolio-tabs" id="data-categories">
+                  <li id="play-radio"><a href ng-click="playRadio();setTab(2);"><i class="glyphicon glyphicon-music"></i> Play Radio</a></li> 
                    <li ng-class="{active: isSet(1)}"><a href ng-click="setTab(1)">Video</a></li>
                    <li ng-class="{active: isSet(2)}" ><a href ng-click="setTab(2)">Audio</a></li>
                </ul>
@@ -52,7 +53,7 @@
                                     <button class="btn btn-info" id="playlist-next" ng-click="adjustCurrentTrack(1)"><i class="glyphicon glyphicon-step-forward"></i>Next</button>
                                     <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()"><i class="glyphicon glyphicon-trash"></i>Clear</button>
                                     <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" ><i class="glyphicon glyphicon-floppy-disk"></i>Save</button> 
-                                    <button class="btn btn-info" id="play-radio" ng-click="playRadio()"><i class="glyphicon glyphicon-music"></i>Play Radio</button>                   
+                                                      
                                     
                                     
                                 </div>
