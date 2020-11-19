@@ -85,6 +85,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     if (audioPlaylistID) {
         console.log('Audio Playlist ID: ' + audioPlaylistID);
         $scope.showplaylist = true;
+        //add first track to display audio
+        console.log('audio playlist is: ' + $scope.audioPlaylist + $scope.audioPlaylistActive);
         } else {
         console.log('AudioPlaylistID is not there, it is:' + audioPlaylistID);
         }
@@ -142,7 +144,8 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         playlistInfo.$add(postdata).then(function(ref) {
             $scope.playlistDatabaseId = ref.key;
             console.log('added to database, id: ' + $scope.playlistDatabaseId);
-            $scope.playlistURL = $location.absUrl() + '/' + $scope.playlistDatabaseId;
+            $scope.playlistURL = 'https://www.chrisspencercreative.com/#!' + $location.url() + '/' + $scope.playlistDatabaseId;
+
 //            $scope.playlistLink = '<a href="' + $scope.playlistURL + '">' + playlistTitle + '</a>';
         });
     };
@@ -167,7 +170,19 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         $scope.audioPlaylistActive = true;
     }
     $scope.playPlaylist = playPlaylist;
-   
+    $scope.playRadio = function() {
+        var audioCopy = Array.from(composerAudio);
+        var radioPlaylist = [];
+        while (audioCopy.length > 0) {
+            var random =  Math.floor(Math.random() * audioCopy.length);
+            console.log ("random: " + random);
+            console.log ('composerAudio length: ' + composerAudio.length);
+            radioPlaylist.push(audioCopy.splice(random,1));
+        }
+        console.log(composerAudio);
+        console.log(audioCopy);
+        console.log(radioPlaylist);
+    };
     function setAutoplayAudio() {
         audioplayer.attr('autoplay', 'autoplay');
         console.log($scope.displayAudio.title);
@@ -194,12 +209,14 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     $(audioplayer).on('ended', function() {
         ($scope.audioPlaylistActive) ? $('#playlist-next').click() : console.log('single track ended');
     });
+    
+    var composerAudio = [];
     audioInfo.$loaded().then(function(audioInfo) {
 //        console.log('load complete');
 //        console.log("length of audio array: " + audioInfo.length);
 //        console.log("first Audio object");
 //        console.log(audioInfo[0].showCSCreative);
-        var composerAudio = [];
+        
         $(audioInfo).each(function() {
             if(this.type == "composition") {
 //                console.log(this.title);

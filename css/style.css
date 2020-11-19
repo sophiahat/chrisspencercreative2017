@@ -354,7 +354,7 @@ footer .btn {
 /*End Bootstrap class alterations*/
 .btn {
 /*    padding: 3px 8px;*/
-/*    margin-top: 10px;*/
+    margin-top: 5px;
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
@@ -579,8 +579,8 @@ section .ng-scope {
     z-index: 1;
 }
 
-.portfolio .portfolio-scrolling-list {
-    overflow: scroll;
+.portfolio .portfolio-list {
+/*    overflow: scroll;*/
     height: 330px;   
 }
 .portfolio .track-search input {
@@ -815,7 +815,7 @@ section .ng-scope {
     clear: both;
 }
 .portfolio .audio-playlist .audio-playlist-list {
-    height: 75px;
+    height: 85px;
     overflow-y: scroll;
     
 }
@@ -1235,7 +1235,7 @@ footer  {
     .portfolio .audio-list {
        height: auto;
     }
-    .portfolio .portfolio-scrolling-list {
+    .portfolio .portfolio-list {
         height: auto;
     }
 }

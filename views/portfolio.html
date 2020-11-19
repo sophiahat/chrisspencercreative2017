@@ -19,8 +19,7 @@
                        <div class="audioTitle"><span><h4>{{displayAudio.title}}</h4></span></div>
                        <div class="audiodescription"><span>{{displayAudio.description}}</span></div>
                         <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
-                        <button ng-show="displayAudio.stripeSku" id="checkout-button-sku_FlfntUu5z0WqDb" ng-click="buyTrack(track)" class="purchase" role="link"
-                        >Buy</button>
+<!--                        <button ng-show="displayAudio.stripeSku" id="checkout-button-sku_FlfntUu5z0WqDb" ng-click="buyTrack(track)" class="purchase" role="link">Buy</button>-->
 
                         <div id="error-message"></div>
 
@@ -52,7 +51,8 @@
                                     <button class="btn btn-info" id="playlist-previous" ng-click="adjustCurrentTrack(-1)"><i class="glyphicon glyphicon-step-backward"></i>Previous</button>
                                     <button class="btn btn-info" id="playlist-next" ng-click="adjustCurrentTrack(1)"><i class="glyphicon glyphicon-step-forward"></i>Next</button>
                                     <button class="btn btn-info" id="playlist-clear" ng-click="playlistClear()"><i class="glyphicon glyphicon-trash"></i>Clear</button>
-                                    <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" ><i class="glyphicon glyphicon-floppy-disk"></i>Save</button>                    
+                                    <button ng-show="currentUser" class="btn btn-info" id="playlist-save" ng-click="savePlaylist()" ><i class="glyphicon glyphicon-floppy-disk"></i>Save</button> 
+                                    <button class="btn btn-info" id="play-radio" ng-click="playRadio()"><i class="glyphicon glyphicon-music"></i>Play Radio</button>                   
                                     
                                     
                                 </div>
@@ -64,7 +64,7 @@
                <div ng-show="isSet(1)" id="video" class="" ng-model="videos">
                        <div class="panel-body">
                           <div class="row">
-                              <div class="videos portfolio-scrolling-list touch-scroll">
+                              <div class="videos portfolio-list touch-scroll">
                                   <div class="video-container">
                                       <div class="video" ng-repeat="video in videos | orderBy: '-rating'" ng-show="video.active">
                                           <a href="" ng-click="getIframeSource(video)">
@@ -89,7 +89,7 @@
                            <a href="" ng-click="audioSearchKeyword = ''" class="clear"><span class="glyphicon glyphicon-remove"></span></a>
                        </div>
                         <div class="">
-                           <div ng-show="subIsSet(3)" id="composition" class="portfolio-scrolling-list">
+                           <div ng-show="subIsSet(3)" id="composition" class="portfolio-list">
                                <div class="panel-body" ng-model="audio">                      
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
@@ -114,7 +114,7 @@
                            </div>
                        </div>
                         <div class="">
-                           <div ng-show="subIsSet(4)" id="voiceover" class="portfolio-scrolling-list">
+                           <div ng-show="subIsSet(4)" id="voiceover" class="portfolio-list">
                                <div class="panel-body" ng-model="audio">
                                    <div class="audioplayer">
                                        <div class="audio-list touch-scroll">
