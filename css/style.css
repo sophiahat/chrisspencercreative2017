@@ -726,8 +726,8 @@ section .ng-scope {
 
 .audio-list .audio {
     height: min-content;
-    min-width: 32%;
-    max-width: 33%;
+    min-width: 24%;
+    max-width: 25%;
     overflow: auto;
     display: inline-flex;
 }
@@ -1142,6 +1142,10 @@ footer  {
     background-color: #222222;
     color: #9d9d9d;
 }
+    
+@media (min-width: 1600px) {
+
+}
 
 @media (min-width: 1200px) {
     .container {
@@ -1193,6 +1197,10 @@ footer  {
 }
 
 @media (max-width: 768px) {
+    .audio-list .audio {
+        min-width: 32%;
+        max-width: 33%;
+    }
     .navbar-collapse {
         width: 100%;
     }
