@@ -72,7 +72,7 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     $scope.isSearchActive = function() {
         var active = ($scope.audioSearchKeyword) ? true : false;
         $scope.searchActive = active;
-        console.log('active Search: ' + active);
+//        console.log('active Search: ' + active);
         return active;
     };
     
@@ -199,6 +199,25 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
             'page_title' : 'Portfolio - ' + $scope.displayAudio.title
         });
     }
+    
+    function playMashup(audio) {
+        console.log(audio);
+        var track = new Audio("https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src);
+        var duration;
+        var ratio = audioplayer[0].currentTime / audioplayer[0].duration;
+        console.log('percentage elapsed:' + ratio);
+        track.addEventListener('loadeddata', function() {
+            console.log('new track loaded');
+            duration = track.duration;
+            console.log('track duration might be: ' + duration);
+            playSingleTrack(audio);
+            var currentTrackTime = ratio*duration;
+            console.log(currentTrackTime);
+            audioplayer[0].currentTime = currentTrackTime;
+        });
+    }
+    $scope.playMashup = playMashup;
+    
     function playSingleTrack(audio) {
         $scope.audioPlaylistActive = false;
         changeDisplayAudio(audio);
@@ -212,9 +231,9 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
         console.log('In audio stuff, adjusted the audio source'); 
         var link = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;    
         audioplayer.attr('src', link);    
-    } 
+     } 
     $(audioplayer).on('ended', function() {
-        ($scope.audioPlaylistActive) ? $('#playlist-next').click() : console.log('single track ended');
+        ($scope.audioPlaylistActive) ? $('#playlist-next').click() : audioplayer[0].currentTime = 0;
     });
     
     var composerAudio = [];

@@ -82,6 +82,7 @@
                    <ul class="nav nav-pills portfolio-tabs" id="data-categories">
                        <li ng-class="{active: subIsSet(3)}"><a href ng-click="setSubTab(3)">Music Composition</a></li>
                        <li ng-class="{active: subIsSet(4)}" ><a href ng-click="setSubTab(4)">Voice-Over (VO)</a></li>
+                       <li ng-class="{active: subIsSet(5)}"><a href ng-click="setSubTab(5)">Guitar Geekout</a></li>
                        <li ng-class="{active: isSearchActive()}" ng-show="isSearchActive()" id="trackfilterclear"><a href ng-click="audioSearchKeyword = ''">Clear Track Search</a></li>
                    </ul>
                     <div class="" id="audio-panel">
@@ -133,7 +134,32 @@
                                        </div>
                                    </div>
                                </div>
-                           </div>
+                           </div>   
+                       </div>
+                       <div class="">
+                           <div ng-show="subIsSet(5)" id="mashup"
+                                <div class="panel-body" ng-model="audio">                      
+                                   <div class="audioplayer">
+                                       <div class="audio-list touch-scroll">
+                                        <div class="audio-container">
+                                            <div class="audio" ng-repeat="track in audio | filter: track.type='mashup' | filter: audioSearchKeyword | orderBy: '-rating'" ng-show="track.showCSCreative&&track.active">
+                                               
+                                                 <div class="audio-item">
+                                                    <a ng-click="playMashup(track)" href>
+                                                     <div class="audioImg">
+                                                   <img ng-src="https://storage.googleapis.com/chrisspencercreative/images/cd_images/{{track.img}}" ng-click="getImageInfo(track.img)" title="{{track.title}}" ng-mouseover="getImageInfo(track.img)" ng-mouseleave="clearImageInfo()" alt="image for track"></div>
+                                                    <div class="audioTitle"><span>{{track.title}}</span></div>                                       
+                                               </a>
+                                               <div class="add-to-playlist"><label for="playlist-selector">Playlist</label><input ng-model="track.selected" ng-change="adjustPlaylist(track, track.selected)" id="add-playlist-456" type="checkbox"></div>
+                                                 </div> 
+                                           </div>
+
+                                        </div>   
+                                       </div>
+                                       <div class="image-credits"><strong>Image Credits: </strong> <span ng-bind-html="imageInfo"></span></div>
+                                   </div>
+                               </div>
+                       </div>
                        </div>
                     </div>   
                  </div>
