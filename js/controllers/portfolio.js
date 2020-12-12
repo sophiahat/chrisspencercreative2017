@@ -203,23 +203,44 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     function playMashup(audio) {
         console.log(audio);
         var track = new Audio("https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src);
-        var duration;
+        track.load();
+        var duration, currentTrackTime;
         var ratio = audioplayer[0].currentTime / audioplayer[0].duration;
         console.log('percentage elapsed:' + ratio);
         track.addEventListener('loadeddata', function() {
-            console.log('new track loaded');
+            console.log('loadeddata');
             duration = track.duration;
             console.log('track duration might be: ' + duration);
-            playSingleTrack(audio);
-            var currentTrackTime = ratio*duration;
+            
+            currentTrackTime = ratio*duration;
             console.log(currentTrackTime);
             audioplayer[0].currentTime = currentTrackTime;
+            
         });
+        if(/iPad|iPhone|iPod/.test(navigator.userAgent)){
+            audioplayer[0].src = "https://storage.googleapis.com/chrisspencercreative/audio/" + audio.src;
+            audioplayer[0].currentTime = 0;
+            $scope.displayAudio = audio;
+            audioplayer[0].play();
+        } else {
+            playSingleTrack(audio);
+        }
+        
+//        track.addEventListener('progress', handleEvent);
+//        track.addEventListener('canplaythrough', handleEvent);
+//        track.addEventListener('canplay', handleEvent);
+        
+        
+    }
+    
+    function handleEvent(event) {
+        console.log(`${event.type}`);
     }
     $scope.playMashup = playMashup;
     
     function playSingleTrack(audio) {
         $scope.audioPlaylistActive = false;
+        console.log(audioplayer);
         changeDisplayAudio(audio);
     }
     function changeDisplayAudio(audio) {
