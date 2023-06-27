@@ -3,11 +3,11 @@ myApp.controller('AdminController', ['$scope', '$rootScope', '$routeParams', '$f
     $scope.audioplayer = false;
     //update google analytics
     var url = window.location.href;
-    gtag('config', 'UA-20609405-2', {
-        'page_path' : '/#!/admin',
-        'page_location' : url,
-        'page_title' : 'Admin'
-    
+    gtag('config', 'G-JB3CC59H30');
+    gtag('event', 'page_view', {
+        page_title: 'Admin',
+        page_path: '/#!/admin',
+        page_location: url
     });
     
     var ref = firebase.database().ref();

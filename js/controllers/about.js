@@ -1,9 +1,10 @@
 myApp.controller('AboutController', ['$scope', '$firebaseArray','$firebaseObject', function($scope, $firebaseArray, $firebaseObject) {
     var url = window.location.href;
-    gtag('config', 'UA-20609405-2', {
-        'page_path' : '/#!/about',
-        'page_location' : url,
-        'page_title' : 'About'
+    gtag('config', 'G-JB3CC59H30');
+    gtag('event', 'page_view', {
+        page_title: 'About',
+        page_path: '/#!/about',
+        page_location: url
     });
     console.log('AboutController is on');
     

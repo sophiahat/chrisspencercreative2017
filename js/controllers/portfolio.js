@@ -4,11 +4,11 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     console.log(document.cookie);
     //update google analytics
     var url = window.location.href;
-    gtag('config', 'UA-20609405-2', {
-        'page_path' : '/#!/portfolio',
-        'page_location' : url,
-        'page_title' : 'Portfolio'
-    
+    gtag('config', 'G-JB3CC59H30');
+    gtag('event', 'page_view', {
+        page_title: 'Portfolio',
+        page_path: '/#!/portfolio',
+        page_location: url
     });
     //hide carousel
 //    $('.header-carousel').hide();
@@ -193,10 +193,10 @@ myApp.controller('PortfolioController', ['$scope', '$firebaseAuth', '$firebaseAr
     function setAutoplayAudio() {
         audioplayer.attr('autoplay', 'autoplay');
         console.log($scope.displayAudio.title);
-        gtag('config', 'UA-20609405-2', {
-            'page_path' : '/#!/portfolio',
-            'page_location' : url,
-            'page_title' : 'Portfolio - ' + $scope.displayAudio.title
+        gtag('event', 'page_view', {
+            page_path : '/#!/portfolio',
+            page_location : url,
+            page_title : 'Portfolio - ' + $scope.displayAudio.title
         });
     }
     
